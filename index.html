@@ -166,6 +166,33 @@ button.chip{cursor:pointer}
 .sv{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:18px 0 12px}
 .sv span{font-size:12px}.sv .warn{color:var(--pink)}.sv .ok{color:#34d399}.sv .cta{width:auto;padding:12px 20px}
 #mBody .exs{margin-top:14px}
+.rt{display:flex;align-items:center;gap:10px}
+.uchip{display:flex;align-items:center;gap:8px;background:var(--c2);border:1px solid var(--line);color:var(--txt);border-radius:99px;padding:4px 12px 4px 4px;font-weight:600;font-size:13px}
+.uchip:empty{display:none}
+.avs,.av{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#ff4d6d,#b3123a);color:#fff;font-weight:800;font-size:13px;flex:none}
+.av{width:54px;height:54px;font-size:24px}
+.un{max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:480px){.un{display:none}.uchip{padding:4px}}
+.authbox,.wbox{text-align:left}
+.authbox{max-width:360px;max-height:94vh;overflow:auto}
+.authbox .logo{text-align:center;font-size:40px}
+.authbox .nx{margin:6px 0 0}.authbox .tabs{margin:16px 0 12px}
+.authbox .in{margin-bottom:8px}
+.authbox .lang{width:max-content;margin:16px auto 0}
+.rm{display:flex;gap:8px;align-items:center;font-size:13px;color:var(--mut);margin:6px 0 0}
+.fine{color:var(--mut);font-size:11px;text-align:center;margin:12px 0 0}
+.wbox{max-width:380px;max-height:92vh;overflow:auto}
+.wh{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.wh small{display:block;color:var(--mut);font-size:13px}
+.wh b{font:italic 800 28px/1 var(--disp);text-transform:uppercase;letter-spacing:.04em;font-style:italic}
+.wbox h3{font:italic 800 26px var(--disp);text-transform:uppercase;margin:2px 0 0}
+.wl{list-style:none;margin:12px 0;padding:0;display:grid;gap:6px}
+.wl li{display:flex;justify-content:space-between;gap:10px;background:var(--c2);border:1px solid var(--line);border-radius:12px;padding:9px 12px;font-size:13px}
+.wl span{color:var(--mut);white-space:nowrap}
+.rkm{display:flex;align-items:center;gap:10px;margin:0 0 10px;color:var(--mut);font-size:13px}.rkm b{color:var(--txt)}
+.wbox .chips{justify-content:flex-start;margin-top:8px}
+#acctB .gb,#acctB .cta{width:100%;margin-top:8px;border-radius:14px}
+#acctB textarea{margin-top:8px;font-size:12px}
 @media (prefers-reduced-motion:no-preference){.m,.ck{transition:fill .25s,background .2s}.pane.act{animation:in .25s}@keyframes in{from{opacity:0;transform:translateY(8px)}}}
 </style>
 </head>
@@ -182,7 +209,7 @@ button.chip{cursor:pointer}
 <header class="bar">
   <div class="logo">FORMA<b>.</b></div>
   <div class="dt" id="dt"></div>
-  <div class="lang" role="group" aria-label="Limba / Language"><button data-l="ro">RO</button><button data-l="en">EN</button></div>
+  <div class="rt"><button class="uchip" id="uBtn" aria-label="Account"></button><div class="lang" role="group" aria-label="Limba / Language"><button data-l="ro">RO</button><button data-l="en">EN</button></div></div>
 </header>
 
 <nav class="nav" id="nav">
@@ -201,12 +228,15 @@ button.chip{cursor:pointer}
   <section class="pane" id="p-bg"><h2 data-i="h4"></h2><div id="bgHome"><div class="bg"><div class="tile"><b>B</b><span data-i="soon"></span></div><button class="tile" id="gTile" aria-label="G"><b>G</b><span id="gS"></span></button></div><p class="bgn" data-i="bgn"></p></div><div id="gView" hidden></div></section>
   <section class="pane" id="p-my"><h2 data-i="h5"></h2><input class="in" id="myN" maxlength="40" data-ph="wn"><div class="tabs" id="mTabs" style="margin-top:14px"></div><div id="mBody"></div></section>
 </div></main>
+<div class="pin" id="auth"><div class="pinbox authbox"><div class="logo">FORMA<b>.</b></div><p class="nx" data-i="authSub"></p><div id="who"></div><div class="tabs"><button id="aLog" class="on" data-i="lg_t"></button><button id="aNew" data-i="su"></button></div><input class="in" id="aN" autocomplete="username" maxlength="24" data-ph="un"><input class="in" id="aP" type="password" autocomplete="current-password" maxlength="40" data-ph="pw"><label class="rm"><input type="checkbox" id="aR" checked><span data-i="rm"></span></label><p class="pe" id="aE"></p><button class="cta" id="aGo"></button><div class="lang lg2"><button data-l="ro">RO</button><button data-l="en">EN</button></div><p class="fine" data-i="note"></p></div></div>
+<div class="pin" id="welc" hidden><div class="pinbox wbox" id="wbox"></div></div>
+<div class="pin" id="acct" hidden><div class="pinbox wbox" id="acctB"></div></div>
 <div class="pin" id="pin" hidden><div class="pinbox"><b data-i="pinT"></b><div class="dots" id="dots"><i></i><i></i><i></i><i></i></div><p class="pe" id="pinE"></p><div class="pad" id="pad"></div><button class="gb" id="pinX" data-i="cancel"></button></div></div>
 
 <script>
 const L={
-ro:{n1:"Plan",n2:"Corp",n3:"Rang",n4:"Special",h1:"Programul tău",h2:"Mușchi antrenați",h3:"Rangul tău",h4:"Antrenamente speciale",warm:"Încălzire",ex:"exerciții",mu:"mușchi",mus:"Grupe musculare",wu:"Încălzire",front:"Față",back:"Spate",next:"până la",max:"Rang maxim",soon:"În curând",bgn:"B apare în curând. G se deschide cu parolă.",restT:"Pauză",restP:"Mușchii cresc când te odihnești. Somn bun, apă și un stretching ușor.",tap:"Atinge un exercițiu când l’ai terminat.",min:"min",n5:"Al meu",h5:"Programul tău propriu",bw:"Greutate corporală (kg)",sq:"Genuflexiuni",dl:"Îndreptări",bp:"Împins la bancă",kg:"kg",reps:"repetări",sets:"serii",edit:"Editează",done2:"Gata",rst:"Resetează programul",sure:"Sigur? Apasă din nou",sv:"Salvează programul",svd:"Salvat",uns:"Nesalvat, apasă Salvează",cp:"Copiază din Plan",cg:"Copiază din G",nors:"Rangul se dă după ce îți faci programul. Adaugă exerciții cu kg în „Al meu” și apasă Salvează.",go:"Construiește programul",lh:"Rangul se dă după ce îți faci programul în „Al meu” și îl salvezi. Se calculează din toate exercițiile cu greutate din săptămână: forța maximă estimată (1RM = greutate × (1 + repetări / 30)) față de exercițiul de referință, raportată la greutatea, sexul și vârsta ta. LVL și EXP cresc odată cu forța.",mr:"Rang pe mușchi",nd:"Fără date",ag:"Vârstă",sx:"Sex",sm:"Bărbat",sf:"Femeie",rf:"Exercițiu de referință",beat:"depășești",weak:"Rămas în urmă",ov:"Rang general",nxt:"Următorul rang:",need:"Introdu cel puțin o ridicare",wn:"Numele antrenamentului",pick:"Mușchi lucrați",exn:"Exercițiu",add:"Adaugă exercițiul",clr:"Șterge tot",empty:"Nu ai adăugat exerciții încă.",lock:"Protejat",open:"Deschis",pinT:"Introdu parola",pinE:"Parolă greșită",back2:"Înapoi",lockBtn:"Blochează",cancel:"Anulează"},
-en:{n1:"Plan",n2:"Body",n3:"Rank",n4:"Special",h1:"Your plan",h2:"Muscles trained",h3:"Your rank",h4:"Special workouts",warm:"Warm-up",ex:"exercises",mu:"muscles",mus:"Muscle groups",wu:"Warm-up",front:"Front",back:"Back",next:"to",max:"Max rank",soon:"Coming soon",bgn:"B is coming soon. G opens with a password.",restT:"Rest day",restP:"Muscles grow while you rest. Sleep well, drink water and stretch lightly.",tap:"Tap an exercise when you finish it.",min:"min",n5:"Mine",h5:"Your own program",bw:"Body weight (kg)",sq:"Squat",dl:"Deadlift",bp:"Bench press",kg:"kg",reps:"reps",sets:"sets",edit:"Edit",done2:"Done",rst:"Reset program",sure:"Sure? Tap again",sv:"Save program",svd:"Saved",uns:"Unsaved, tap Save",cp:"Copy from Plan",cg:"Copy from G",nors:"Your rank is given once you build your program. Add exercises with kg in “Mine” and tap Save.",go:"Build your program",lh:"Your rank is given once you build your program in “Mine” and save it. It is calculated from all the weighted exercises in your week: estimated max (1RM = weight × (1 + reps / 30)) against the reference lift, relative to your body weight, sex and age. LVL and EXP grow with your strength.",mr:"Rank per muscle",nd:"No data",ag:"Age",sx:"Sex",sm:"Male",sf:"Female",rf:"Reference lift",beat:"beats",weak:"Lagging",ov:"Overall rank",nxt:"Next rank:",need:"Enter at least one lift",wn:"Workout name",pick:"Muscles worked",exn:"Exercise",add:"Add exercise",clr:"Clear all",empty:"No exercises added yet.",lock:"Locked",open:"Unlocked",pinT:"Enter password",pinE:"Wrong password",back2:"Back",lockBtn:"Lock",cancel:"Cancel"}};
+ro:{n1:"Plan",n2:"Corp",n3:"Rang",n4:"Special",h1:"Programul tău",h2:"Mușchi antrenați",h3:"Rangul tău",h4:"Antrenamente speciale",warm:"Încălzire",ex:"exerciții",mu:"mușchi",mus:"Grupe musculare",wu:"Încălzire",front:"Față",back:"Spate",next:"până la",max:"Rang maxim",soon:"În curând",bgn:"B apare în curând. G se deschide cu parolă.",restT:"Pauză",restP:"Mușchii cresc când te odihnești. Somn bun, apă și un stretching ușor.",tap:"Atinge un exercițiu când l’ai terminat.",min:"min",n5:"Al meu",h5:"Programul tău propriu",bw:"Greutate corporală (kg)",sq:"Genuflexiuni",dl:"Îndreptări",bp:"Împins la bancă",kg:"kg",reps:"repetări",sets:"serii",edit:"Editează",done2:"Gata",rst:"Resetează programul",sure:"Sigur? Apasă din nou",sv:"Salvează programul",svd:"Salvat",uns:"Nesalvat, apasă Salvează",cp:"Copiază din Plan",cg:"Copiază din G",nors:"Rangul se dă după ce îți faci programul. Adaugă exerciții cu kg în „Al meu” și apasă Salvează.",go:"Construiește programul",authSub:"Autentifică-te ca să-ți găsești programul, rangul și progresul.",lg_t:"Autentificare",su:"Cont nou",un:"Nume",pw:"Parolă",rm:"Rămâi conectat",ent:"Intră",crt:"Creează contul",bad:"Nume sau parolă greșită",taken:"Numele există deja",short:"Parola: minim 4 caractere",nn:"Scrie un nume",who:"Ești tu?",hi:"Salut",todayW:"Antrenamentul de azi",start:"Începe antrenamentul",own:"Programul tău",more:"încă",acct:"Cont",out:"Ieși din cont",exp:"Exportă datele",imp:"Importă datele",del:"Șterge contul",paste:"Lipește aici datele exportate",badimp:"Date invalide",note:"Contul e salvat doar pe acest dispozitiv. Exportă datele ca să le muți pe altul.",lh:"Rangul se dă după ce îți faci programul în „Al meu” și îl salvezi. Se calculează din toate exercițiile cu greutate din săptămână: forța maximă estimată (1RM = greutate × (1 + repetări / 30)) față de exercițiul de referință, raportată la greutatea, sexul și vârsta ta. LVL și EXP cresc odată cu forța.",mr:"Rang pe mușchi",nd:"Fără date",ag:"Vârstă",sx:"Sex",sm:"Bărbat",sf:"Femeie",rf:"Exercițiu de referință",beat:"depășești",weak:"Rămas în urmă",ov:"Rang general",nxt:"Următorul rang:",need:"Introdu cel puțin o ridicare",wn:"Numele antrenamentului",pick:"Mușchi lucrați",exn:"Exercițiu",add:"Adaugă exercițiul",clr:"Șterge tot",empty:"Nu ai adăugat exerciții încă.",lock:"Protejat",open:"Deschis",pinT:"Introdu parola",pinE:"Parolă greșită",back2:"Înapoi",lockBtn:"Blochează",cancel:"Anulează"},
+en:{n1:"Plan",n2:"Body",n3:"Rank",n4:"Special",h1:"Your plan",h2:"Muscles trained",h3:"Your rank",h4:"Special workouts",warm:"Warm-up",ex:"exercises",mu:"muscles",mus:"Muscle groups",wu:"Warm-up",front:"Front",back:"Back",next:"to",max:"Max rank",soon:"Coming soon",bgn:"B is coming soon. G opens with a password.",restT:"Rest day",restP:"Muscles grow while you rest. Sleep well, drink water and stretch lightly.",tap:"Tap an exercise when you finish it.",min:"min",n5:"Mine",h5:"Your own program",bw:"Body weight (kg)",sq:"Squat",dl:"Deadlift",bp:"Bench press",kg:"kg",reps:"reps",sets:"sets",edit:"Edit",done2:"Done",rst:"Reset program",sure:"Sure? Tap again",sv:"Save program",svd:"Saved",uns:"Unsaved, tap Save",cp:"Copy from Plan",cg:"Copy from G",nors:"Your rank is given once you build your program. Add exercises with kg in “Mine” and tap Save.",go:"Build your program",authSub:"Sign in to find your program, rank and progress.",lg_t:"Log in",su:"New account",un:"Name",pw:"Password",rm:"Stay signed in",ent:"Enter",crt:"Create account",bad:"Wrong name or password",taken:"That name is taken",short:"Password: at least 4 characters",nn:"Enter a name",who:"Is it you?",hi:"Hi",todayW:"Today’s workout",start:"Start workout",own:"Your program",more:"more",acct:"Account",out:"Log out",exp:"Export data",imp:"Import data",del:"Delete account",paste:"Paste exported data here",badimp:"Invalid data",note:"Your account is stored on this device only. Export your data to move it to another.",lh:"Your rank is given once you build your program in “Mine” and save it. It is calculated from all the weighted exercises in your week: estimated max (1RM = weight × (1 + reps / 30)) against the reference lift, relative to your body weight, sex and age. LVL and EXP grow with your strength.",mr:"Rank per muscle",nd:"No data",ag:"Age",sx:"Sex",sm:"Male",sf:"Female",rf:"Reference lift",beat:"beats",weak:"Lagging",ov:"Overall rank",nxt:"Next rank:",need:"Enter at least one lift",wn:"Workout name",pick:"Muscles worked",exn:"Exercise",add:"Add exercise",clr:"Clear all",empty:"No exercises added yet.",lock:"Locked",open:"Unlocked",pinT:"Enter password",pinE:"Wrong password",back2:"Back",lockBtn:"Lock",cancel:"Cancel"}};
 const DN={ro:["Duminică","Luni","Marți","Miercuri","Joi","Vineri","Sâmbătă"],en:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]};
 const ORDER=[1,2,3,4,5,6,0],D={1:"push",2:"rest",3:"pull",4:"legs",5:"pull",6:"legs",0:"rest"};
 const M={back:["Spate","Back"],bi:["Biceps","Biceps"],fa:["Antebraț","Forearm"],chest:["Piept","Chest"],sh:["Umeri","Shoulders"],tri:["Triceps","Triceps"],abs:["Abdomen","Abs"],legs:["Picioare","Legs"],calf:["Gambe","Calves"]};
@@ -232,7 +262,7 @@ const $=s=>document.querySelector(s);
 let lang="ro",done={},sel=new Date().getDay();
 try{lang=localStorage.getItem("l")||lang;done=JSON.parse(localStorage.getItem("d")||"{}")}catch(x){}
 const t=k=>L[lang][k],li=a=>a[lang==="ro"?0:1];
-const save=(k,v)=>{try{localStorage.setItem(k,v)}catch(x){}};
+const save=(k,v)=>{try{localStorage.setItem(["pr","lf","mp"].includes(k)?UK(k):k,v)}catch(x){}};
 
 /* ---------- editable, saved program ---------- */
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -250,12 +280,16 @@ function defProg(){
     o.g[d]={f:G[d].f,i:G[d].i,m:[...G[d].m],e:G[d].e.map(pex)}});
   return o;
 }
-let PR=null,lf={bw:80,age:25,sex:"m"},my={n:"",days:null,sv:null},RC={},RS={},rk="chest";
+let PR=null,lf=null,my=null,RC={},RS={},rk="chest",uid=null,USERS={};
 const blank=()=>{const o={};ORDER.forEach(d=>{o[d]={m:[],e:[]}});return o};
-try{PR=JSON.parse(localStorage.getItem("pr")||"null");Object.assign(lf,JSON.parse(localStorage.getItem("lf")||"{}"));Object.assign(my,JSON.parse(localStorage.getItem("mp")||"{}"))}catch(x){}
-if(!PR||!PR.p||!PR.g)PR=defProg();
-if(!my.days)my.days=blank();
-ORDER.forEach(d=>{if(!my.days[d])my.days[d]={m:[],e:[]}});
+const UK=k=>"u:"+uid+":"+k,ld=k=>{try{return JSON.parse(localStorage.getItem(UK(k))||"null")}catch(x){return null}};
+function loadUser(){
+  PR=ld("pr");lf=Object.assign({bw:80,age:25,sex:"m"},ld("lf")||{});my=Object.assign({n:"",days:null,sv:null},ld("mp")||{});
+  if(!PR||!PR.p||!PR.g)PR=defProg();
+  if(!my.days)my.days=blank();
+  ORDER.forEach(d=>{if(!my.days[d])my.days[d]={m:[],e:[]}});
+  $("#bw").value=lf.bw||"";$("#ag").value=lf.age||"";$("#myN").value=my.n||"";
+}
 let msel=new Date().getDay();
 const savePR=()=>save("pr",JSON.stringify(PR)),sm=()=>save("mp",JSON.stringify(my));
 const edit={p:false,g:false,r:false,m:false};
@@ -451,6 +485,8 @@ function render(){
   document.querySelectorAll("[data-ph]").forEach(e=>{e.placeholder=t(e.dataset.ph)});
   document.querySelectorAll(".lang button").forEach(b=>b.classList.toggle("on",b.dataset.l===lang));
   $("#dt").textContent=new Date().toLocaleDateString(lang==="ro"?"ro-RO":"en-GB",{weekday:"long",day:"numeric",month:"long"});
+  if(!uid){renderAuth();return}
+  $("#uBtn").innerHTML=`<span class="avs">${AV(USERS[uid].name)}</span><span class="un">${esc(USERS[uid].name)}</span>`;
   calcRanks();renderPlan();updBody();renderRank();renderMy();renderG();
 }
 /* typing in an edit field: update ranks + maps without rebuilding the list (keeps focus) */
@@ -499,11 +535,9 @@ $("#gView").addEventListener("click",e=>{
   savePR();render();
 });
 $("#gView").addEventListener("input",e=>{if(inp(PR.g[gSel].e,e)){savePR();light()}});
-$("#bw").value=lf.bw||"";$("#ag").value=lf.age||"";
 $("#lifts").addEventListener("input",()=>{lf.bw=+$("#bw").value||0;lf.age=+$("#ag").value||0;save("lf",JSON.stringify(lf));render()});
 $("#lifts").addEventListener("click",e=>{const b=e.target.closest(".sx");if(b){lf.sex=b.dataset.s;save("lf",JSON.stringify(lf));render()}});
 $("#rank").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;if(b.dataset.r){rk=b.dataset.r;renderRank()}else if(b.dataset.go)go(b.dataset.go,true)});
-$("#myN").value=my.n||"";
 $("#myN").addEventListener("input",e=>{my.n=e.target.value;sm();svStatus()});
 $("#mTabs").addEventListener("click",e=>{const b=e.target.closest("button");if(b){msel=+b.dataset.d;edit.m=false;renderMy()}});
 const cpy=o=>JSON.parse(JSON.stringify(o,(k,v)=>k==="d"?undefined:v));
@@ -518,6 +552,86 @@ $("#mBody").addEventListener("click",e=>{
 });
 $("#mBody").addEventListener("input",e=>{if(inp(my.days[msel].e,e)){sm();svStatus()}});
 
+/* ---------- login: local accounts on this device ---------- */
+const AV=n=>(n||"?").trim().charAt(0).toUpperCase();
+async function hash(x){
+  try{const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(x));return [...new Uint8Array(b)].map(v=>v.toString(16).padStart(2,"0")).join("")}
+  catch(e){let h=5381;for(let i=0;i<x.length;i++)h=(h*33^x.charCodeAt(i))>>>0;return "f"+h}
+}
+let amode="log";
+const saveUsers=()=>{try{localStorage.setItem("users",JSON.stringify(USERS))}catch(x){}};
+function renderAuth(){
+  $("#aLog").classList.toggle("on",amode==="log");$("#aNew").classList.toggle("on",amode==="new");
+  $("#aGo").textContent=t(amode==="log"?"ent":"crt");
+  const ids=Object.keys(USERS);
+  $("#who").innerHTML=ids.length&&amode==="log"?`<p class="lb" style="margin-top:14px">${t("who")}</p><div class="chips pick">${ids.map(i=>`<button class="chip" data-u="${i}"><span class="avs" style="width:22px;height:22px;font-size:11px">${AV(USERS[i].name)}</span> ${esc(USERS[i].name)}</button>`).join("")}</div>`:"";
+}
+function authErr(m){$("#aE").textContent=t(m);const b=$("#auth .pinbox");b.classList.remove("shake");void b.offsetWidth;b.classList.add("shake")}
+async function doAuth(){
+  const n=$("#aN").value.trim(),pw=$("#aP").value,id=n.toLowerCase();
+  if(!n)return authErr("nn");
+  if(pw.length<4)return authErr("short");
+  const h=await hash(id+"|"+pw);
+  if(amode==="new"){
+    if(USERS[id])return authErr("taken");
+    USERS[id]={name:n,h,t:Date.now()};saveUsers();
+    try{if(!localStorage.getItem("mig")){["pr","lf","mp"].forEach(k=>{const v=localStorage.getItem(k);if(v!=null)localStorage.setItem("u:"+id+":"+k,v)});localStorage.setItem("mig","1")}}catch(x){}
+  }else if(!USERS[id]||USERS[id].h!==h)return authErr("bad");
+  $("#aP").value="";$("#aE").textContent="";
+  enter(id,$("#aR").checked);
+}
+function enter(id,remember){
+  uid=id;
+  try{localStorage.removeItem("sess");sessionStorage.removeItem("sess");(remember?localStorage:sessionStorage).setItem("sess",id)}catch(x){}
+  loadUser();sel=msel=gSel=new Date().getDay();unlocked=gOpen=false;edit.p=edit.g=edit.m=edit.r=false;
+  $("#auth").hidden=true;render();showWelcome();
+}
+function logout(){
+  try{localStorage.removeItem("sess");sessionStorage.removeItem("sess")}catch(x){}
+  uid=null;edit.d=false;$("#acct").hidden=true;$("#welc").hidden=true;$("#auth").hidden=false;render();
+}
+/* presents today's workout: your saved program if it has today's day, otherwise the plan */
+function showWelcome(){
+  const own=my.sv?(JSON.parse(my.sv).days[sel]||null):null,useOwn=!!(own&&own.e.length);
+  const dd=useOwn?own:PR.p[sel],ty=TY[D[sel]],rest=!useOwn&&!dd.e.length,on=new Set(dd.m);
+  const S=Object.keys(RS),m=S.length?S.reduce((a,k)=>a+RS[k].s,0)/S.length:0,ri=Math.min(6,Math.floor(m));
+  $("#wbox").innerHTML=`<div class="wh"><span class="av">${AV(USERS[uid].name)}</span><div><small>${t("hi")},</small><b>${esc(USERS[uid].name)}</b></div></div>
+  ${S.length?`<div class="rkm">${bimg(RK[ri],ri,56)}<div><b>${RK[ri][0]}</b><br>LVL ${Math.min(70,Math.floor(m*10)+1)}</div></div>`:""}
+  <p class="lb" style="margin:6px 0 0">${t("todayW")}, ${DN[lang][sel]}</p>
+  <h3>${useOwn?t("own"):li(ty.n)}</h3>
+  ${rest?`<p class="nx" style="text-align:left">${t("restP")}</p>`:`${muEd(dd.m,false)}<img class="map mini" alt="" src="${bu(on)}"><ul class="wl">${dd.e.slice(0,7).map(e=>`<li><b>${esc(nm(e))}</b><span>${fmt(e)}</span></li>`).join("")}</ul>${dd.e.length>7?`<p class="hint" style="margin:0 0 8px">+${dd.e.length-7} ${t("more")}</p>`:""}`}
+  <button class="cta" data-a="go" data-p="${useOwn?"my":"plan"}">${rest?"OK":t("start")}</button>`;
+  $("#welc").hidden=false;
+}
+function openAcct(){
+  if(!uid)return;
+  $("#acctB").innerHTML=`<div class="wh"><span class="av">${AV(USERS[uid].name)}</span><div><small>${t("acct")}</small><b>${esc(USERS[uid].name)}</b></div></div>
+  <textarea class="in" id="xdata" rows="5" hidden></textarea>
+  <button class="gb" data-a="exp">${t("exp")}</button><button class="gb" data-a="imp">${t("imp")}</button>
+  <button class="gb" data-a="del">${t(edit.d?"sure":"del")}</button><button class="cta" data-a="out">${t("out")}</button>
+  <p class="fine">${t("note")}</p>`;
+  $("#acct").hidden=false;
+}
+$("#aLog").addEventListener("click",()=>{amode="log";$("#aE").textContent="";renderAuth()});
+$("#aNew").addEventListener("click",()=>{amode="new";$("#aE").textContent="";renderAuth()});
+$("#aGo").addEventListener("click",doAuth);
+$("#auth").addEventListener("keydown",e=>{if(e.key==="Enter")doAuth()});
+$("#who").addEventListener("click",e=>{const b=e.target.closest("[data-u]");if(b){$("#aN").value=USERS[b.dataset.u].name;$("#aP").focus()}});
+$("#uBtn").addEventListener("click",()=>{edit.d=false;openAcct()});
+$("#welc").addEventListener("click",e=>{const b=e.target.closest("button");if(b&&b.dataset.a==="go"){$("#welc").hidden=true;go(b.dataset.p,true)}else if(e.target.id==="welc")$("#welc").hidden=true});
+$("#acct").addEventListener("click",e=>{
+  if(e.target.id==="acct"){$("#acct").hidden=true;return}
+  const b=e.target.closest("button");if(!b)return;const a=b.dataset.a,x=$("#xdata");
+  if(a==="exp"){x.hidden=false;x.readOnly=true;x.value=JSON.stringify({v:1,pr:PR,lf,mp:my});x.select();try{navigator.clipboard.writeText(x.value)}catch(_){}}
+  else if(a==="imp"){
+    if(x.hidden||x.readOnly){x.hidden=false;x.readOnly=false;x.value="";x.placeholder=t("paste");x.focus();return}
+    try{const o=JSON.parse(x.value);if(!o.pr||!o.mp)throw 0;save("pr",JSON.stringify(o.pr));save("lf",JSON.stringify(Object.assign({},lf,o.lf||{})));save("mp",JSON.stringify(o.mp));loadUser();$("#acct").hidden=true;render()}
+    catch(_){x.value="";x.placeholder=t("badimp")}
+  }
+  else if(a==="out")logout();
+  else if(a==="del"){if(edit.d){const id=uid;["pr","lf","mp"].forEach(k=>{try{localStorage.removeItem(UK(k))}catch(_){}});delete USERS[id];saveUsers();logout()}else{edit.d=true;openAcct()}}
+});
+
 const wide=matchMedia("(min-width:900px)");
 function go(p,scroll){
   document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("on",b.dataset.p===p));
@@ -525,8 +639,11 @@ function go(p,scroll){
   if(scroll){wide.matches?$("#p-"+p).scrollIntoView({behavior:"smooth",block:"start"}):scrollTo(0,0)}
 }
 $("#nav").addEventListener("click",e=>{const b=e.target.closest("button");if(b)go(b.dataset.p,true)});
-document.querySelector(".lang").addEventListener("click",e=>{const b=e.target.closest("button");if(b){lang=b.dataset.l;save("l",lang);render()}});
-render();loadBody();
+document.querySelectorAll(".lang").forEach(l=>l.addEventListener("click",e=>{const b=e.target.closest("button");if(b){lang=b.dataset.l;save("l",lang);render()}}));
+try{USERS=JSON.parse(localStorage.getItem("users")||"{}")}catch(x){}
+let sid=null;try{sid=localStorage.getItem("sess")||sessionStorage.getItem("sess")}catch(x){}
+if(sid&&USERS[sid]){uid=sid;loadUser();$("#auth").hidden=true;render();showWelcome()}else{$("#auth").hidden=false;render()}
+loadBody();
 </script>
 </body>
 </html>
