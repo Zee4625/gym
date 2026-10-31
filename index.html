@@ -147,13 +147,25 @@ button.chip{cursor:pointer}
 .rc small{display:block;color:var(--mut);font-size:11px;line-height:1.35}
 .ring>div{justify-items:center;gap:1px}
 .bimg{display:inline-grid;width:var(--z);height:var(--z);flex:none}
-.bimg img{width:100%;height:100%;object-fit:contain;border-radius:14%}
+.bimg img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 4px 14px color-mix(in srgb,var(--c,#fff) 45%,transparent))}
 .bimg svg{width:100%;height:100%;display:none}
 .bimg.err svg{display:block}.bimg.err img{display:none}
 .er{list-style:none;position:relative;display:grid;gap:8px;background:var(--c2);border:1px solid var(--line);border-radius:16px;padding:10px}
 .er>.in{padding-right:44px}
 .er .del{position:absolute;top:12px;right:8px;font-size:18px}
 .gtop{gap:8px}.gtop .gb:first-child{margin-right:auto}
+.hero{display:grid;justify-items:center;gap:6px;text-align:center;margin:4px 0 14px}
+.hero>b{font:italic 800 38px/1 var(--disp);letter-spacing:.08em;text-transform:uppercase;color:var(--c);text-shadow:0 0 22px color-mix(in srgb,var(--c) 50%,transparent)}
+.hero.dim .bimg{opacity:.4;filter:grayscale(1)}
+.lvl{font-weight:800;font-size:15px;letter-spacing:.14em}
+.xpb{width:100%;height:12px;border-radius:99px;background:var(--c2);border:1px solid var(--line);overflow:hidden}
+.xpb i{display:block;height:100%;width:var(--w);background:linear-gradient(90deg,color-mix(in srgb,var(--c) 55%,#000),var(--c));box-shadow:0 0 12px var(--c);transition:width .4s}
+.xpt{display:flex;justify-content:space-between;width:100%;font-size:12px;color:var(--mut)}
+.hero .cta{margin-top:10px}
+.rc{flex-direction:column;text-align:center;padding:16px 8px;gap:6px}
+.sv{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:18px 0 12px}
+.sv span{font-size:12px}.sv .warn{color:var(--pink)}.sv .ok{color:#34d399}.sv .cta{width:auto;padding:12px 20px}
+#mBody .exs{margin-top:14px}
 @media (prefers-reduced-motion:no-preference){.m,.ck{transition:fill .25s,background .2s}.pane.act{animation:in .25s}@keyframes in{from{opacity:0;transform:translateY(8px)}}}
 </style>
 </head>
@@ -187,14 +199,14 @@ button.chip{cursor:pointer}
   <section class="pane" id="p-body"><h2 data-i="h2"></h2><div class="nums" id="nums"></div><img class="map" id="map" alt="Muscle map" src="data:,"><div class="lbl"><span data-i="front"></span><span data-i="back"></span></div><div class="chips" id="chips"></div><div class="lg" id="lg"></div></section>
   <section class="pane" id="p-rank"><h2 data-i="h3"></h2><p class="lh" data-i="lh"></p><div id="lifts"><div class="lr"><b data-i="bw"></b><input class="in" id="bw" type="number" inputmode="decimal" min="30" max="250"><span></span></div><div class="lr"><b data-i="ag"></b><input class="in" id="ag" type="number" inputmode="numeric" min="14" max="90"><span></span></div><div class="lr"><b data-i="sx"></b><button class="gb sx" id="sxm" data-s="m" data-i="sm"></button><button class="gb sx" id="sxf" data-s="f" data-i="sf"></button></div></div><div id="rank"></div></section>
   <section class="pane" id="p-bg"><h2 data-i="h4"></h2><div id="bgHome"><div class="bg"><div class="tile"><b>B</b><span data-i="soon"></span></div><button class="tile" id="gTile" aria-label="G"><b>G</b><span id="gS"></span></button></div><p class="bgn" data-i="bgn"></p></div><div id="gView" hidden></div></section>
-  <section class="pane" id="p-my"><h2 data-i="h5"></h2><input class="in" id="myN" maxlength="40" data-ph="wn"><p class="lb" data-i="pick"></p><div class="chips pick" id="myM"></div><img class="map mini" id="myMap" alt="Muscle map" src="data:,"><p class="lb" data-i="exn"></p><input class="in" id="myE" maxlength="50" data-ph="exn"><div class="row3"><input class="in" id="myS" type="number" inputmode="numeric" min="0" data-ph="sets"><input class="in" id="myR" type="number" inputmode="numeric" min="0" data-ph="reps"><input class="in" id="myW" type="number" inputmode="decimal" min="0" data-ph="kg"></div><button class="cta" id="myA" data-i="add"></button><ul class="exs" id="myL"></ul><button class="gb" id="myC" data-i="clr"></button></section>
+  <section class="pane" id="p-my"><h2 data-i="h5"></h2><input class="in" id="myN" maxlength="40" data-ph="wn"><div class="tabs" id="mTabs" style="margin-top:14px"></div><div id="mBody"></div></section>
 </div></main>
 <div class="pin" id="pin" hidden><div class="pinbox"><b data-i="pinT"></b><div class="dots" id="dots"><i></i><i></i><i></i><i></i></div><p class="pe" id="pinE"></p><div class="pad" id="pad"></div><button class="gb" id="pinX" data-i="cancel"></button></div></div>
 
 <script>
 const L={
-ro:{n1:"Plan",n2:"Corp",n3:"Rang",n4:"Special",h1:"Programul tău",h2:"Mușchi antrenați",h3:"Rangul tău",h4:"Antrenamente speciale",warm:"Încălzire",ex:"exerciții",mu:"mușchi",mus:"Grupe musculare",wu:"Încălzire",front:"Față",back:"Spate",next:"până la",max:"Rang maxim",soon:"În curând",bgn:"B apare în curând. G se deschide cu parolă.",restT:"Pauză",restP:"Mușchii cresc când te odihnești. Somn bun, apă și un stretching ușor.",tap:"Atinge un exercițiu când l’ai terminat.",min:"min",n5:"Al meu",h5:"Antrenament propriu",bw:"Greutate corporală (kg)",sq:"Genuflexiuni",dl:"Îndreptări",bp:"Împins la bancă",kg:"kg",reps:"repetări",sets:"serii",edit:"Editează",done2:"Gata",rst:"Resetează programul",sure:"Sigur? Apasă din nou",lh:"Rangul fiecărui mușchi se calculează din toate exercițiile cu greutate din săptămână (programul, G și Al meu): forța maximă estimată (1RM = greutate × (1 + repetări / 30)) față de exercițiul de referință, raportată la greutatea, sexul și vârsta ta. Poți edita orice exercițiu: serii, repetări, kg.",mr:"Rang pe mușchi",nd:"Fără date",ag:"Vârstă",sx:"Sex",sm:"Bărbat",sf:"Femeie",rf:"Exercițiu de referință",beat:"depășești",weak:"Rămas în urmă",ov:"Rang general",nxt:"Următorul rang:",need:"Introdu cel puțin o ridicare",wn:"Numele antrenamentului",pick:"Mușchi lucrați",exn:"Exercițiu",add:"Adaugă exercițiul",clr:"Șterge tot",empty:"Nu ai adăugat exerciții încă.",lock:"Protejat",open:"Deschis",pinT:"Introdu parola",pinE:"Parolă greșită",back2:"Înapoi",lockBtn:"Blochează",cancel:"Anulează"},
-en:{n1:"Plan",n2:"Body",n3:"Rank",n4:"Special",h1:"Your plan",h2:"Muscles trained",h3:"Your rank",h4:"Special workouts",warm:"Warm-up",ex:"exercises",mu:"muscles",mus:"Muscle groups",wu:"Warm-up",front:"Front",back:"Back",next:"to",max:"Max rank",soon:"Coming soon",bgn:"B is coming soon. G opens with a password.",restT:"Rest day",restP:"Muscles grow while you rest. Sleep well, drink water and stretch lightly.",tap:"Tap an exercise when you finish it.",min:"min",n5:"Mine",h5:"Your own workout",bw:"Body weight (kg)",sq:"Squat",dl:"Deadlift",bp:"Bench press",kg:"kg",reps:"reps",sets:"sets",edit:"Edit",done2:"Done",rst:"Reset program",sure:"Sure? Tap again",lh:"Each muscle’s rank is calculated from all the weighted exercises in your week (plan, G and Mine): estimated max (1RM = weight × (1 + reps / 30)) against the reference lift, relative to your body weight, sex and age. You can edit any exercise: sets, reps, kg.",mr:"Rank per muscle",nd:"No data",ag:"Age",sx:"Sex",sm:"Male",sf:"Female",rf:"Reference lift",beat:"beats",weak:"Lagging",ov:"Overall rank",nxt:"Next rank:",need:"Enter at least one lift",wn:"Workout name",pick:"Muscles worked",exn:"Exercise",add:"Add exercise",clr:"Clear all",empty:"No exercises added yet.",lock:"Locked",open:"Unlocked",pinT:"Enter password",pinE:"Wrong password",back2:"Back",lockBtn:"Lock",cancel:"Cancel"}};
+ro:{n1:"Plan",n2:"Corp",n3:"Rang",n4:"Special",h1:"Programul tău",h2:"Mușchi antrenați",h3:"Rangul tău",h4:"Antrenamente speciale",warm:"Încălzire",ex:"exerciții",mu:"mușchi",mus:"Grupe musculare",wu:"Încălzire",front:"Față",back:"Spate",next:"până la",max:"Rang maxim",soon:"În curând",bgn:"B apare în curând. G se deschide cu parolă.",restT:"Pauză",restP:"Mușchii cresc când te odihnești. Somn bun, apă și un stretching ușor.",tap:"Atinge un exercițiu când l’ai terminat.",min:"min",n5:"Al meu",h5:"Programul tău propriu",bw:"Greutate corporală (kg)",sq:"Genuflexiuni",dl:"Îndreptări",bp:"Împins la bancă",kg:"kg",reps:"repetări",sets:"serii",edit:"Editează",done2:"Gata",rst:"Resetează programul",sure:"Sigur? Apasă din nou",sv:"Salvează programul",svd:"Salvat",uns:"Nesalvat, apasă Salvează",cp:"Copiază din Plan",cg:"Copiază din G",nors:"Rangul se dă după ce îți faci programul. Adaugă exerciții cu kg în „Al meu” și apasă Salvează.",go:"Construiește programul",lh:"Rangul se dă după ce îți faci programul în „Al meu” și îl salvezi. Se calculează din toate exercițiile cu greutate din săptămână: forța maximă estimată (1RM = greutate × (1 + repetări / 30)) față de exercițiul de referință, raportată la greutatea, sexul și vârsta ta. LVL și EXP cresc odată cu forța.",mr:"Rang pe mușchi",nd:"Fără date",ag:"Vârstă",sx:"Sex",sm:"Bărbat",sf:"Femeie",rf:"Exercițiu de referință",beat:"depășești",weak:"Rămas în urmă",ov:"Rang general",nxt:"Următorul rang:",need:"Introdu cel puțin o ridicare",wn:"Numele antrenamentului",pick:"Mușchi lucrați",exn:"Exercițiu",add:"Adaugă exercițiul",clr:"Șterge tot",empty:"Nu ai adăugat exerciții încă.",lock:"Protejat",open:"Deschis",pinT:"Introdu parola",pinE:"Parolă greșită",back2:"Înapoi",lockBtn:"Blochează",cancel:"Anulează"},
+en:{n1:"Plan",n2:"Body",n3:"Rank",n4:"Special",h1:"Your plan",h2:"Muscles trained",h3:"Your rank",h4:"Special workouts",warm:"Warm-up",ex:"exercises",mu:"muscles",mus:"Muscle groups",wu:"Warm-up",front:"Front",back:"Back",next:"to",max:"Max rank",soon:"Coming soon",bgn:"B is coming soon. G opens with a password.",restT:"Rest day",restP:"Muscles grow while you rest. Sleep well, drink water and stretch lightly.",tap:"Tap an exercise when you finish it.",min:"min",n5:"Mine",h5:"Your own program",bw:"Body weight (kg)",sq:"Squat",dl:"Deadlift",bp:"Bench press",kg:"kg",reps:"reps",sets:"sets",edit:"Edit",done2:"Done",rst:"Reset program",sure:"Sure? Tap again",sv:"Save program",svd:"Saved",uns:"Unsaved, tap Save",cp:"Copy from Plan",cg:"Copy from G",nors:"Your rank is given once you build your program. Add exercises with kg in “Mine” and tap Save.",go:"Build your program",lh:"Your rank is given once you build your program in “Mine” and save it. It is calculated from all the weighted exercises in your week: estimated max (1RM = weight × (1 + reps / 30)) against the reference lift, relative to your body weight, sex and age. LVL and EXP grow with your strength.",mr:"Rank per muscle",nd:"No data",ag:"Age",sx:"Sex",sm:"Male",sf:"Female",rf:"Reference lift",beat:"beats",weak:"Lagging",ov:"Overall rank",nxt:"Next rank:",need:"Enter at least one lift",wn:"Workout name",pick:"Muscles worked",exn:"Exercise",add:"Add exercise",clr:"Clear all",empty:"No exercises added yet.",lock:"Locked",open:"Unlocked",pinT:"Enter password",pinE:"Wrong password",back2:"Back",lockBtn:"Lock",cancel:"Cancel"}};
 const DN={ro:["Duminică","Luni","Marți","Miercuri","Joi","Vineri","Sâmbătă"],en:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]};
 const ORDER=[1,2,3,4,5,6,0],D={1:"push",2:"rest",3:"pull",4:"legs",5:"pull",6:"legs",0:"rest"};
 const M={back:["Spate","Back"],bi:["Biceps","Biceps"],fa:["Antebraț","Forearm"],chest:["Piept","Chest"],sh:["Umeri","Shoulders"],tri:["Triceps","Triceps"],abs:["Abdomen","Abs"],legs:["Picioare","Legs"],calf:["Gambe","Calves"]};
@@ -238,11 +250,15 @@ function defProg(){
     o.g[d]={f:G[d].f,i:G[d].i,m:[...G[d].m],e:G[d].e.map(pex)}});
   return o;
 }
-let PR=null,lf={bw:80,age:25,sex:"m"},my={n:"",m:[],e:[]},RC={},RS={},rk="chest",sel2=0;
-try{PR=JSON.parse(localStorage.getItem("pr")||"null");Object.assign(lf,JSON.parse(localStorage.getItem("lf")||"{}"));Object.assign(my,JSON.parse(localStorage.getItem("my")||"{}"))}catch(x){}
+let PR=null,lf={bw:80,age:25,sex:"m"},my={n:"",days:null,sv:null},RC={},RS={},rk="chest";
+const blank=()=>{const o={};ORDER.forEach(d=>{o[d]={m:[],e:[]}});return o};
+try{PR=JSON.parse(localStorage.getItem("pr")||"null");Object.assign(lf,JSON.parse(localStorage.getItem("lf")||"{}"));Object.assign(my,JSON.parse(localStorage.getItem("mp")||"{}"))}catch(x){}
 if(!PR||!PR.p||!PR.g)PR=defProg();
-const savePR=()=>save("pr",JSON.stringify(PR)),sv=()=>save("my",JSON.stringify(my));
-const edit={p:false,g:false,r:false};
+if(!my.days)my.days=blank();
+ORDER.forEach(d=>{if(!my.days[d])my.days[d]={m:[],e:[]}});
+let msel=new Date().getDay();
+const savePR=()=>save("pr",JSON.stringify(PR)),sm=()=>save("mp",JSON.stringify(my));
+const edit={p:false,g:false,r:false,m:false};
 const nm=e=>(lang==="en"&&e.n2)||e.n||"";
 const fmt=e=>e.raw?"":(e.s||"–")+" × "+(e.r||"–")+(e.u==="s"?" s":"")+(e.w?", "+e.w+" kg":"");
 const exHTML=(L,ed)=>L.map((e,i)=>ed
@@ -338,11 +354,12 @@ function prof(){
   return {bw,sc:(lf.sex==="f"?.62:1)*(a<18?Math.max(.6,1-(18-a)*.03):a>39?Math.max(.55,1-(a-39)*.01):1)};
 }
 const TH=k=>BH.map(x=>x*RM[k]);
-function score(v,T){if(v<T[0])return v/T[0];let k=0;while(k<5&&v>=T[k+1])k++;return k>=5?6:k+1+(v-T[k])/(T[k+1]-T[k])}
+function score(v,T){if(v<T[0])return v/T[0];let k=0;while(k<5&&v>=T[k+1])k++;return k>=5?6+Math.min(.999,(v-T[5])/(T[5]*.5)):k+1+(v-T[k])/(T[k+1]-T[k])}
 function calcRanks(){
-  const P=prof(),acc={},all=[];
-  ORDER.forEach(d=>{PR.p[d].e.forEach(e=>all.push(e));PR.g[d].e.forEach(e=>all.push(e))});
-  my.e.forEach(e=>all.push(e));
+  const P=prof(),acc={},all=[];RS={};RC={};
+  if(!my.sv)return;
+  const SV=JSON.parse(my.sv);
+  ORDER.forEach(d=>{((SV.days[d]||{}).e||[]).forEach(e=>all.push(e))});
   all.forEach(e=>{
     if(e.raw||e.u||!(e.s>0&&e.r>0&&e.w>0))return;
     const c=CL.find(c=>c[0].test((e.n||"")+" "+(e.n2||"")));if(!c)return;
@@ -350,8 +367,7 @@ function calcRanks(){
     const sc=score(rm/P.bw/c[3],TH(c[1]).map(y=>y*P.sc)),a=acc[c[1]]||(acc[c[1]]={sum:0,sets:0,n:0,best:0});
     a.sum+=sc*e.s;a.sets+=e.s;a.n++;if(sc>a.best)a.best=sc;
   });
-  RS={};RC={};
-  Object.keys(acc).forEach(k=>{const a=acc[k],s=.6*a.sum/a.sets+.4*a.best;RS[k]={s,n:a.n,sets:a.sets};RC[k]=RK[Math.min(6,Math.floor(s))][2]});
+  Object.keys(acc).forEach(k=>{const a=acc[k],v=.6*a.sum/a.sets+.4*a.best;RS[k]={s:v,n:a.n,sets:a.sets};RC[k]=RK[Math.min(6,Math.floor(v))][2]});
 }
 const BAD=new Set();
 function badge(c,n,z){
@@ -361,26 +377,29 @@ function badge(c,n,z){
   return b+"</svg>";
 }
 /* rank picture = <name>.jpeg from the same folder; falls back to a drawn badge if the file is missing */
-const bimg=(r,i,z)=>{const f=r[3]+".jpeg",bad=BAD.has(f);return `<span class="bimg${bad?" err":""}" style="--z:${z}px">${bad?"":`<img src="${f}" alt="${r[0]}">`}${badge(r[2],i,z)}</span>`};
+const bimg=(r,i,z)=>{const f=r[3]+".jpeg",bad=BAD.has(f);return `<span class="bimg${bad?" err":""}" style="--z:${z}px;--c:${r[2]}">${bad?"":`<img src="${f}" alt="${r[0]}">`}${badge(r[2],i,z)}</span>`};
 document.addEventListener("error",e=>{const im=e.target,b=im.closest&&im.closest(".bimg");if(b){BAD.add(im.getAttribute("src"));b.classList.add("err")}},true);
 
 function renderRank(){
   const P=prof(),S=Object.keys(RS);
   $("#sxm").classList.toggle("on",lf.sex!=="f");$("#sxf").classList.toggle("on",lf.sex==="f");
-  const m=S.length?S.reduce((a,k)=>a+RS[k].s,0)/S.length:0,ri=Math.min(6,Math.floor(m)),cur=RK[ri],p=ri>=6?100:Math.round((m-ri)*100);
+  const m=S.length?S.reduce((a,k)=>a+RS[k].s,0)/S.length:0,ri=Math.min(6,Math.floor(m)),cur=RK[ri];
+  const lv=Math.min(70,Math.floor(m*10)+1),ex=Math.round((m*10%1)*100),xp=Math.round(m*1000);
   const legend=RK.map(r=>`<span style="color:${r[2]};border-color:${r[2]}66;background:${r[2]}1f">${r[0]}</span>`).join("");
   $("#lg").innerHTML=legend;
   const T=TH(rk).map(x=>x*P.sc*P.bw),fm=v=>Math.round(v*2)/2;
   let wk="";
   if(S.length>1){const ks=[...S].sort((a,b)=>RS[a].s-RS[b].s),lo=ks[0];if(RS[ks[ks.length-1]].s-RS[lo].s>=1)wk=`<p class="nx">${t("weak")}: <b style="color:${RK[Math.min(6,Math.floor(RS[lo].s))][2]}">${li(M[lo])}</b></p>`}
-  $("#rank").innerHTML=`<div class="ring" style="--p:${p};--rc:${cur[2]}"><div>${S.length?bimg(cur,ri,52)+`<b>${cur[0]}</b>`:"<b>–</b>"}<span>${t("ov")}</span></div></div>
-  <p class="nx">${S.length?(ri<6?t("nxt")+" "+RK[ri+1][0]:t("max")):t("need")}</p>${wk}
+  const hero=S.length
+    ?`<div class="hero" style="--c:${cur[2]}">${bimg(cur,ri,240)}<b>${cur[0]}</b><div class="lvl">LVL ${lv}</div><div class="xpb"><i style="--w:${ex}%"></i></div><div class="xpt"><span>EXP ${ex} / 100</span><span>${xp} XP</span></div><p class="nx" style="margin:6px 0 0">${ri<6?t("nxt")+" "+RK[ri+1][0]+" · "+Math.round((ri+1-m)*1000)+" XP":t("max")}</p></div>`
+    :`<div class="hero dim" style="--c:${RK[0][2]}">${bimg(RK[0],0,200)}<p class="nx">${t("nors")}</p><button class="cta" data-go="my">${t("go")}</button></div>`;
+  $("#rank").innerHTML=`${hero}${wk}
   <p class="lb">${t("mr")}</p>
-  <ul class="lv">${Object.keys(M).map(k=>{const r=RS[k],i=r?Math.min(6,Math.floor(r.s)):0,c=RK[i];return `<li>${r?bimg(c,i,28):""}<b>${li(M[k])}</b><span style="color:${r?c[2]:"var(--mut)"}">${r?c[0]:t("nd")}</span><em>${r?r.n+" "+t("ex")+", "+r.sets+" "+t("sets"):""}</em></li>`}).join("")}</ul>
+  <ul class="lv">${Object.keys(M).map(k=>{const r=RS[k],i=r?Math.min(6,Math.floor(r.s)):0,c=RK[i];return `<li>${r?bimg(c,i,40):""}<b>${li(M[k])}</b><span style="color:${r?c[2]:"var(--mut)"}">${r?c[0]:t("nd")}</span><em>${r?"LVL "+Math.min(70,Math.floor(r.s*10)+1)+" · "+r.sets+" "+t("sets"):""}</em></li>`}).join("")}</ul>
   <div class="lg">${legend}</div>
   <p class="lb">${t("rf")}: ${li(RL[rk])}</p>
   <div class="chips pick">${Object.keys(M).map(k=>`<button class="chip${k===rk?" on":""}" data-r="${k}">${li(M[k])}</button>`).join("")}</div>
-  <div class="rcs" style="margin-top:14px">${RK.map((r,i)=>{const v=T[i?i-1:0];return `<div class="rc${S.length&&i<=ri?" got":""}${S.length&&i===ri?" cur":""}" style="--c:${r[2]}">${bimg(r,i,54)}<div><b>${r[0]}</b><small>${i?"":"< "}${fm(v)} kg / ${Math.round(v*2.2046)} lb</small><small>${i===0?"< 10%":i===6?"Top 0.5%":t("beat")+" "+PC[i]+"%"}</small></div></div>`}).join("")}</div>`;
+  <div class="rcs" style="margin-top:14px">${RK.map((r,i)=>{const v=T[i?i-1:0];return `<div class="rc${S.length&&i<=ri?" got":""}${S.length&&i===ri?" cur":""}" style="--c:${r[2]}">${bimg(r,i,104)}<div><b>${r[0]}</b><small>LVL ${i*10+1}–${i*10+10}</small><small>${i?"":"< "}${fm(v)} kg / ${Math.round(v*2.2046)} lb</small><small>${i===0?"< 10%":i===6?"Top 0.5%":t("beat")+" "+PC[i]+"%"}</small></div></div>`}).join("")}</div>`;
 }
 
 /* ---------- render ---------- */
@@ -398,11 +417,22 @@ function renderPlan(){
     ?`<div class="rest"><b>${t("restT")}</b><p>${t("restP")}</p></div>`
     :`${ed?"":`<div class="pg" style="--w:${w}%"><i></i></div><details open class="wu"><summary>${t("warm")}, 5 ${t("min")}</summary><ol>${WU.map(x=>`<li>${li(x)} <em>${x[2]}</em></li>`).join("")}</ol></details>`}${muEd(dd.m,ed)}<ul class="exs">${exHTML(dd.e,ed)}</ul>${ed?addBtns():`<p class="hint">${t("tap")}</p>`}`);
 }
+const dirty=()=>{if(!my.sv)return true;const v=JSON.parse(my.sv);return JSON.stringify([my.n,my.days])!==JSON.stringify([v.n,v.days])};
+function svTxt(){
+  const dr=dirty(),when=my.sv?new Date(JSON.parse(my.sv).t).toLocaleString(lang==="ro"?"ro-RO":"en-GB",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}):"";
+  return `<span id="svs" class="${dr?"warn":"ok"}">${dr?t("uns"):"✓ "+t("svd")+", "+when}</span>`;
+}
+function svStatus(){const el=$("#svs");if(el)el.outerHTML=svTxt()}
 function renderMy(){
-  const on=new Set(my.m);
-  $("#myM").innerHTML=Object.keys(M).map(k=>`<button data-k="${k}" class="chip${on.has(k)?" on":""}">${li(M[k])}</button>`).join("");
-  $("#myMap").src=bu(on);
-  $("#myL").innerHTML=my.e.length?exHTML(my.e,true):`<li class="hint">${t("empty")}</li>`;
+  const dd=my.days[msel],on=new Set(dd.m);
+  $("#mTabs").innerHTML=ORDER.map(d=>`<button data-d="${d}" class="${d===msel?"on":""}">${DN[lang][d].slice(0,3)}</button>`).join("");
+  $("#mBody").innerHTML=`<div class="ph"><h3>${DN[lang][msel]}</h3><span>${dd.e.length} ${t("ex")}</span></div>
+  <p class="lb">${t("pick")}</p>${muEd(dd.m,true)}
+  <img id="mMap" class="map mini" alt="" src="${bu(on)}">
+  <ul class="exs">${dd.e.length?exHTML(dd.e,true):`<li class="hint">${t("empty")}</li>`}</ul>
+  <button class="cta" data-a="add" style="margin-top:12px">+ ${t("add")}</button>
+  <div class="sv">${svTxt()}<button class="cta" data-a="save">${t("sv")}</button></div>
+  <div class="gtop"><button class="gb" data-a="cp">${t("cp")}</button>${unlocked?`<button class="gb" data-a="cg">${t("cg")}</button>`:""}<button class="gb" data-a="clr">${t(edit.m?"sure":"clr")}</button></div>`;
 }
 function renderG(){
   $("#gS").textContent=(unlocked?"":"🔒 ")+t(unlocked?"open":"lock");
@@ -425,9 +455,8 @@ function render(){
 }
 /* typing in an edit field: update ranks + maps without rebuilding the list (keeps focus) */
 function light(){
-  calcRanks();updBody();renderRank();
+  calcRanks();updBody();renderRank();svStatus();
   const gm=$("#gMap");if(gm)gm.src=bu(new Set(PR.g[gSel].m));
-  $("#myMap").src=bu(new Set(my.m));
 }
 
 /* ---------- G: password ---------- */
@@ -473,15 +502,21 @@ $("#gView").addEventListener("input",e=>{if(inp(PR.g[gSel].e,e)){savePR();light(
 $("#bw").value=lf.bw||"";$("#ag").value=lf.age||"";
 $("#lifts").addEventListener("input",()=>{lf.bw=+$("#bw").value||0;lf.age=+$("#ag").value||0;save("lf",JSON.stringify(lf));render()});
 $("#lifts").addEventListener("click",e=>{const b=e.target.closest(".sx");if(b){lf.sex=b.dataset.s;save("lf",JSON.stringify(lf));render()}});
-$("#rank").addEventListener("click",e=>{const b=e.target.closest("button");if(b&&b.dataset.r){rk=b.dataset.r;renderRank()}});
+$("#rank").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;if(b.dataset.r){rk=b.dataset.r;renderRank()}else if(b.dataset.go)go(b.dataset.go,true)});
 $("#myN").value=my.n||"";
-$("#myN").addEventListener("input",e=>{my.n=e.target.value;sv()});
-$("#myM").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const k=b.dataset.k;my.m=my.m.includes(k)?my.m.filter(x=>x!==k):[...my.m,k];sv();render()});
-$("#myA").addEventListener("click",()=>{const n=$("#myE").value.trim();if(!n)return;my.e.push({n,s:+$("#myS").value||0,r:+$("#myR").value||0,w:+$("#myW").value||0});["myE","myS","myR","myW"].forEach(i=>{$("#"+i).value=""});sv();render()});
-$("#myE").addEventListener("keydown",e=>{if(e.key==="Enter")$("#myA").click()});
-$("#myL").addEventListener("click",e=>{if(act(my.e,e,my.m)){sv();render()}});
-$("#myL").addEventListener("input",e=>{if(inp(my.e,e)){sv();light()}});
-$("#myC").addEventListener("click",()=>{my={n:"",m:[],e:[]};$("#myN").value="";sv();render()});
+$("#myN").addEventListener("input",e=>{my.n=e.target.value;sm();svStatus()});
+$("#mTabs").addEventListener("click",e=>{const b=e.target.closest("button");if(b){msel=+b.dataset.d;edit.m=false;renderMy()}});
+const cpy=o=>JSON.parse(JSON.stringify(o,(k,v)=>k==="d"?undefined:v));
+$("#mBody").addEventListener("click",e=>{
+  const b=e.target.closest("button"),dd=my.days[msel],a=b&&b.dataset.a;
+  if(a==="save")my.sv=JSON.stringify({t:Date.now(),n:my.n,days:my.days});
+  else if(a==="cp")ORDER.forEach(d=>{my.days[d]=cpy({m:PR.p[d].m,e:PR.p[d].e})});
+  else if(a==="cg")ORDER.forEach(d=>{my.days[d]=cpy({m:PR.g[d].m,e:PR.g[d].e})});
+  else if(a==="clr"){if(edit.m){my.days=blank();my.sv=null;edit.m=false}else{edit.m=true;renderMy();return}}
+  else{edit.m=false;const r=act(dd.e,e,dd.m);if(!r)return;if(r===2){sm();render();const l=$("#mBody .er:last-child input");if(l)l.focus();return}}
+  edit.m=false;sm();render();
+});
+$("#mBody").addEventListener("input",e=>{if(inp(my.days[msel].e,e)){sm();svStatus()}});
 
 const wide=matchMedia("(min-width:900px)");
 function go(p,scroll){
