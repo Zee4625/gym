@@ -193,6 +193,17 @@ button.chip{cursor:pointer}
 .wbox .chips{justify-content:flex-start;margin-top:8px}
 #acctB .gb,#acctB .cta{width:100%;margin-top:8px;border-radius:14px}
 #acctB textarea{margin-top:8px;font-size:12px}
+.xi{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.xi small{color:var(--mut);font-size:11px;flex:1;min-width:130px}
+.xi .gb{padding:4px 12px}
+.lib li{cursor:pointer}.lib li>div{display:grid;gap:2px}.lib li small{color:var(--mut);font-size:11px}
+.lt{font:italic 800 24px var(--disp);text-transform:uppercase;letter-spacing:.03em}
+.spark{width:100%;height:56px;margin:8px 0}
+.xt{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0}
+.xt td,.xt th{padding:6px 8px;text-align:right;border-bottom:1px solid var(--line);font-weight:600}
+.xt th:first-child,.xt td:first-child{text-align:left}
+.lv b{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wl .del{border:0;background:none;color:var(--mut);padding:0 0 0 10px}
 @media (prefers-reduced-motion:no-preference){.m,.ck{transition:fill .25s,background .2s}.pane.act{animation:in .25s}@keyframes in{from{opacity:0;transform:translateY(8px)}}}
 </style>
 </head>
@@ -202,6 +213,7 @@ button.chip{cursor:pointer}
 <symbol id="db" viewBox="0 0 24 24"><path d="M3 9v6M6 7v10M18 7v10M21 9v6M6 12h12"/></symbol>
 <symbol id="bd" viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.5"/><path d="M12 9v6M7 11l5-2 5 2M9 21l3-6 3 6"/></symbol>
 <symbol id="tr" viewBox="0 0 24 24"><path d="M8 4h8v5a4 4 0 0 1-8 0zM8 6H4v1a4 4 0 0 0 4 4M16 6h4v1a4 4 0 0 1-4 4M12 13v4M8 20h8M10 17h4"/></symbol>
+<symbol id="bk" viewBox="0 0 24 24"><path d="M5 4h10a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h10"/></symbol>
 <symbol id="pl" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
 <symbol id="st" viewBox="0 0 24 24"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.5l-5.3 2.9 1.2-6L3.4 9.3l6-.7z"/></symbol>
 </svg>
@@ -214,29 +226,30 @@ button.chip{cursor:pointer}
 
 <nav class="nav" id="nav">
   <div class="logo">FORMA<b>.</b></div>
-  <button data-p="plan" class="on"><svg><use href="#db"/></svg><span data-i="n1"></span></button>
+  <button data-p="my" class="on"><svg><use href="#db"/></svg><span data-i="n5"></span></button>
   <button data-p="body"><svg><use href="#bd"/></svg><span data-i="n2"></span></button>
   <button data-p="rank"><svg><use href="#tr"/></svg><span data-i="n3"></span></button>
+  <button data-p="plan"><svg><use href="#bk"/></svg><span data-i="n1"></span></button>
   <button data-p="bg"><svg><use href="#st"/></svg><span data-i="n4"></span></button>
-  <button data-p="my"><svg><use href="#pl"/></svg><span data-i="n5"></span></button>
 </nav>
 
 <main class="main"><div class="panes">
-  <section class="pane act" id="p-plan"><h2 data-i="h1"></h2><div class="tabs" id="tabs"></div><div id="plan"></div></section>
+  <section class="pane act" id="p-my"><h2 data-i="h5"></h2><input class="in" id="myN" maxlength="40" data-ph="wn"><div class="tabs" id="mTabs" style="margin-top:14px"></div><div id="mBody"></div></section>
   <section class="pane" id="p-body"><h2 data-i="h2"></h2><div class="nums" id="nums"></div><img class="map" id="map" alt="Muscle map" src="data:,"><div class="lbl"><span data-i="front"></span><span data-i="back"></span></div><div class="chips" id="chips"></div><div class="lg" id="lg"></div></section>
   <section class="pane" id="p-rank"><h2 data-i="h3"></h2><p class="lh" data-i="lh"></p><div id="lifts"><div class="lr"><b data-i="bw"></b><input class="in" id="bw" type="number" inputmode="decimal" min="30" max="250"><span></span></div><div class="lr"><b data-i="ag"></b><input class="in" id="ag" type="number" inputmode="numeric" min="14" max="90"><span></span></div><div class="lr"><b data-i="sx"></b><button class="gb sx" id="sxm" data-s="m" data-i="sm"></button><button class="gb sx" id="sxf" data-s="f" data-i="sf"></button></div></div><div id="rank"></div></section>
+  <section class="pane" id="p-plan"><h2 data-i="h1"></h2><div class="tabs" id="tabs"></div><div id="plan"></div></section>
   <section class="pane" id="p-bg"><h2 data-i="h4"></h2><div id="bgHome"><div class="bg"><div class="tile"><b>B</b><span data-i="soon"></span></div><button class="tile" id="gTile" aria-label="G"><b>G</b><span id="gS"></span></button></div><p class="bgn" data-i="bgn"></p></div><div id="gView" hidden></div></section>
-  <section class="pane" id="p-my"><h2 data-i="h5"></h2><input class="in" id="myN" maxlength="40" data-ph="wn"><div class="tabs" id="mTabs" style="margin-top:14px"></div><div id="mBody"></div></section>
 </div></main>
 <div class="pin" id="auth"><div class="pinbox authbox"><div class="logo">FORMA<b>.</b></div><p class="nx" data-i="authSub"></p><div id="who"></div><div class="tabs"><button id="aLog" class="on" data-i="lg_t"></button><button id="aNew" data-i="su"></button></div><input class="in" id="aN" autocomplete="username" maxlength="24" data-ph="un"><input class="in" id="aP" type="password" autocomplete="current-password" maxlength="40" data-ph="pw"><label class="rm"><input type="checkbox" id="aR" checked><span data-i="rm"></span></label><p class="pe" id="aE"></p><button class="cta" id="aGo"></button><div class="lang lg2"><button data-l="ro">RO</button><button data-l="en">EN</button></div><p class="fine" data-i="note"></p></div></div>
 <div class="pin" id="welc" hidden><div class="pinbox wbox" id="wbox"></div></div>
 <div class="pin" id="acct" hidden><div class="pinbox wbox" id="acctB"></div></div>
-<div class="pin" id="pin" hidden><div class="pinbox"><b data-i="pinT"></b><div class="dots" id="dots"><i></i><i></i><i></i><i></i></div><p class="pe" id="pinE"></p><div class="pad" id="pad"></div><button class="gb" id="pinX" data-i="cancel"></button></div></div>
+<div class="pin" id="lib" hidden><div class="pinbox wbox" id="libB"></div></div>
+<div class="pin" id="xd" hidden><div class="pinbox wbox" id="xdB"></div></div>
 
 <script>
 const L={
-ro:{n1:"Plan",n2:"Corp",n3:"Rang",n4:"Special",h1:"Programul tău",h2:"Mușchi antrenați",h3:"Rangul tău",h4:"Antrenamente speciale",warm:"Încălzire",ex:"exerciții",mu:"mușchi",mus:"Grupe musculare",wu:"Încălzire",front:"Față",back:"Spate",next:"până la",max:"Rang maxim",soon:"În curând",bgn:"B apare în curând. G se deschide cu parolă.",restT:"Pauză",restP:"Mușchii cresc când te odihnești. Somn bun, apă și un stretching ușor.",tap:"Atinge un exercițiu când l’ai terminat.",min:"min",n5:"Al meu",h5:"Programul tău propriu",bw:"Greutate corporală (kg)",sq:"Genuflexiuni",dl:"Îndreptări",bp:"Împins la bancă",kg:"kg",reps:"repetări",sets:"serii",edit:"Editează",done2:"Gata",rst:"Resetează programul",sure:"Sigur? Apasă din nou",sv:"Salvează programul",svd:"Salvat",uns:"Nesalvat, apasă Salvează",cp:"Copiază din Plan",cg:"Copiază din G",nors:"Rangul se dă după ce îți faci programul. Adaugă exerciții cu kg în „Al meu” și apasă Salvează.",go:"Construiește programul",authSub:"Autentifică-te ca să-ți găsești programul, rangul și progresul.",lg_t:"Autentificare",su:"Cont nou",un:"Nume",pw:"Parolă",rm:"Rămâi conectat",ent:"Intră",crt:"Creează contul",bad:"Nume sau parolă greșită",taken:"Numele există deja",short:"Parola: minim 4 caractere",nn:"Scrie un nume",who:"Ești tu?",hi:"Salut",todayW:"Antrenamentul de azi",start:"Începe antrenamentul",own:"Programul tău",more:"încă",acct:"Cont",out:"Ieși din cont",exp:"Exportă datele",imp:"Importă datele",del:"Șterge contul",paste:"Lipește aici datele exportate",badimp:"Date invalide",note:"Contul e salvat doar pe acest dispozitiv. Exportă datele ca să le muți pe altul.",lh:"Rangul se dă după ce îți faci programul în „Al meu” și îl salvezi. Se calculează din toate exercițiile cu greutate din săptămână: forța maximă estimată (1RM = greutate × (1 + repetări / 30)) față de exercițiul de referință, raportată la greutatea, sexul și vârsta ta. LVL și EXP cresc odată cu forța.",mr:"Rang pe mușchi",nd:"Fără date",ag:"Vârstă",sx:"Sex",sm:"Bărbat",sf:"Femeie",rf:"Exercițiu de referință",beat:"depășești",weak:"Rămas în urmă",ov:"Rang general",nxt:"Următorul rang:",need:"Introdu cel puțin o ridicare",wn:"Numele antrenamentului",pick:"Mușchi lucrați",exn:"Exercițiu",add:"Adaugă exercițiul",clr:"Șterge tot",empty:"Nu ai adăugat exerciții încă.",lock:"Protejat",open:"Deschis",pinT:"Introdu parola",pinE:"Parolă greșită",back2:"Înapoi",lockBtn:"Blochează",cancel:"Anulează"},
-en:{n1:"Plan",n2:"Body",n3:"Rank",n4:"Special",h1:"Your plan",h2:"Muscles trained",h3:"Your rank",h4:"Special workouts",warm:"Warm-up",ex:"exercises",mu:"muscles",mus:"Muscle groups",wu:"Warm-up",front:"Front",back:"Back",next:"to",max:"Max rank",soon:"Coming soon",bgn:"B is coming soon. G opens with a password.",restT:"Rest day",restP:"Muscles grow while you rest. Sleep well, drink water and stretch lightly.",tap:"Tap an exercise when you finish it.",min:"min",n5:"Mine",h5:"Your own program",bw:"Body weight (kg)",sq:"Squat",dl:"Deadlift",bp:"Bench press",kg:"kg",reps:"reps",sets:"sets",edit:"Edit",done2:"Done",rst:"Reset program",sure:"Sure? Tap again",sv:"Save program",svd:"Saved",uns:"Unsaved, tap Save",cp:"Copy from Plan",cg:"Copy from G",nors:"Your rank is given once you build your program. Add exercises with kg in “Mine” and tap Save.",go:"Build your program",authSub:"Sign in to find your program, rank and progress.",lg_t:"Log in",su:"New account",un:"Name",pw:"Password",rm:"Stay signed in",ent:"Enter",crt:"Create account",bad:"Wrong name or password",taken:"That name is taken",short:"Password: at least 4 characters",nn:"Enter a name",who:"Is it you?",hi:"Hi",todayW:"Today’s workout",start:"Start workout",own:"Your program",more:"more",acct:"Account",out:"Log out",exp:"Export data",imp:"Import data",del:"Delete account",paste:"Paste exported data here",badimp:"Invalid data",note:"Your account is stored on this device only. Export your data to move it to another.",lh:"Your rank is given once you build your program in “Mine” and save it. It is calculated from all the weighted exercises in your week: estimated max (1RM = weight × (1 + reps / 30)) against the reference lift, relative to your body weight, sex and age. LVL and EXP grow with your strength.",mr:"Rank per muscle",nd:"No data",ag:"Age",sx:"Sex",sm:"Male",sf:"Female",rf:"Reference lift",beat:"beats",weak:"Lagging",ov:"Overall rank",nxt:"Next rank:",need:"Enter at least one lift",wn:"Workout name",pick:"Muscles worked",exn:"Exercise",add:"Add exercise",clr:"Clear all",empty:"No exercises added yet.",lock:"Locked",open:"Unlocked",pinT:"Enter password",pinE:"Wrong password",back2:"Back",lockBtn:"Lock",cancel:"Cancel"}};
+ro:{n1:"Exemple",n2:"Corp",n3:"Rang",n4:"Special",h1:"Exemplu de program",h2:"Mușchi antrenați",h3:"Rangul tău",h4:"Antrenamente speciale",warm:"Încălzire",ex:"exerciții",mu:"mușchi",mus:"Grupe musculare",wu:"Încălzire",front:"Față",back:"Spate",next:"până la",max:"Rang maxim",soon:"În curând",bgn:"B apare în curând. G este doar pentru contul de admin.",restT:"Pauză",restP:"Mușchii cresc când te odihnești. Somn bun, apă și un stretching ușor.",tap:"Atinge un exercițiu când l’ai terminat.",min:"min",n5:"Programul",h5:"Programul tău propriu",bw:"Greutate corporală (kg)",sq:"Genuflexiuni",dl:"Îndreptări",bp:"Împins la bancă",kg:"kg",reps:"repetări",sets:"serii",edit:"Editează",done2:"Gata",rst:"Resetează programul",sure:"Sigur? Apasă din nou",sv:"Salvează programul",svd:"Salvat",uns:"Nesalvat, apasă Salvează",cp:"Copiază din Plan",cg:"Copiază din G",nors:"Rangul se dă după ce îți faci programul. Adaugă exerciții cu kg în „Al meu” și apasă Salvează.",go:"Construiește programul",authSub:"Autentifică-te ca să-ți găsești programul, rangul și progresul.",lg_t:"Autentificare",su:"Cont nou",un:"Nume",pw:"Parolă",rm:"Rămâi conectat",ent:"Intră",crt:"Creează contul",bad:"Nume sau parolă greșită",taken:"Numele există deja",short:"Parola: minim 4 caractere",nn:"Scrie un nume",who:"Ești tu?",hi:"Salut",todayW:"Antrenamentul de azi",start:"Începe antrenamentul",own:"Programul tău",more:"încă",acct:"Cont",out:"Ieși din cont",exp:"Exportă datele",imp:"Importă datele",del:"Șterge contul",paste:"Lipește aici datele exportate",badimp:"Date invalide",note:"Contul e salvat doar pe acest dispozitiv. Exportă datele ca să le muți pe altul.",exnote:"Acesta este doar un exemplu. Programul tău îl faci în fila „Programul”.",pickEx:"Alege din lista de exerciții",search:"Caută exercițiu…",all:"Toate",libnote:"Fiecare exercițiu știe ce mușchi lucrează și cu ce exercițiu de referință se compară (procentul din dreapta). Așa se calculează rangul.",unk:"Nu recunosc exercițiul. Alege-l din listă ca să conteze pentru rang.",noest:"Adaugă kg și repetări ca să vezi rangul.",exr:"Exerciții și rangul lor",cmp:"Se compară cu",logT:"Jurnal: ultimul set",logAdd:"Salvează",freeD:"Azi nu ai exerciții în program: zi de pauză, sau completeaz-o în „Programul”.",nopr:"Nu ai încă un program. Alege exerciții din listă, pune kg și repetări, apoi salvează: așa primești rangul.",seeEx:"Vezi un exemplu de program",lh:"Rangul se dă după ce îți faci programul în „Al meu” și îl salvezi. Se calculează din toate exercițiile cu greutate din săptămână: forța maximă estimată (1RM = greutate × (1 + repetări / 30)) față de exercițiul de referință, raportată la greutatea, sexul și vârsta ta. LVL și EXP cresc odată cu forța.",mr:"Rang pe mușchi",nd:"Fără date",ag:"Vârstă",sx:"Sex",sm:"Bărbat",sf:"Femeie",rf:"Exercițiu de referință",beat:"depășești",weak:"Rămas în urmă",ov:"Rang general",nxt:"Următorul rang:",need:"Introdu cel puțin o ridicare",wn:"Numele antrenamentului",pick:"Mușchi lucrați",exn:"Exercițiu",add:"Adaugă exercițiul",clr:"Șterge tot",empty:"Nu ai adăugat exerciții încă.",lock:"Doar admin",open:"Deschis",pinT:"Introdu parola",pinE:"Parolă greșită",back2:"Înapoi",lockBtn:"Blochează",cancel:"Anulează"},
+en:{n1:"Examples",n2:"Body",n3:"Rank",n4:"Special",h1:"Example program",h2:"Muscles trained",h3:"Your rank",h4:"Special workouts",warm:"Warm-up",ex:"exercises",mu:"muscles",mus:"Muscle groups",wu:"Warm-up",front:"Front",back:"Back",next:"to",max:"Max rank",soon:"Coming soon",bgn:"B is coming soon. G is for the admin account only.",restT:"Rest day",restP:"Muscles grow while you rest. Sleep well, drink water and stretch lightly.",tap:"Tap an exercise when you finish it.",min:"min",n5:"Program",h5:"Your own program",bw:"Body weight (kg)",sq:"Squat",dl:"Deadlift",bp:"Bench press",kg:"kg",reps:"reps",sets:"sets",edit:"Edit",done2:"Done",rst:"Reset program",sure:"Sure? Tap again",sv:"Save program",svd:"Saved",uns:"Unsaved, tap Save",cp:"Copy from Plan",cg:"Copy from G",nors:"Your rank is given once you build your program. Add exercises with kg in “Mine” and tap Save.",go:"Build your program",authSub:"Sign in to find your program, rank and progress.",lg_t:"Log in",su:"New account",un:"Name",pw:"Password",rm:"Stay signed in",ent:"Enter",crt:"Create account",bad:"Wrong name or password",taken:"That name is taken",short:"Password: at least 4 characters",nn:"Enter a name",who:"Is it you?",hi:"Hi",todayW:"Today’s workout",start:"Start workout",own:"Your program",more:"more",acct:"Account",out:"Log out",exp:"Export data",imp:"Import data",del:"Delete account",paste:"Paste exported data here",badimp:"Invalid data",note:"Your account is stored on this device only. Export your data to move it to another.",exnote:"This is just an example. You build your own program in the “Program” tab.",pickEx:"Choose from the exercise list",search:"Search exercise…",all:"All",libnote:"Every exercise knows which muscle it works and which reference lift it is compared with (the percentage on the right). That is how rank is calculated.",unk:"Unknown exercise. Pick it from the list so it counts for rank.",noest:"Add kg and reps to see the rank.",exr:"Exercises and their rank",cmp:"Compared with",logT:"Log: latest set",logAdd:"Save",freeD:"No exercises today: a rest day, or fill it in under “Program”.",nopr:"You have no program yet. Pick exercises from the list, add kg and reps, then save: that is how you get your rank.",seeEx:"See an example program",lh:"Your rank is given once you build your program in “Mine” and save it. It is calculated from all the weighted exercises in your week: estimated max (1RM = weight × (1 + reps / 30)) against the reference lift, relative to your body weight, sex and age. LVL and EXP grow with your strength.",mr:"Rank per muscle",nd:"No data",ag:"Age",sx:"Sex",sm:"Male",sf:"Female",rf:"Reference lift",beat:"beats",weak:"Lagging",ov:"Overall rank",nxt:"Next rank:",need:"Enter at least one lift",wn:"Workout name",pick:"Muscles worked",exn:"Exercise",add:"Add exercise",clr:"Clear all",empty:"No exercises added yet.",lock:"Admin only",open:"Unlocked",pinT:"Enter password",pinE:"Wrong password",back2:"Back",lockBtn:"Lock",cancel:"Cancel"}};
 const DN={ro:["Duminică","Luni","Marți","Miercuri","Joi","Vineri","Sâmbătă"],en:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]};
 const ORDER=[1,2,3,4,5,6,0],D={1:"push",2:"rest",3:"pull",4:"legs",5:"pull",6:"legs",0:"rest"};
 const M={back:["Spate","Back"],bi:["Biceps","Biceps"],fa:["Antebraț","Forearm"],chest:["Piept","Chest"],sh:["Umeri","Shoulders"],tri:["Triceps","Triceps"],abs:["Abdomen","Abs"],legs:["Picioare","Legs"],calf:["Gambe","Calves"]};
@@ -280,14 +293,15 @@ function defProg(){
     o.g[d]={f:G[d].f,i:G[d].i,m:[...G[d].m],e:G[d].e.map(pex)}});
   return o;
 }
-let PR=null,lf=null,my=null,RC={},RS={},rk="chest",uid=null,USERS={};
+let PR=null,lf=null,my=null,RC={},RS={},RX=[],rk="chest",uid=null,USERS={};
 const blank=()=>{const o={};ORDER.forEach(d=>{o[d]={m:[],e:[]}});return o};
 const UK=k=>"u:"+uid+":"+k,ld=k=>{try{return JSON.parse(localStorage.getItem(UK(k))||"null")}catch(x){return null}};
 function loadUser(){
   PR=ld("pr");lf=Object.assign({bw:80,age:25,sex:"m"},ld("lf")||{});my=Object.assign({n:"",days:null,sv:null},ld("mp")||{});
   if(!PR||!PR.p||!PR.g)PR=defProg();
-  if(!my.days)my.days=blank();
+  if(!my.days)my.days=blank();if(!my.log)my.log={};
   ORDER.forEach(d=>{if(!my.days[d])my.days[d]={m:[],e:[]}});
+  if(isAdm()&&!my.sv&&!ld("mp")){ORDER.forEach(d=>{my.days[d]=cpy({m:PR.g[d].m,e:PR.g[d].e})});my.n="Programul G";my.sv=JSON.stringify({t:Date.now(),n:my.n,days:my.days});sm()}
   $("#bw").value=lf.bw||"";$("#ag").value=lf.age||"";$("#myN").value=my.n||"";
 }
 let msel=new Date().getDay();
@@ -295,8 +309,14 @@ const savePR=()=>save("pr",JSON.stringify(PR)),sm=()=>save("mp",JSON.stringify(m
 const edit={p:false,g:false,r:false,m:false};
 const nm=e=>(lang==="en"&&e.n2)||e.n||"";
 const fmt=e=>e.raw?"":(e.s||"–")+" × "+(e.r||"–")+(e.u==="s"?" s":"")+(e.w?", "+e.w+" kg":"");
-const exHTML=(L,ed)=>L.map((e,i)=>ed
-  ?`<li class="er" data-x="${i}"><input class="in" data-k="n" value="${esc(nm(e))}" maxlength="80"><div class="row3"><input class="in" data-k="s" type="number" inputmode="numeric" min="0" value="${e.s||""}" placeholder="${t("sets")}"><input class="in" data-k="r" type="number" inputmode="numeric" min="0" value="${e.r||""}" placeholder="${t("reps")}"><input class="in" data-k="w" type="number" inputmode="decimal" min="0" value="${e.w||""}" placeholder="kg"></div><button class="del" data-a="del" aria-label="Delete">✕</button></li>`
+const xrow=e=>{
+  const r=exScore(e,prof());
+  if(!r)return `<div class="xi"><small>${t("unk")}</small></div>`;
+  const k=r.s==null?null:Math.min(6,Math.floor(r.s)),c=r.c;
+  return `<div class="xi"><span class="chip" style="${k==null?"":`color:${RK[k][2]};border-color:${RK[k][2]}66;background:${RK[k][2]}1f`}">${k==null?t("noest"):RK[k][0]+" · LVL "+Math.min(70,Math.floor(r.s*10)+1)}</span><small>${li(M[c[3]])} · ${Math.round(c[5]*100)}% ${li(RL[c[3]])}</small><button class="gb" data-a="info">ⓘ</button></div>`;
+};
+const exHTML=(L,ed,inf)=>L.map((e,i)=>ed
+  ?`<li class="er" data-x="${i}"><input class="in" data-k="n" value="${esc(nm(e))}" maxlength="80"><div class="row3"><input class="in" data-k="s" type="number" inputmode="numeric" min="0" value="${e.s||""}" placeholder="${t("sets")}"><input class="in" data-k="r" type="number" inputmode="numeric" min="0" value="${e.r||""}" placeholder="${t("reps")}"><input class="in" data-k="w" type="number" inputmode="decimal" min="0" value="${e.w||""}" placeholder="kg"></div><button class="del" data-a="del" aria-label="Delete">✕</button>${inf?xrow(e):""}</li>`
   :`<li class="ex${e.d?" done":""}" data-x="${i}"><span class="th"><svg><use href="#db"/></svg></span><div><b>${esc(nm(e))}</b><small>${fmt(e)}</small></div><span class="ck"></span></li>`).join("");
 const muEd=(m,ed)=>`<div class="chips${ed?" pick":""}">${ed?Object.keys(M).map(k=>`<button class="chip${m.includes(k)?" on":""}" data-mk="${k}">${li(M[k])}</button>`).join(""):m.map(k=>`<span class="chip">${li(M[k])}</span>`).join("")}</div>`;
 const addBtns=()=>`<button class="cta" data-a="add">+ ${t("add")}</button><button class="gb" data-a="rst" style="margin-top:12px">${t(edit.r?"sure":"rst")}</button>`;
@@ -356,51 +376,58 @@ const bu=on=>bodyURL(on)||"data:,";
 const BH=[.6,.85,1.1,1.4,1.75,2.1],PC=[0,10,30,65,88,97,99.5];
 const RM={chest:1,legs:1.33,back:1.65,sh:.65,bi:.45,tri:.8,fa:.45,abs:.6,calf:1.2};
 const RL={chest:["Împins la bancă","Bench press"],back:["Îndreptări","Deadlift"],legs:["Genuflexiuni cu bara","Back squat"],sh:["Împins deasupra capului","Overhead press"],bi:["Flexii cu bara","Barbell curl"],tri:["Împins cu priză îngustă","Close-grip bench"],fa:["Flexii de încheietură cu bara","Barbell wrist curl"],abs:["Crunch la scripete","Cable crunch"],calf:["Ridicări pe vârfuri în picioare","Standing calf raise"]};
-const CL=[
-[/dips/i,"chest","bw",1.05],
-[/pull.?ups?|chin.?ups?/i,"back","bw",.65],
-[/1 leg.*(gambe|calf)|(gambe|calf).*1 leg/i,"calf","bw",1],
-[/bulgarian|split squat|lunge|fand|jump/i,"legs","db",.25],
-[/leg press|pres[aă] pentru/i,"legs","bb",2.2],
-[/squat|genuflex/i,"legs","bb",1],
-[/deadlift|[iî]ndrept/i,"back","bb",1],
-[/chest press/i,"chest","db",.4],
-[/bench|banc/i,"chest","bb",1],
-[/chest fly|\bfly\b|flut/i,"chest","db",.25],
-[/overhead|ohp|military/i,"sh","bb",1],
-[/shoulder press/i,"sh","db",.4],
-[/lateral|high pull/i,"sh","db",.2],
-[/kickback/i,"tri","db",.25],
-[/skull.*ez|ez.*skull/i,"tri","bb",.5],
-[/skull/i,"tri","bb",.45],
-[/triceps|extensii/i,"tri","bb",.6],
-[/wrist|antebra/i,"fa","db",.5],
-[/biceps cu|ez bar|barbell curl/i,"bi","bb",1],
-[/curl/i,"bi","db",.45],
-[/trapez|shrug/i,"back","db",.35],
-[/\brows?\b|ramat|pulldown/i,"back","bb",.6],
-[/tibial/i,"calf","db",.3],
-[/gambe|calf/i,"calf","bb",1],
-[/twist|crunch|\babs\b|abdom/i,"abs","db",.35]
+const LIB=[
+["dips","Dips cu greutate","Weighted dips","chest","bw",1.05,/dips/i],
+["pullup","Tracțiuni cu greutate","Weighted pull-ups","back","bw",.65,/pull.?ups?|chin.?ups?/i],
+["calf1","Ridicări pe vârfuri pe un picior","Single-leg calf raise","calf","bw",1,/1 leg.*(gambe|calf)|(gambe|calf).*1 leg/i],
+["bulg","Split squat bulgar / fandări","Bulgarian split squat / lunges","legs","db",.25,/bulgarian|split squat|lunge|fand|jump/i],
+["legpress","Presă pentru picioare","Leg press","legs","bb",2.2,/leg press|pres[aă] pentru/i],
+["squat","Genuflexiuni cu bara","Back squat","legs","bb",1,/squat|genuflex/i],
+["deadlift","Îndreptări","Deadlift","back","bb",1,/deadlift|[iî]ndrept/i],
+["dbpress","Împins cu gantere (piept)","Dumbbell chest press","chest","db",.4,/chest press/i],
+["cgbp","Împins cu priză îngustă","Close-grip bench press","tri","bb",1,/close.?grip|priz[aă] [iî]ngust/i],
+["bench","Împins la bancă cu bara","Barbell bench press","chest","bb",1,/bench|banc/i],
+["fly","Fluturări cu gantere","Dumbbell fly","chest","db",.25,/chest fly|\bfly\b|flut/i],
+["ohp","Împins deasupra capului","Overhead press","sh","bb",1,/overhead|ohp|military/i],
+["shpress","Împins cu gantere (umeri)","Dumbbell shoulder press","sh","db",.4,/shoulder press/i],
+["lat","Ridicări laterale / high pull","Lateral raise / high pull","sh","db",.2,/lateral|high pull/i],
+["kick","Kickback triceps","Triceps kickback","tri","db",.25,/kickback/i],
+["skullez","Skull crusher cu bara EZ","EZ-bar skull crusher","tri","bb",.5,/skull.*ez|ez.*skull/i],
+["skull","Skull crusher cu o ganteră","Single-dumbbell skull crusher","tri","bb",.45,/skull/i],
+["tripush","Extensii triceps la scripete","Triceps pushdown","tri","bb",.6,/triceps|extensii/i],
+["wrist","Flexii de încheietură","Wrist curl","fa","db",.5,/wrist|antebra/i],
+["bbcurl","Flexii cu bara EZ / dreaptă","Barbell / EZ curl","bi","bb",1,/biceps cu|ez bar|barbell curl/i],
+["dbcurl","Flexii cu gantere","Dumbbell curl","bi","db",.45,/curl/i],
+["shrug","Ridicări de umeri (trapez)","Dumbbell shrug","back","db",.35,/trapez|shrug/i],
+["row","Ramat / tracțiuni la piept","Barbell row / lat pulldown","back","bb",.6,/\brows?\b|ramat|pulldown/i],
+["tibial","Ridicări tibiale","Tibialis raise","calf","db",.3,/tibial/i],
+["calf","Ridicări pe vârfuri (gambe)","Calf raise","calf","bb",1,/gambe|calf/i],
+["ccrunch","Crunch la scripete","Cable crunch","abs","bb",1,/cable crunch|crunch la scripete/i],
+["twist","Russian twist / crunch","Russian twist / crunch","abs","db",.35,/twist|crunch|\babs\b|abdom/i]
 ];
+const findEx=e=>e.id?LIB.find(x=>x[0]===e.id):LIB.find(x=>x[6].test((e.n||"")+" "+(e.n2||"")));
 function prof(){
   const bw=lf.bw>=30?lf.bw:80,a=lf.age>=14?lf.age:25;
   return {bw,sc:(lf.sex==="f"?.62:1)*(a<18?Math.max(.6,1-(18-a)*.03):a>39?Math.max(.55,1-(a-39)*.01):1)};
 }
 const TH=k=>BH.map(x=>x*RM[k]);
 function score(v,T){if(v<T[0])return v/T[0];let k=0;while(k<5&&v>=T[k+1])k++;return k>=5?6+Math.min(.999,(v-T[5])/(T[5]*.5)):k+1+(v-T[k])/(T[k+1]-T[k])}
+function exScore(e,P){
+  const c=findEx(e);if(!c)return null;
+  if(e.raw||e.u||!(e.s>0&&e.r>0&&e.w>0))return {c,s:null};
+  const load=c[4]==="bw"?P.bw+e.w:e.w,rm=e.r>1?load*(1+Math.min(e.r,12)/30):load;   /* Epley 1RM */
+  return {c,rm,s:score(rm/P.bw/c[5],TH(c[3]).map(y=>y*P.sc))};
+}
 function calcRanks(){
-  const P=prof(),acc={},all=[];RS={};RC={};
+  const P=prof(),acc={};RS={};RC={};RX=[];
   if(!my.sv)return;
   const SV=JSON.parse(my.sv);
-  ORDER.forEach(d=>{((SV.days[d]||{}).e||[]).forEach(e=>all.push(e))});
-  all.forEach(e=>{
-    if(e.raw||e.u||!(e.s>0&&e.r>0&&e.w>0))return;
-    const c=CL.find(c=>c[0].test((e.n||"")+" "+(e.n2||"")));if(!c)return;
-    const load=c[2]==="bw"?P.bw+e.w:e.w,rm=e.r>1?load*(1+Math.min(e.r,12)/30):load;   /* Epley 1RM */
-    const sc=score(rm/P.bw/c[3],TH(c[1]).map(y=>y*P.sc)),a=acc[c[1]]||(acc[c[1]]={sum:0,sets:0,n:0,best:0});
-    a.sum+=sc*e.s;a.sets+=e.s;a.n++;if(sc>a.best)a.best=sc;
-  });
+  ORDER.forEach(d=>{((SV.days[d]||{}).e||[]).forEach(e=>{
+    const r=exScore(e,P);if(!r||r.s==null)return;
+    const k=r.c[3],a=acc[k]||(acc[k]={sum:0,sets:0,n:0,best:0});
+    a.sum+=r.s*e.s;a.sets+=e.s;a.n++;if(r.s>a.best)a.best=r.s;
+    RX.push({n:nm(e),k,s:r.s,w:e.w,r:e.r});
+  })});
   Object.keys(acc).forEach(k=>{const a=acc[k],v=.6*a.sum/a.sets+.4*a.best;RS[k]={s:v,n:a.n,sets:a.sets};RC[k]=RK[Math.min(6,Math.floor(v))][2]});
 }
 const BAD=new Set();
@@ -430,6 +457,7 @@ function renderRank(){
   $("#rank").innerHTML=`${hero}${wk}
   <p class="lb">${t("mr")}</p>
   <ul class="lv">${Object.keys(M).map(k=>{const r=RS[k],i=r?Math.min(6,Math.floor(r.s)):0,c=RK[i];return `<li>${r?bimg(c,i,40):""}<b>${li(M[k])}</b><span style="color:${r?c[2]:"var(--mut)"}">${r?c[0]:t("nd")}</span><em>${r?"LVL "+Math.min(70,Math.floor(r.s*10)+1)+" · "+r.sets+" "+t("sets"):""}</em></li>`}).join("")}</ul>
+  ${RX.length?`<p class="lb">${t("exr")}</p><ul class="lv">${[...RX].sort((a,b)=>b.s-a.s).slice(0,14).map(x=>{const i=Math.min(6,Math.floor(x.s));return `<li>${bimg(RK[i],i,32)}<b>${esc(x.n)}</b><span style="color:${RK[i][2]}">${RK[i][0]}</span><em>${x.w} kg × ${x.r}</em></li>`}).join("")}</ul>`:""}
   <div class="lg">${legend}</div>
   <p class="lb">${t("rf")}: ${li(RL[rk])}</p>
   <div class="chips pick">${Object.keys(M).map(k=>`<button class="chip${k===rk?" on":""}" data-r="${k}">${li(M[k])}</button>`).join("")}</div>
@@ -438,8 +466,8 @@ function renderRank(){
 
 /* ---------- render ---------- */
 function updBody(){
-  const dd=PR.p[sel],on=new Set(dd.m);
-  $("#nums").innerHTML=`<div><b>${on.size}</b><span>${t("mus")}</span></div><div><b>${on.size?"5 "+t("min"):"–"}</b><span>${t("wu")}</span></div>`;
+  const dd=my.days[msel],on=new Set(dd.m);
+  $("#nums").innerHTML=`<div><b>${on.size}</b><span>${t("mus")}</span></div><div><b>${DN[lang][msel].slice(0,3)}</b><span>${dd.e.length} ${t("ex")}</span></div>`;
   $("#map").src=bu(on);
   $("#chips").innerHTML=dd.m.map(k=>`<span class="chip">${li(M[k])}</span>`).join("");
 }
@@ -447,7 +475,7 @@ function renderPlan(){
   const dd=PR.p[sel],ty=TY[D[sel]],ed=edit.p,rest=D[sel]==="rest"&&!dd.e.length&&!ed;
   const nd=dd.e.filter(e=>e.d).length,w=dd.e.length?Math.round(nd/dd.e.length*100):0;
   $("#tabs").innerHTML=ORDER.map(d=>`<button data-d="${d}" class="${d===sel?"on":""}">${DN[lang][d].slice(0,3)}</button>`).join("");
-  $("#plan").innerHTML=`<div class="ph"><h3>${li(ty.n)}</h3><button class="gb" data-a="ed">${t(ed?"done2":"edit")}</button></div>`+(rest
+  $("#plan").innerHTML=`<p class="hint" style="text-align:left;margin:0 0 12px">${t("exnote")}</p><div class="ph"><h3>${li(ty.n)}</h3><button class="gb" data-a="ed">${t(ed?"done2":"edit")}</button></div>`+(rest
     ?`<div class="rest"><b>${t("restT")}</b><p>${t("restP")}</p></div>`
     :`${ed?"":`<div class="pg" style="--w:${w}%"><i></i></div><details open class="wu"><summary>${t("warm")}, 5 ${t("min")}</summary><ol>${WU.map(x=>`<li>${li(x)} <em>${x[2]}</em></li>`).join("")}</ol></details>`}${muEd(dd.m,ed)}<ul class="exs">${exHTML(dd.e,ed)}</ul>${ed?addBtns():`<p class="hint">${t("tap")}</p>`}`);
 }
@@ -463,8 +491,8 @@ function renderMy(){
   $("#mBody").innerHTML=`<div class="ph"><h3>${DN[lang][msel]}</h3><span>${dd.e.length} ${t("ex")}</span></div>
   <p class="lb">${t("pick")}</p>${muEd(dd.m,true)}
   <img id="mMap" class="map mini" alt="" src="${bu(on)}">
-  <ul class="exs">${dd.e.length?exHTML(dd.e,true):`<li class="hint">${t("empty")}</li>`}</ul>
-  <button class="cta" data-a="add" style="margin-top:12px">+ ${t("add")}</button>
+  <ul class="exs">${dd.e.length?exHTML(dd.e,true,true):`<li class="hint">${t("empty")}</li>`}</ul>
+  <button class="cta" data-a="lib" style="margin-top:12px">${t("pickEx")}</button><button class="gb" data-a="add" style="width:100%;margin-top:8px;border-radius:14px">+ ${t("add")}</button>
   <div class="sv">${svTxt()}<button class="cta" data-a="save">${t("sv")}</button></div>
   <div class="gtop"><button class="gb" data-a="cp">${t("cp")}</button>${unlocked?`<button class="gb" data-a="cg">${t("cg")}</button>`:""}<button class="gb" data-a="clr">${t(edit.m?"sure":"clr")}</button></div>`;
 }
@@ -473,7 +501,7 @@ function renderG(){
   $("#bgHome").hidden=gOpen;$("#gView").hidden=!gOpen;
   if(!gOpen)return;
   const g=PR.g[gSel],ed=edit.g,n=g.e.filter(e=>e.d).length,w=g.e.length?Math.round(n/g.e.length*100):0;
-  $("#gView").innerHTML=`<div class="gtop"><button class="gb" data-a="back">‹ ${t("back2")}</button><button class="gb" data-a="ed">${t(ed?"done2":"edit")}</button><button class="gb" data-a="lock">🔒 ${t("lockBtn")}</button></div>
+  $("#gView").innerHTML=`<div class="gtop"><button class="gb" data-a="back">‹ ${t("back2")}</button><button class="gb" data-a="ed">${t(ed?"done2":"edit")}</button></div>
   <div class="tabs">${ORDER.map(d=>`<button data-d="${d}" class="${d===gSel?"on":""}">${DN[lang][d].slice(0,3)}</button>`).join("")}</div>
   <div class="ph"><h3>${g.i} ${DN[lang][gSel]}</h3><span>${esc(g.f)}</span></div>
   <img id="gMap" class="map mini" alt="" src="${bu(new Set(g.m))}">${muEd(g.m,ed)}
@@ -495,24 +523,9 @@ function light(){
   const gm=$("#gMap");if(gm)gm.src=bu(new Set(PR.g[gSel].m));
 }
 
-/* ---------- G: password ---------- */
-let unlocked=false,gOpen=false,gSel=sel,pin="";
-const PIN="4625";
-function dots(){document.querySelectorAll("#dots i").forEach((d,i)=>d.classList.toggle("f",i<pin.length))}
-function pinOpen(){pin="";$("#pinE").textContent="";dots();$("#pin").hidden=false}
-function pinKey(k){
-  if(k==="⌫")pin=pin.slice(0,-1);else if(pin.length<4)pin+=k;
-  dots();$("#pinE").textContent="";
-  if(pin.length===4){
-    if(pin===PIN){unlocked=gOpen=true;gSel=sel;$("#pin").hidden=true;render()}
-    else{$("#pinE").textContent=t("pinE");const b=$(".pinbox");b.classList.remove("shake");void b.offsetWidth;b.classList.add("shake");setTimeout(()=>{pin="";dots()},350)}
-  }
-}
-$("#pad").innerHTML=[1,2,3,4,5,6,7,8,9,"",0,"⌫"].map(k=>k===""?"<span></span>":`<button data-k="${k}">${k}</button>`).join("");
-$("#pad").addEventListener("click",e=>{const b=e.target.closest("button");if(b)pinKey(b.dataset.k)});
-$("#pinX").addEventListener("click",()=>{$("#pin").hidden=true});
-$("#gTile").addEventListener("click",()=>{if(unlocked){gOpen=true;renderG()}else pinOpen()});
-document.addEventListener("keydown",e=>{if($("#pin").hidden)return;if(/^\d$/.test(e.key))pinKey(e.key);else if(e.key==="Backspace")pinKey("⌫");else if(e.key==="Escape")$("#pin").hidden=true});
+/* ---------- G: admin only ---------- */
+let unlocked=false,gOpen=false,gSel=sel;
+$("#gTile").addEventListener("click",()=>{if(unlocked){gOpen=true;renderG()}else{const g=$("#gTile");g.classList.remove("shake");void g.offsetWidth;g.classList.add("shake")}});
 
 /* ---------- events ---------- */
 $("#tabs").addEventListener("click",e=>{const b=e.target.closest("button");if(b){sel=+b.dataset.d;edit.r=false;render()}});
@@ -528,7 +541,6 @@ $("#gView").addEventListener("click",e=>{
   const b=e.target.closest("button"),g=PR.g[gSel];
   if(b&&b.dataset.d!==undefined){gSel=+b.dataset.d;edit.r=false}
   else if(b&&b.dataset.a==="back")gOpen=false;
-  else if(b&&b.dataset.a==="lock"){unlocked=gOpen=edit.g=false}
   else if(b&&b.dataset.a==="ed"){edit.g=!edit.g;edit.r=false}
   else if(b&&b.dataset.a==="rst"){if(edit.r){PR.g=defProg().g;edit.r=false}else edit.r=true}
   else{edit.r=false;const r=act(g.e,e,g.m);if(!r)return;if(r===2){savePR();render();const l=$("#gView .er:last-child input");if(l)l.focus();return}}
@@ -546,13 +558,17 @@ $("#mBody").addEventListener("click",e=>{
   if(a==="save")my.sv=JSON.stringify({t:Date.now(),n:my.n,days:my.days});
   else if(a==="cp")ORDER.forEach(d=>{my.days[d]=cpy({m:PR.p[d].m,e:PR.p[d].e})});
   else if(a==="cg")ORDER.forEach(d=>{my.days[d]=cpy({m:PR.g[d].m,e:PR.g[d].e})});
+  else if(a==="lib"){openLib();return}
+  else if(a==="info"){const x=e.target.closest("[data-x]");if(x)openX(+x.dataset.x);return}
   else if(a==="clr"){if(edit.m){my.days=blank();my.sv=null;edit.m=false}else{edit.m=true;renderMy();return}}
   else{edit.m=false;const r=act(dd.e,e,dd.m);if(!r)return;if(r===2){sm();render();const l=$("#mBody .er:last-child input");if(l)l.focus();return}}
   edit.m=false;sm();render();
 });
-$("#mBody").addEventListener("input",e=>{if(inp(my.days[msel].e,e)){sm();svStatus()}});
+$("#mBody").addEventListener("input",e=>{if(inp(my.days[msel].e,e)){sm();svStatus();const l=e.target.closest("[data-x]"),x=l&&l.querySelector(".xi");if(x)x.outerHTML=xrow(my.days[msel].e[+l.dataset.x])}});
 
 /* ---------- login: local accounts on this device ---------- */
+const ADMIN_H="36d8667849cad84b63ca0d59fd1b5b544412ac6bb86f4ca9a23e092571cceabd",ADMIN_F="f3042466803";
+const isAdm=()=>!!(uid&&USERS[uid]&&USERS[uid].admin);
 const AV=n=>(n||"?").trim().charAt(0).toUpperCase();
 async function hash(x){
   try{const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(x));return [...new Uint8Array(b)].map(v=>v.toString(16).padStart(2,"0")).join("")}
@@ -572,7 +588,10 @@ async function doAuth(){
   if(!n)return authErr("nn");
   if(pw.length<4)return authErr("short");
   const h=await hash(id+"|"+pw);
-  if(amode==="new"){
+  if(id==="zee"){
+    if(h!==ADMIN_H&&h!==ADMIN_F)return authErr(amode==="new"?"taken":"bad");
+    if(!USERS.zee){USERS.zee={name:"Zee",h,t:Date.now(),admin:true};saveUsers()}
+  }else if(amode==="new"){
     if(USERS[id])return authErr("taken");
     USERS[id]={name:n,h,t:Date.now()};saveUsers();
     try{if(!localStorage.getItem("mig")){["pr","lf","mp"].forEach(k=>{const v=localStorage.getItem(k);if(v!=null)localStorage.setItem("u:"+id+":"+k,v)});localStorage.setItem("mig","1")}}catch(x){}
@@ -583,24 +602,22 @@ async function doAuth(){
 function enter(id,remember){
   uid=id;
   try{localStorage.removeItem("sess");sessionStorage.removeItem("sess");(remember?localStorage:sessionStorage).setItem("sess",id)}catch(x){}
-  loadUser();sel=msel=gSel=new Date().getDay();unlocked=gOpen=false;edit.p=edit.g=edit.m=edit.r=false;
+  loadUser();sel=msel=gSel=new Date().getDay();unlocked=isAdm();gOpen=false;edit.p=edit.g=edit.m=edit.r=false;go("my");
   $("#auth").hidden=true;render();showWelcome();
 }
 function logout(){
   try{localStorage.removeItem("sess");sessionStorage.removeItem("sess")}catch(x){}
-  uid=null;edit.d=false;$("#acct").hidden=true;$("#welc").hidden=true;$("#auth").hidden=false;render();
+  uid=null;unlocked=gOpen=false;edit.d=false;$("#acct").hidden=true;$("#welc").hidden=true;$("#auth").hidden=false;render();
 }
 /* presents today's workout: your saved program if it has today's day, otherwise the plan */
 function showWelcome(){
-  const own=my.sv?(JSON.parse(my.sv).days[sel]||null):null,useOwn=!!(own&&own.e.length);
-  const dd=useOwn?own:PR.p[sel],ty=TY[D[sel]],rest=!useOwn&&!dd.e.length,on=new Set(dd.m);
+  const dd=my.days[sel],use=dd.e.length>0,has=ORDER.some(d=>my.days[d].e.length),on=new Set(dd.m);
   const S=Object.keys(RS),m=S.length?S.reduce((a,k)=>a+RS[k].s,0)/S.length:0,ri=Math.min(6,Math.floor(m));
   $("#wbox").innerHTML=`<div class="wh"><span class="av">${AV(USERS[uid].name)}</span><div><small>${t("hi")},</small><b>${esc(USERS[uid].name)}</b></div></div>
   ${S.length?`<div class="rkm">${bimg(RK[ri],ri,56)}<div><b>${RK[ri][0]}</b><br>LVL ${Math.min(70,Math.floor(m*10)+1)}</div></div>`:""}
-  <p class="lb" style="margin:6px 0 0">${t("todayW")}, ${DN[lang][sel]}</p>
-  <h3>${useOwn?t("own"):li(ty.n)}</h3>
-  ${rest?`<p class="nx" style="text-align:left">${t("restP")}</p>`:`${muEd(dd.m,false)}<img class="map mini" alt="" src="${bu(on)}"><ul class="wl">${dd.e.slice(0,7).map(e=>`<li><b>${esc(nm(e))}</b><span>${fmt(e)}</span></li>`).join("")}</ul>${dd.e.length>7?`<p class="hint" style="margin:0 0 8px">+${dd.e.length-7} ${t("more")}</p>`:""}`}
-  <button class="cta" data-a="go" data-p="${useOwn?"my":"plan"}">${rest?"OK":t("start")}</button>`;
+  ${use?`<p class="lb" style="margin:6px 0 0">${t("todayW")}, ${DN[lang][sel]}</p><h3>${t("own")}${my.n?" · "+esc(my.n):""}</h3>${muEd(dd.m,false)}<img class="map mini" alt="" src="${bu(on)}"><ul class="wl">${dd.e.slice(0,7).map(e=>`<li><b>${esc(nm(e))}</b><span>${fmt(e)}</span></li>`).join("")}</ul>${dd.e.length>7?`<p class="hint" style="margin:0 0 8px">+${dd.e.length-7} ${t("more")}</p>`:""}`:`<p class="nx" style="text-align:left;margin:8px 0 14px">${has?t("freeD"):t("nopr")}</p>`}
+  <button class="cta" data-a="go" data-p="my">${use?t("start"):t("go")}</button>
+  ${has?"":`<button class="gb" data-a="go" data-p="plan" style="width:100%;margin-top:8px;border-radius:14px">${t("seeEx")}</button>`}`;
   $("#welc").hidden=false;
 }
 function openAcct(){
@@ -632,6 +649,67 @@ $("#acct").addEventListener("click",e=>{
   else if(a==="del"){if(edit.d){const id=uid;["pr","lf","mp"].forEach(k=>{try{localStorage.removeItem(UK(k))}catch(_){}});delete USERS[id];saveUsers();logout()}else{edit.d=true;openAcct()}}
 });
 
+/* ---------- exercise library + detail / monitoring ---------- */
+const lname=x=>lang==="ro"?x[1]:x[2];
+const MODE={bb:["bară / aparat","barbell / machine"],db:["gantere, per mână","dumbbells, per hand"],bw:["corp + kg adăugate","bodyweight + added kg"]};
+let libF={q:"",m:""},xi=0;
+function libList(){
+  const q=libF.q.toLowerCase();
+  $("#libL").innerHTML=LIB.filter(x=>(!libF.m||x[3]===libF.m)&&(!q||(x[1]+" "+x[2]).toLowerCase().includes(q))).map(x=>`<li data-id="${x[0]}"><div><b>${lname(x)}</b><small>${li(M[x[3]])} · ${MODE[x[4]][lang==="ro"?0:1]}</small></div><span>${Math.round(x[5]*100)}%</span></li>`).join("");
+}
+function renderLib(){
+  $("#libB").innerHTML=`<div class="gtop"><b class="lt">${t("pickEx")}</b><button class="gb" data-a="x">✕</button></div>
+  <p class="fine" style="text-align:left;margin:0 0 10px">${t("libnote")}</p>
+  <input class="in" id="libQ" placeholder="${t("search")}" value="${esc(libF.q)}">
+  <div class="chips pick" style="margin:10px 0"><button class="chip${libF.m?"":" on"}" data-m="">${t("all")}</button>${Object.keys(M).map(k=>`<button class="chip${libF.m===k?" on":""}" data-m="${k}">${li(M[k])}</button>`).join("")}</div>
+  <ul class="wl lib" id="libL"></ul>`;
+  libList();
+}
+function openLib(){libF={q:"",m:""};renderLib();$("#lib").hidden=false}
+$("#lib").addEventListener("click",e=>{
+  if(e.target.id==="lib"){$("#lib").hidden=true;return}
+  const b=e.target.closest("button"),l=e.target.closest("[data-id]");
+  if(b&&b.dataset.a==="x")$("#lib").hidden=true;
+  else if(b&&b.dataset.m!==undefined){libF.m=b.dataset.m;renderLib()}
+  else if(l){const x=LIB.find(v=>v[0]===l.dataset.id),dd=my.days[msel];dd.e.push({id:x[0],n:x[1],n2:x[2],s:3,r:10,w:0});if(!dd.m.includes(x[3]))dd.m.push(x[3]);sm();$("#lib").hidden=true;render()}
+});
+$("#lib").addEventListener("input",e=>{if(e.target.id==="libQ"){libF.q=e.target.value;libList()}});
+
+const xkey=e=>e.id||(e.n||"").trim().toLowerCase();
+function spark(v){
+  if(v.length<2)return "";
+  const mx=Math.max(...v),mn=Math.min(...v),W=280,H=56;
+  const pts=v.map((y,i)=>(i/(v.length-1)*W).toFixed(1)+","+(mx===mn?H/2:H-4-(y-mn)/(mx-mn)*(H-8)).toFixed(1)).join(" ");
+  return `<svg viewBox="0 0 ${W} ${H}" class="spark" preserveAspectRatio="none"><polyline points="${pts}" fill="none" stroke="#ff4d6d" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>`;
+}
+function renderX(){
+  const e=my.days[msel].e[xi];if(!e){$("#xd").hidden=true;return}
+  const P=prof(),r=exScore(e,P),c=r&&r.c,H=my.log[xkey(e)]||[];
+  let h=`<div class="gtop"><b class="lt">${esc(nm(e))}</b><button class="gb" data-a="x">✕</button></div>`;
+  if(!c){$("#xdB").innerHTML=h+`<p class="nx" style="text-align:left">${t("unk")}</p>`;return}
+  const k=r.s==null?null:Math.min(6,Math.floor(r.s)),T=TH(c[3]).map(y=>y*P.sc*P.bw*c[5]);
+  h+=`<div class="chips" style="justify-content:flex-start;margin:0"><span class="chip">${li(M[c[3]])}</span><span class="chip">${MODE[c[4]][lang==="ro"?0:1]}</span></div>
+  <p class="nx" style="text-align:left;margin:10px 0">${t("cmp")}: <b>${Math.round(c[5]*100)}%</b> ${li(RL[c[3]])}</p>`;
+  h+=k!=null?`<div class="rkm">${bimg(RK[k],k,64)}<div><b style="color:${RK[k][2]}">${RK[k][0]}</b><br>LVL ${Math.min(70,Math.floor(r.s*10)+1)} · 1RM ${Math.round(r.rm*10)/10} kg</div></div>`:`<p class="nx" style="text-align:left">${t("noest")}</p>`;
+  const f=v=>c[4]==="bw"?(v-P.bw<=0?"0":"+"+Math.round(v-P.bw)):Math.round(v);
+  h+=`<table class="xt"><tr><th>${t("n3")}</th><th>1RM</th><th>8 ${t("reps")}</th></tr>${RK.map((q,i)=>{const n1=T[i?i-1:0],n8=n1/(1+8/30),p=i?"":"< ";return `<tr${i===k?` style="color:${q[2]}"`:""}><td>${q[0]}</td><td>${p}${f(n1)} kg</td><td>${p}${f(n8)} kg</td></tr>`}).join("")}</table>`;
+  h+=`<p class="lb">${t("logT")}</p><div class="row3"><input class="in" id="xW" type="number" inputmode="decimal" placeholder="kg" value="${e.w||""}"><input class="in" id="xR" type="number" inputmode="numeric" placeholder="${t("reps")}" value="${e.r||""}"><button class="cta" data-a="log" style="padding:0">${t("logAdd")}</button></div>`;
+  h+=spark(H.map(z=>z.r>1?z.w*(1+Math.min(z.r,12)/30):z.w))+`<ul class="wl">${H.slice(-8).reverse().map((z,j)=>`<li><b>${new Date(z.t).toLocaleDateString(lang==="ro"?"ro-RO":"en-GB",{day:"numeric",month:"short"})}</b><span>${z.w} kg × ${z.r}<button class="del" data-del="${H.length-1-j}" aria-label="Delete">✕</button></span></li>`).join("")}</ul>`;
+  $("#xdB").innerHTML=h;
+}
+function openX(i){xi=i;renderX();$("#xd").hidden=false}
+$("#xd").addEventListener("click",e=>{
+  if(e.target.id==="xd"){$("#xd").hidden=true;return}
+  const b=e.target.closest("button");if(!b)return;
+  if(b.dataset.a==="x")$("#xd").hidden=true;
+  else if(b.dataset.a==="log"){
+    const o=my.days[msel].e[xi],w=+$("#xW").value||0,r=+$("#xR").value||0;if(!(w>0&&r>0))return;
+    const k=xkey(o);(my.log[k]=my.log[k]||[]).push({t:Date.now(),w,r});
+    o.w=w;o.r=r;if(!(o.s>0))o.s=1;delete o.raw;
+    my.sv=JSON.stringify({t:Date.now(),n:my.n,days:my.days});sm();render();renderX();
+  }else if(b.dataset.del!==undefined){my.log[xkey(my.days[msel].e[xi])].splice(+b.dataset.del,1);sm();renderX()}
+});
+
 const wide=matchMedia("(min-width:900px)");
 function go(p,scroll){
   document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("on",b.dataset.p===p));
@@ -642,7 +720,7 @@ $("#nav").addEventListener("click",e=>{const b=e.target.closest("button");if(b)g
 document.querySelectorAll(".lang").forEach(l=>l.addEventListener("click",e=>{const b=e.target.closest("button");if(b){lang=b.dataset.l;save("l",lang);render()}}));
 try{USERS=JSON.parse(localStorage.getItem("users")||"{}")}catch(x){}
 let sid=null;try{sid=localStorage.getItem("sess")||sessionStorage.getItem("sess")}catch(x){}
-if(sid&&USERS[sid]){uid=sid;loadUser();$("#auth").hidden=true;render();showWelcome()}else{$("#auth").hidden=false;render()}
+if(sid&&USERS[sid]){uid=sid;loadUser();unlocked=isAdm();$("#auth").hidden=true;render();showWelcome()}else{$("#auth").hidden=false;render()}
 loadBody();
 </script>
 </body>
