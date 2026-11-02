@@ -28,7 +28,7 @@ button:active{transform:scale(.96)}
 .lang .on{background:var(--red);color:#fff}
 .nav{position:fixed;z-index:12;left:0;right:0;bottom:0;display:flex;background:var(--navbg);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:6px 8px calc(6px + env(safe-area-inset-bottom,0px))}
 .nav .logo{display:none;padding:14px 14px 22px}
-.nav button{flex:1;border:0;background:none;color:var(--mut);display:grid;justify-items:center;gap:2px;font-size:11px;font-weight:600;padding:6px 0;border-radius:14px}
+.nav button,.nav a{flex:1;border:0;background:none;color:var(--mut);display:grid;justify-items:center;gap:2px;font-size:11px;font-weight:600;padding:6px 0;border-radius:14px}
 .nav svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .nav .on{color:var(--pink)}
 .main{padding:16px 16px 96px;max-width:620px;margin:auto}
@@ -40,12 +40,11 @@ button:active{transform:scale(.96)}
 @media(min-width:900px){
  .nav{top:0;right:auto;bottom:auto;width:200px;flex-direction:column;justify-content:flex-start;gap:4px;padding:12px;border-top:0;border-right:1px solid var(--line)}
  .nav .logo{display:block}.bar .logo{display:none}.dt{display:block}
- .nav button{grid-auto-flow:column;justify-content:start;align-items:center;gap:12px;font-size:14px;padding:12px 14px}
+ .nav button,.nav a{grid-auto-flow:column;justify-content:start;align-items:center;gap:12px;font-size:14px;padding:12px 14px}
  .nav .on{background:linear-gradient(90deg,color-mix(in srgb,var(--red) 15%,transparent),transparent);box-shadow:inset 2px 0 0 var(--red)}
  .bar,.main{margin-left:200px}
  .main{max-width:none;padding:24px 28px 40px}
- .panes{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:1100px;margin:auto;align-items:start}
- .pane{display:block}
+ .panes{max-width:720px;margin:auto}
 }
 .tabs{display:flex;gap:4px;margin-bottom:16px}
 .tabs button{flex:1;padding:10px 0;border-radius:12px;border:1px solid var(--line);background:var(--c2);color:var(--mut);font-weight:600;font-size:12px}
@@ -225,6 +224,17 @@ button.chip{cursor:pointer}
 .thb i{width:18px;height:18px;border-radius:50%;background:var(--a);border:2px solid var(--c);flex:none}.thb.on{border-color:var(--a)}
 .socs{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
 .soc{padding:6px 12px;border-radius:99px;border:1px solid var(--line);background:var(--c2);color:var(--txt);font-size:12px;font-weight:600;text-decoration:none}
+.nav a{text-decoration:none}
+a.cta,a.gb{display:block;text-align:center;text-decoration:none}
+.quick{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+.qk{display:flex;align-items:center;gap:10px;padding:14px;border-radius:16px;background:var(--c2);border:1px solid var(--line);color:var(--txt);text-decoration:none;font-weight:700;font-size:14px}
+.qk svg{width:22px;height:22px;fill:none;stroke:var(--pink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.mr{display:flex;align-items:center;gap:12px;padding:12px;border-radius:18px;border:1px solid color-mix(in srgb,var(--c) 40%,transparent);background:linear-gradient(135deg,color-mix(in srgb,var(--c) 22%,var(--bg)),var(--bg) 85%);text-decoration:none;color:inherit;margin:10px 0 14px}
+.mr>div{flex:1;min-width:0}.mr b{display:block;font:italic 800 24px/1 var(--disp);text-transform:uppercase;color:var(--c)}.mr small{display:block;color:var(--mut);margin-bottom:6px}
+.bot{margin:8px 0}.botl{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mut)}.botl .in{width:76px;margin:0;text-align:center}.botl b{color:var(--txt)}
+.pdot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#6b7280;margin-right:4px}.pdot.on{background:#22c55e;box-shadow:0 0 6px #22c55e}
+.bn .ok{color:#22c55e}.bn .off{color:var(--mut)}
+button:disabled{opacity:.5;cursor:not-allowed}
 .admb.own{background:linear-gradient(135deg,#ff6b9a,#b3123a);color:#fff}
 .exd{margin-top:22px;border-top:1px solid var(--line);padding-top:14px}.exd summary{cursor:pointer;font-weight:700;color:var(--gold)}
 </style>
@@ -235,6 +245,7 @@ button.chip{cursor:pointer}
 <symbol id="db" viewBox="0 0 24 24"><path d="M3 9v6M6 7v10M18 7v10M21 9v6M6 12h12"/></symbol>
 <symbol id="bd" viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.5"/><path d="M12 9v6M7 11l5-2 5 2M9 21l3-6 3 6"/></symbol>
 <symbol id="tr" viewBox="0 0 24 24"><path d="M8 4h8v5a4 4 0 0 1-8 0zM8 6H4v1a4 4 0 0 0 4 4M16 6h4v1a4 4 0 0 1-4 4M12 13v4M8 20h8M10 17h4"/></symbol>
+<symbol id="hm" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h5v-6h4v6h5V10"/></symbol>
 <symbol id="lb" viewBox="0 0 24 24"><path d="M3 20h18M5 20v-7h4v7M10 20V6h4v14M15 20v-10h4v10"/></symbol>
 <symbol id="bk" viewBox="0 0 24 24"><path d="M5 4h10a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h10"/></symbol>
 <symbol id="pl" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
@@ -247,32 +258,25 @@ button.chip{cursor:pointer}
   <div class="rt"><button class="uchip" id="uBtn" aria-label="Account"></button><div class="lang" role="group" aria-label="Limba / Language"><button data-l="ro">RO</button><button data-l="en">EN</button></div></div>
 </header>
 
-<nav class="nav" id="nav">
-  <div class="logo">FORMA<b>.</b></div>
-  <button data-p="my" class="on"><svg><use href="#db"/></svg><span data-i="n5"></span></button>
-  <button data-p="body"><svg><use href="#bd"/></svg><span data-i="n2"></span></button>
-  <button data-p="rank"><svg><use href="#tr"/></svg><span data-i="n3"></span></button>
-  <button data-p="board"><svg><use href="#lb"/></svg><span data-i="n6"></span></button>
-  <button data-p="bg"><svg><use href="#st"/></svg><span data-i="n4"></span></button>
-</nav>
+<nav class="nav" id="nav"></nav>
 
 <main class="main"><div class="panes">
-  <section class="pane act" id="p-my"><h2 data-i="h5"></h2><input class="in" id="myN" maxlength="40" data-ph="wn"><div class="tabs" id="mTabs" style="margin-top:14px"></div><div id="mBody"></div><details class="exd" id="exs"><summary data-i="h1"></summary><div class="tabs" id="tabs" style="margin-top:12px"></div><div id="plan"></div></details></section>
-  <section class="pane" id="p-body"><h2 data-i="h2"></h2><div class="nums" id="nums"></div><img class="map" id="map" alt="Muscle map" src="data:,"><div class="lbl"><span data-i="front"></span><span data-i="back"></span></div><div class="chips" id="chips"></div><div class="lg" id="lg"></div></section>
+  <section class="pane act" id="p-home"><div id="hHero"></div><div id="hToday"></div><img class="map" id="map" alt="Muscle map" src="data:,"><div class="lbl"><span data-i="front"></span><span data-i="back"></span></div><div class="chips" id="chips"></div><div class="lg" id="lg"></div><div class="quick" id="hLinks"></div></section>
+  <section class="pane" id="p-my"><h2 data-i="h5"></h2><div id="myRank"></div><input class="in" id="myN" maxlength="40" data-ph="wn"><div class="tabs" id="mTabs" style="margin-top:14px"></div><div id="mBody"></div></section>
   <section class="pane" id="p-rank"><h2 data-i="h3"></h2><p class="lh" data-i="lh"></p><div id="lifts"><div class="lr"><b data-i="bw"></b><input class="in" id="bw" type="number" inputmode="decimal" min="30" max="250"><span></span></div><div class="lr"><b data-i="ag"></b><input class="in" id="ag" type="number" inputmode="numeric" min="14" max="90"><span></span></div><div class="lr"><b data-i="sx"></b><button class="gb sx" id="sxm" data-s="m" data-i="sm"></button><button class="gb sx" id="sxf" data-s="f" data-i="sf"></button></div></div><div id="rank"></div></section>
   <section class="pane" id="p-board"><h2 data-i="h6"></h2><div class="tabs" id="bMode"></div><div id="bStat"></div><div class="chips pick" id="bChips"></div><ul class="bll" id="bList"></ul></section>
+  <section class="pane" id="p-plan"><h2 data-i="h1"></h2><div class="tabs" id="tabs"></div><div id="plan"></div></section>
   <section class="pane" id="p-bg"><h2 data-i="h4"></h2><div id="bgHome"><div class="bg"><div class="tile"><b>B</b><span data-i="soon"></span></div><button class="tile" id="gTile" aria-label="G"><b>G</b><span id="gS"></span></button></div><p class="bgn" data-i="bgn"></p></div><div id="gView" hidden></div></section>
 </div></main>
-<div class="pin" id="auth"><div class="pinbox authbox"><div class="logo">FORMA<b>.</b></div><p class="nx" data-i="authSub"></p><div id="who"></div><div class="tabs"><button id="aLog" class="on" data-i="lg_t"></button><button id="aNew" data-i="su"></button><button id="aPan" data-i="panel"></button></div><input class="in" id="aN" autocomplete="username" maxlength="24" data-ph="un"><input class="in" id="aP" type="password" autocomplete="current-password" maxlength="40" data-ph="pw"><input class="in" id="aC" type="password" autocomplete="off" maxlength="40" data-ph="code" style="display:none"><label class="rm"><input type="checkbox" id="aR" checked><span data-i="rm"></span></label><p class="pe" id="aE"></p><button class="cta" id="aGo"></button><div class="lang lg2"><button data-l="ro">RO</button><button data-l="en">EN</button></div><p class="fine" data-i="note"></p></div></div>
-<div class="pin" id="welc" hidden><div class="pinbox wbox" id="wbox"></div></div>
+<div class="pin" id="auth"><div class="pinbox authbox"><div class="logo">FORMA<b>.</b></div><p class="nx" data-i="authSub"></p><div id="who"></div><div class="tabs" id="aTabs"><button id="aLog" class="on" data-i="lg_t"></button><button id="aNew" data-i="su"></button><button id="aPan" data-i="panel"></button></div><input class="in" id="aEm" type="email" autocomplete="email" maxlength="254" data-ph="em" style="display:none"><input class="in" id="aN" autocomplete="username" maxlength="24" data-ph="un"><input class="in" id="aP" type="password" autocomplete="current-password" maxlength="64" data-ph="pw"><input class="in" id="aC" type="password" autocomplete="off" maxlength="40" data-ph="code" style="display:none"><input class="in" id="aV" inputmode="numeric" autocomplete="one-time-code" maxlength="6" data-ph="vcode" style="display:none"><input id="hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0"><div class="bot" id="bot"><div id="tsBox"></div><div class="botl" id="botL"><span data-i="notbot"></span><b id="botQ"></b><input class="in" id="botA" inputmode="numeric" maxlength="3" aria-label="captcha"></div></div><label class="rm" id="aRm"><input type="checkbox" id="aR" checked><span data-i="rm"></span></label><p class="pe" id="aE"></p><button class="cta" id="aGo"></button><button class="gb" id="aRs" data-i="resend" style="display:none;width:100%;margin-top:8px;border-radius:14px"></button><div class="lang lg2"><button data-l="ro">RO</button><button data-l="en">EN</button></div><p class="fine" id="authNote" data-i="note"></p></div></div>
 <div class="pin" id="acct" hidden><div class="pinbox wbox" id="acctB"></div></div>
 <div class="pin" id="lib" hidden><div class="pinbox wbox" id="libB"></div></div>
 <div class="pin" id="xd" hidden><div class="pinbox wbox" id="xdB"></div></div>
 
 <script>
 const L={
-ro:{n1:"Exemple",n2:"Corp",n3:"Rang",n4:"Special",h1:"Exemplu de program",h2:"Mușchi antrenați",h3:"Rangul tău",h4:"Antrenamente speciale",warm:"Încălzire",ex:"exerciții",mu:"mușchi",mus:"Grupe musculare",wu:"Încălzire",front:"Față",back:"Spate",next:"până la",max:"Rang maxim",soon:"În curând",bgn:"B apare în curând. G este doar pentru contul de admin.",restT:"Pauză",restP:"Mușchii cresc când te odihnești. Somn bun, apă și un stretching ușor.",tap:"Atinge un exercițiu când l’ai terminat.",min:"min",n5:"Programul",h5:"Programul tău propriu",bw:"Greutate corporală (kg)",sq:"Genuflexiuni",dl:"Îndreptări",bp:"Împins la bancă",kg:"kg",reps:"repetări",sets:"serii",edit:"Editează",done2:"Gata",rst:"Resetează programul",sure:"Sigur? Apasă din nou",sv:"Salvează programul",svd:"Salvat",uns:"Nesalvat, apasă Salvează",cp:"Copiază din Plan",cg:"Copiază din G",nors:"Rangul se dă după ce îți faci programul. Adaugă exerciții cu kg în „Al meu” și apasă Salvează.",go:"Construiește programul",authSub:"Autentifică-te ca să-ți găsești programul, rangul și progresul.",lg_t:"Autentificare",su:"Cont nou",un:"Nume",pw:"Parolă",rm:"Rămâi conectat",ent:"Intră",crt:"Creează contul",bad:"Nume sau parolă greșită",taken:"Numele există deja",short:"Parola: minim 4 caractere",nn:"Scrie un nume",who:"Ești tu?",hi:"Salut",todayW:"Antrenamentul de azi",start:"Începe antrenamentul",own:"Programul tău",more:"încă",acct:"Cont",out:"Ieși din cont",exp:"Exportă datele",imp:"Importă datele",del:"Șterge contul",paste:"Lipește aici datele exportate",badimp:"Date invalide",note:"Contul e salvat doar pe acest dispozitiv. Exportă datele ca să le muți pe altul.",exnote:"Acesta este doar un exemplu de program.",pickEx:"Alege din lista de exerciții",search:"Caută exercițiu…",all:"Toate",libnote:"Fiecare exercițiu știe ce mușchi lucrează și cu ce exercițiu de referință se compară (procentul din dreapta). Așa se calculează rangul.",unk:"Nu recunosc exercițiul. Alege-l din listă ca să conteze pentru rang.",noest:"Adaugă kg și repetări ca să vezi rangul.",exr:"Exerciții și rangul lor",cmp:"Se compară cu",logT:"Jurnal: ultimul set",logAdd:"Salvează",freeD:"Azi nu ai exerciții în program: zi de pauză, sau completeaz-o în „Programul”.",nopr:"Nu ai încă un program. Alege exerciții din listă, pune kg și repetări, apoi salvează: așa primești rangul.",seeEx:"Vezi un exemplu de program",h6:"Clasament",n6:"Clasament",ovr:"General",norank:"Fără rang",noUsers:"Niciun cont încă.",bnote:"Clasament între conturile de pe acest dispozitiv. Unul online, între dispozitive, are nevoie de un server.",pname:"Nume afișat",bio:"Despre tine",soc:"Rețele sociale",chg:"Schimbă poza",rmv:"Elimină poza",theme:"Temă și fundal",admMsg:"Ești conectat într-un cont de admin: ai acces la programul G.",close:"Închide",panel:"Panel",code:"Cod Panel",entP:"Intră ca Owner",nc:"Scrie codul",badc:"Cod greșit",ownMsg:"Ești conectat în contul de Owner al aplicației: acces complet, inclusiv programul G și panoul de conturi.",opan:"Panel Owner: conturile de pe acest dispozitiv",bOn:"Online",bLoc:"Pe dispozitiv",srvNo:"Serverul nu e disponibil aici. Deschide linkul publicat ca să vezi clasamentul online; între timp vezi clasamentul local.",srvErr:"Eroare server",srvWait:"Se conectează la server…",srvOk:"Server conectat",players:"jucători",pubT:"Publică-mă în clasamentul online",pubN:"Se publică numele, poza, bio-ul, linkurile și rangul tău.",roOnly:"Ai doar drept de citire: nu poți publica.",lh:"Rangul se dă după ce îți faci programul în „Al meu” și îl salvezi. Se calculează din toate exercițiile cu greutate din săptămână: forța maximă estimată (1RM = greutate × (1 + repetări / 30)) față de exercițiul de referință, raportată la greutatea, sexul și vârsta ta. LVL și EXP cresc odată cu forța.",mr:"Rang pe mușchi",nd:"Fără date",ag:"Vârstă",sx:"Sex",sm:"Bărbat",sf:"Femeie",rf:"Exercițiu de referință",beat:"depășești",weak:"Rămas în urmă",ov:"Rang general",nxt:"Următorul rang:",need:"Introdu cel puțin o ridicare",wn:"Numele antrenamentului",pick:"Mușchi lucrați",exn:"Exercițiu",add:"Adaugă exercițiul",clr:"Șterge tot",empty:"Nu ai adăugat exerciții încă.",lock:"Doar admin",open:"Deschis",pinT:"Introdu parola",pinE:"Parolă greșită",back2:"Înapoi",lockBtn:"Blochează",cancel:"Anulează"},
-en:{n1:"Examples",n2:"Body",n3:"Rank",n4:"Special",h1:"Example program",h2:"Muscles trained",h3:"Your rank",h4:"Special workouts",warm:"Warm-up",ex:"exercises",mu:"muscles",mus:"Muscle groups",wu:"Warm-up",front:"Front",back:"Back",next:"to",max:"Max rank",soon:"Coming soon",bgn:"B is coming soon. G is for the admin account only.",restT:"Rest day",restP:"Muscles grow while you rest. Sleep well, drink water and stretch lightly.",tap:"Tap an exercise when you finish it.",min:"min",n5:"Program",h5:"Your own program",bw:"Body weight (kg)",sq:"Squat",dl:"Deadlift",bp:"Bench press",kg:"kg",reps:"reps",sets:"sets",edit:"Edit",done2:"Done",rst:"Reset program",sure:"Sure? Tap again",sv:"Save program",svd:"Saved",uns:"Unsaved, tap Save",cp:"Copy from Plan",cg:"Copy from G",nors:"Your rank is given once you build your program. Add exercises with kg in “Mine” and tap Save.",go:"Build your program",authSub:"Sign in to find your program, rank and progress.",lg_t:"Log in",su:"New account",un:"Name",pw:"Password",rm:"Stay signed in",ent:"Enter",crt:"Create account",bad:"Wrong name or password",taken:"That name is taken",short:"Password: at least 4 characters",nn:"Enter a name",who:"Is it you?",hi:"Hi",todayW:"Today’s workout",start:"Start workout",own:"Your program",more:"more",acct:"Account",out:"Log out",exp:"Export data",imp:"Import data",del:"Delete account",paste:"Paste exported data here",badimp:"Invalid data",note:"Your account is stored on this device only. Export your data to move it to another.",exnote:"This is just an example program.",pickEx:"Choose from the exercise list",search:"Search exercise…",all:"All",libnote:"Every exercise knows which muscle it works and which reference lift it is compared with (the percentage on the right). That is how rank is calculated.",unk:"Unknown exercise. Pick it from the list so it counts for rank.",noest:"Add kg and reps to see the rank.",exr:"Exercises and their rank",cmp:"Compared with",logT:"Log: latest set",logAdd:"Save",freeD:"No exercises today: a rest day, or fill it in under “Program”.",nopr:"You have no program yet. Pick exercises from the list, add kg and reps, then save: that is how you get your rank.",seeEx:"See an example program",h6:"Leaderboard",n6:"Board",ovr:"Overall",norank:"Unranked",noUsers:"No accounts yet.",bnote:"Leaderboard between the accounts on this device. An online one, across devices, needs a server.",pname:"Display name",bio:"About you",soc:"Social media",chg:"Change photo",rmv:"Remove photo",theme:"Theme & background",admMsg:"You are signed in to an admin account: you have access to the G program.",close:"Close",panel:"Panel",code:"Panel code",entP:"Enter as Owner",nc:"Enter the code",badc:"Wrong code",ownMsg:"You are signed in to the app’s Owner account: full access, including the G program and the accounts panel.",opan:"Owner panel: accounts on this device",bOn:"Online",bLoc:"On this device",srvNo:"The server is not available here. Open the published link to see the online leaderboard; meanwhile you see the local one.",srvErr:"Server error",srvWait:"Connecting to the server…",srvOk:"Server connected",players:"players",pubT:"Publish me on the online leaderboard",pubN:"Your name, photo, bio, links and rank are published.",roOnly:"You have read-only access: you cannot publish.",lh:"Your rank is given once you build your program in “Mine” and save it. It is calculated from all the weighted exercises in your week: estimated max (1RM = weight × (1 + reps / 30)) against the reference lift, relative to your body weight, sex and age. LVL and EXP grow with your strength.",mr:"Rank per muscle",nd:"No data",ag:"Age",sx:"Sex",sm:"Male",sf:"Female",rf:"Reference lift",beat:"beats",weak:"Lagging",ov:"Overall rank",nxt:"Next rank:",need:"Enter at least one lift",wn:"Workout name",pick:"Muscles worked",exn:"Exercise",add:"Add exercise",clr:"Clear all",empty:"No exercises added yet.",lock:"Admin only",open:"Unlocked",pinT:"Enter password",pinE:"Wrong password",back2:"Back",lockBtn:"Lock",cancel:"Cancel"}};
+ro:{n1:"Exemple",n2:"Corp",n3:"Rang",n4:"Special",h1:"Exemplu de program",h2:"Mușchi antrenați",h3:"Rangul tău",h4:"Antrenamente speciale",warm:"Încălzire",ex:"exerciții",mu:"mușchi",mus:"Grupe musculare",wu:"Încălzire",front:"Față",back:"Spate",next:"până la",max:"Rang maxim",soon:"În curând",bgn:"B apare în curând. G este doar pentru contul de admin.",restT:"Pauză",restP:"Mușchii cresc când te odihnești. Somn bun, apă și un stretching ușor.",tap:"Atinge un exercițiu când l’ai terminat.",min:"min",n5:"My workout",h5:"My workout",bw:"Greutate corporală (kg)",sq:"Genuflexiuni",dl:"Îndreptări",bp:"Împins la bancă",kg:"kg",reps:"repetări",sets:"serii",edit:"Editează",done2:"Gata",rst:"Resetează programul",sure:"Sigur? Apasă din nou",sv:"Salvează programul",svd:"Salvat",uns:"Nesalvat, apasă Salvează",cp:"Copiază din Plan",cg:"Copiază din G",nors:"Rangul se dă după ce îți faci programul. Adaugă exerciții cu kg în „Al meu” și apasă Salvează.",go:"Construiește programul",authSub:"Autentifică-te ca să-ți găsești programul, rangul și progresul.",lg_t:"Autentificare",su:"Cont nou",un:"Nume",pw:"Parolă",rm:"Rămâi conectat",ent:"Intră",crt:"Creează contul",bad:"Nume sau parolă greșită",taken:"Numele există deja",short:"Parola: minim 4 caractere",nn:"Scrie un nume",who:"Ești tu?",hi:"Salut",todayW:"Antrenamentul de azi",start:"Începe antrenamentul",own:"Programul tău",more:"încă",acct:"Cont",out:"Ieși din cont",exp:"Exportă datele",imp:"Importă datele",del:"Șterge contul",paste:"Lipește aici datele exportate",badimp:"Date invalide",note:"Contul e salvat doar pe acest dispozitiv. Exportă datele ca să le muți pe altul.",exnote:"Acesta este doar un exemplu de program.",pickEx:"Alege din lista de exerciții",search:"Caută exercițiu…",all:"Toate",libnote:"Fiecare exercițiu știe ce mușchi lucrează și cu ce exercițiu de referință se compară (procentul din dreapta). Așa se calculează rangul.",unk:"Nu recunosc exercițiul. Alege-l din listă ca să conteze pentru rang.",noest:"Adaugă kg și repetări ca să vezi rangul.",exr:"Exerciții și rangul lor",cmp:"Se compară cu",logT:"Jurnal: ultimul set",logAdd:"Salvează",freeD:"Azi nu ai exerciții în program: zi de pauză, sau completeaz-o în „Programul”.",nopr:"Nu ai încă un program. Alege exerciții din listă, pune kg și repetări, apoi salvează: așa primești rangul.",seeEx:"Vezi un exemplu de program",h6:"Clasament",n6:"Clasament",ovr:"General",norank:"Fără rang",noUsers:"Niciun cont încă.",bnote:"Clasament între conturile de pe acest dispozitiv. Unul online, între dispozitive, are nevoie de un server.",pname:"Nume afișat",bio:"Despre tine",soc:"Rețele sociale",chg:"Schimbă poza",rmv:"Elimină poza",theme:"Temă și fundal",admMsg:"Ești conectat într-un cont de admin: ai acces la programul G.",close:"Închide",panel:"Panel",code:"Cod Panel",entP:"Intră ca Owner",nc:"Scrie codul",badc:"Cod greșit",ownMsg:"Ești conectat în contul de Owner al aplicației: acces complet, inclusiv programul G și panoul de conturi.",opan:"Panel Owner: conturile de pe acest dispozitiv",bOn:"Online",bLoc:"Pe dispozitiv",srvNo:"Serverul nu e disponibil aici. Deschide linkul publicat ca să vezi clasamentul online; între timp vezi clasamentul local.",srvErr:"Eroare server",srvWait:"Se conectează la server…",srvOk:"Server conectat",players:"jucători",pubT:"Publică-mă în clasamentul online",pubN:"Se publică numele, poza, bio-ul, linkurile și rangul tău.",roOnly:"Ai doar drept de citire: nu poți publica.",n0:"Acasă",em:"Email",vcode:"Cod din email (6 cifre)",verify:"Verifică emailul",resend:"Retrimite codul",notbot:"Nu sunt robot:",bot:"Confirmă că nu ești robot",locked:"Prea multe încercări. Așteaptă",embad:"Email invalid",nbad:"Nume: 2–24 caractere (litere, cifre, spațiu . _ -)",short8:"Parola: minim 8 caractere, cu litere și cifre",vsent:"Ți-am trimis un cod pe email. Scrie-l mai jos.",er_bad_credentials:"Email sau parolă greșită",er_not_verified:"Emailul nu e verificat încă",er_email_taken:"Emailul e deja folosit",er_rate_limited:"Prea multe cereri. Încearcă mai târziu.",er_bot_failed:"Verificarea anti-robot a eșuat",er_server_error:"Eroare de server",er_bad_input:"Date invalide",er_weak_password:"Parolă prea slabă",er_bad_code:"Cod greșit sau expirat",er_code_expired:"Cod expirat. Cere altul.",er_network:"Nu mă pot conecta la server",er_unauthorized:"Sesiune expirată",onl:"online",offl:"Offline (din memoria locală)",offl1:"offline",noteS:"Contul e salvat pe server, cu email verificat, parola criptată și sesiune sigură.",noteN:"Atenție: verificarea prin email funcționează doar pe site-ul cu server (vezi README). Aici contul rămâne doar pe acest dispozitiv.",lh:"Rangul se dă după ce îți faci programul în „Al meu” și îl salvezi. Se calculează din toate exercițiile cu greutate din săptămână: forța maximă estimată (1RM = greutate × (1 + repetări / 30)) față de exercițiul de referință, raportată la greutatea, sexul și vârsta ta. LVL și EXP cresc odată cu forța.",mr:"Rang pe mușchi",nd:"Fără date",ag:"Vârstă",sx:"Sex",sm:"Bărbat",sf:"Femeie",rf:"Exercițiu de referință",beat:"depășești",weak:"Rămas în urmă",ov:"Rang general",nxt:"Următorul rang:",need:"Introdu cel puțin o ridicare",wn:"Numele antrenamentului",pick:"Mușchi lucrați",exn:"Exercițiu",add:"Adaugă exercițiul",clr:"Șterge tot",empty:"Nu ai adăugat exerciții încă.",lock:"Doar admin",open:"Deschis",pinT:"Introdu parola",pinE:"Parolă greșită",back2:"Înapoi",lockBtn:"Blochează",cancel:"Anulează"},
+en:{n1:"Examples",n2:"Body",n3:"Rank",n4:"Special",h1:"Example program",h2:"Muscles trained",h3:"Your rank",h4:"Special workouts",warm:"Warm-up",ex:"exercises",mu:"muscles",mus:"Muscle groups",wu:"Warm-up",front:"Front",back:"Back",next:"to",max:"Max rank",soon:"Coming soon",bgn:"B is coming soon. G is for the admin account only.",restT:"Rest day",restP:"Muscles grow while you rest. Sleep well, drink water and stretch lightly.",tap:"Tap an exercise when you finish it.",min:"min",n5:"My workout",h5:"My workout",bw:"Body weight (kg)",sq:"Squat",dl:"Deadlift",bp:"Bench press",kg:"kg",reps:"reps",sets:"sets",edit:"Edit",done2:"Done",rst:"Reset program",sure:"Sure? Tap again",sv:"Save program",svd:"Saved",uns:"Unsaved, tap Save",cp:"Copy from Plan",cg:"Copy from G",nors:"Your rank is given once you build your program. Add exercises with kg in “Mine” and tap Save.",go:"Build your program",authSub:"Sign in to find your program, rank and progress.",lg_t:"Log in",su:"New account",un:"Name",pw:"Password",rm:"Stay signed in",ent:"Enter",crt:"Create account",bad:"Wrong name or password",taken:"That name is taken",short:"Password: at least 4 characters",nn:"Enter a name",who:"Is it you?",hi:"Hi",todayW:"Today’s workout",start:"Start workout",own:"Your program",more:"more",acct:"Account",out:"Log out",exp:"Export data",imp:"Import data",del:"Delete account",paste:"Paste exported data here",badimp:"Invalid data",note:"Your account is stored on this device only. Export your data to move it to another.",exnote:"This is just an example program.",pickEx:"Choose from the exercise list",search:"Search exercise…",all:"All",libnote:"Every exercise knows which muscle it works and which reference lift it is compared with (the percentage on the right). That is how rank is calculated.",unk:"Unknown exercise. Pick it from the list so it counts for rank.",noest:"Add kg and reps to see the rank.",exr:"Exercises and their rank",cmp:"Compared with",logT:"Log: latest set",logAdd:"Save",freeD:"No exercises today: a rest day, or fill it in under “Program”.",nopr:"You have no program yet. Pick exercises from the list, add kg and reps, then save: that is how you get your rank.",seeEx:"See an example program",h6:"Leaderboard",n6:"Board",ovr:"Overall",norank:"Unranked",noUsers:"No accounts yet.",bnote:"Leaderboard between the accounts on this device. An online one, across devices, needs a server.",pname:"Display name",bio:"About you",soc:"Social media",chg:"Change photo",rmv:"Remove photo",theme:"Theme & background",admMsg:"You are signed in to an admin account: you have access to the G program.",close:"Close",panel:"Panel",code:"Panel code",entP:"Enter as Owner",nc:"Enter the code",badc:"Wrong code",ownMsg:"You are signed in to the app’s Owner account: full access, including the G program and the accounts panel.",opan:"Owner panel: accounts on this device",bOn:"Online",bLoc:"On this device",srvNo:"The server is not available here. Open the published link to see the online leaderboard; meanwhile you see the local one.",srvErr:"Server error",srvWait:"Connecting to the server…",srvOk:"Server connected",players:"players",pubT:"Publish me on the online leaderboard",pubN:"Your name, photo, bio, links and rank are published.",roOnly:"You have read-only access: you cannot publish.",n0:"Home",em:"Email",vcode:"Email code (6 digits)",verify:"Verify email",resend:"Resend code",notbot:"I am not a robot:",bot:"Please confirm you are not a robot",locked:"Too many attempts. Wait",embad:"Invalid email",nbad:"Name: 2–24 characters (letters, digits, space . _ -)",short8:"Password: at least 8 characters, letters and digits",vsent:"We sent a code to your email. Enter it below.",er_bad_credentials:"Wrong email or password",er_not_verified:"Email not verified yet",er_email_taken:"That email is already used",er_rate_limited:"Too many requests. Try again later.",er_bot_failed:"Anti-robot check failed",er_server_error:"Server error",er_bad_input:"Invalid data",er_weak_password:"Password too weak",er_bad_code:"Wrong or expired code",er_code_expired:"Code expired. Request a new one.",er_network:"Cannot reach the server",er_unauthorized:"Session expired",onl:"online",offl:"Offline (from local memory)",offl1:"offline",noteS:"Your account is stored on the server, with a verified email, an encrypted password and a secure session.",noteN:"Note: email verification only works on the site with a server (see README). Here the account stays on this device.",lh:"Your rank is given once you build your program in “Mine” and save it. It is calculated from all the weighted exercises in your week: estimated max (1RM = weight × (1 + reps / 30)) against the reference lift, relative to your body weight, sex and age. LVL and EXP grow with your strength.",mr:"Rank per muscle",nd:"No data",ag:"Age",sx:"Sex",sm:"Male",sf:"Female",rf:"Reference lift",beat:"beats",weak:"Lagging",ov:"Overall rank",nxt:"Next rank:",need:"Enter at least one lift",wn:"Workout name",pick:"Muscles worked",exn:"Exercise",add:"Add exercise",clr:"Clear all",empty:"No exercises added yet.",lock:"Admin only",open:"Unlocked",pinT:"Enter password",pinE:"Wrong password",back2:"Back",lockBtn:"Lock",cancel:"Cancel"}};
 const DN={ro:["Duminică","Luni","Marți","Miercuri","Joi","Vineri","Sâmbătă"],en:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]};
 const ORDER=[1,2,3,4,5,6,0],D={1:"push",2:"rest",3:"pull",4:"legs",5:"pull",6:"legs",0:"rest"};
 const M={back:["Spate","Back"],bi:["Biceps","Biceps"],fa:["Antebraț","Forearm"],chest:["Piept","Chest"],sh:["Umeri","Shoulders"],tri:["Triceps","Triceps"],abs:["Abdomen","Abs"],legs:["Picioare","Legs"],calf:["Gambe","Calves"]};
@@ -298,7 +302,7 @@ const $=s=>document.querySelector(s);
 let lang="ro",done={},sel=new Date().getDay();
 try{lang=localStorage.getItem("l")||lang;done=JSON.parse(localStorage.getItem("d")||"{}")}catch(x){}
 const t=k=>L[lang][k],li=a=>a[lang==="ro"?0:1];
-const save=(k,v)=>{try{localStorage.setItem(["pr","lf","mp"].includes(k)?UK(k):k,v)}catch(x){}};
+const save=(k,v)=>{try{localStorage.setItem(["pr","lf","mp"].includes(k)?UK(k):k,v)}catch(x){}if(SERVER&&["pr","lf","mp"].includes(k))srvSyncData()};
 
 /* ---------- editable, saved program ---------- */
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -493,9 +497,9 @@ function renderRank(){
 }
 
 /* ---------- render ---------- */
+const TODAY=()=>new Date().getDay();
 function updBody(){
-  const dd=my.days[msel],on=new Set(dd.m);
-  $("#nums").innerHTML=`<div><b>${on.size}</b><span>${t("mus")}</span></div><div><b>${DN[lang][msel].slice(0,3)}</b><span>${dd.e.length} ${t("ex")}</span></div>`;
+  const dd=my.days[TODAY()],on=new Set(dd.m);
   $("#map").src=bu(on);
   $("#chips").innerHTML=dd.m.map(k=>`<span class="chip">${li(M[k])}</span>`).join("");
 }
@@ -543,7 +547,7 @@ function render(){
   $("#dt").textContent=new Date().toLocaleDateString(lang==="ro"?"ro-RO":"en-GB",{weekday:"long",day:"numeric",month:"long"});
   if(!uid){renderAuth();return}
   hdr();
-  calcRanks();renderPlan();updBody();renderRank();renderMy();renderG();renderBoard();
+  calcRanks();renderPlan();renderHome();renderMyRank();renderRank();renderMy();renderG();renderBoard();showPage();
 }
 /* typing in an edit field: update ranks + maps without rebuilding the list (keeps focus) */
 function light(){
@@ -577,7 +581,7 @@ $("#gView").addEventListener("click",e=>{
 $("#gView").addEventListener("input",e=>{if(inp(PR.g[gSel].e,e)){savePR();light()}});
 $("#lifts").addEventListener("input",()=>{lf.bw=+$("#bw").value||0;lf.age=+$("#ag").value||0;save("lf",JSON.stringify(lf));render()});
 $("#lifts").addEventListener("click",e=>{const b=e.target.closest(".sx");if(b){lf.sex=b.dataset.s;save("lf",JSON.stringify(lf));render()}});
-$("#rank").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;if(b.dataset.r){rk=b.dataset.r;renderRank()}else if(b.dataset.go)go(b.dataset.go,true)});
+$("#rank").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;if(b.dataset.r){rk=b.dataset.r;renderRank()}else if(b.dataset.go)goPage(b.dataset.go)});
 $("#myN").addEventListener("input",e=>{my.n=e.target.value;sm();svStatus()});
 $("#mTabs").addEventListener("click",e=>{const b=e.target.closest("button");if(b){msel=+b.dataset.d;edit.m=false;renderMy()}});
 const cpy=o=>JSON.parse(JSON.stringify(o,(k,v)=>k==="d"?undefined:v));
@@ -604,56 +608,147 @@ async function hash(x){
   try{const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(x));return [...new Uint8Array(b)].map(v=>v.toString(16).padStart(2,"0")).join("")}
   catch(e){let h=5381;for(let i=0;i<x.length;i++)h=(h*33^x.charCodeAt(i))>>>0;return "f"+h}
 }
-let amode="log";
-const saveUsers=()=>{try{localStorage.setItem("users",JSON.stringify(USERS))}catch(x){}schedPush()};
+/* ---------- login: local accounts on this device, or server accounts with verified email ---------- */
+const CFG=window.FORMA_CFG||{},SERVER=!!CFG.server;
+let amode="log",pendEm="",botMode="loc",botA=0,botTok="",tsTok="",tmShow=Date.now(),lockI=0,sdT=0,spT=0;
+const saveUsers=()=>{if(SERVER){srvSyncProfile();return}try{localStorage.setItem("users",JSON.stringify(USERS))}catch(x){}schedPush()};
+const EMAIL_RE=/^[^\s@<>()\[\]\\,;:"]{1,64}@[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)+$/;
+const NAME_RE=/^[\p{L}\p{N} ._-]{2,24}$/u;
+const LK=id=>{try{return JSON.parse(localStorage.getItem("lock:"+id)||"{}")}catch(x){return {}}},setLK=(id,v)=>{try{localStorage.setItem("lock:"+id,JSON.stringify(v))}catch(x){}};
+async function api(path,m,b){
+  let r;
+  try{r=await fetch("/api"+path,{method:m||"GET",credentials:"same-origin",headers:{"Content-Type":"application/json","X-Requested-With":"forma"},body:b?JSON.stringify(b):undefined})}
+  catch(e){throw Object.assign(new Error("network"),{code:"network"})}
+  let j={};try{j=await r.json()}catch(e){}
+  if(!r.ok)throw Object.assign(new Error(j.error||"error"),{status:r.status,code:j.error||"error",data:j});
+  return j;
+}
+const lbl=()=>t(amode==="ver"?"verify":amode==="pan"?"entP":amode==="log"?"ent":"crt");
+function lockUI(until){
+  clearInterval(lockI);const go=$("#aGo");
+  const tick=()=>{const sec=Math.ceil((until-Date.now())/1000);if(sec<=0){clearInterval(lockI);go.disabled=false;go.textContent=lbl();$("#aE").textContent="";return}go.disabled=true;go.textContent=t("locked")+" "+sec+" s";$("#aE").textContent=t("locked")+" "+sec+" s"};
+  tick();lockI=setInterval(tick,500);
+}
+function mountTs(){
+  const go=()=>{try{window.turnstile.render("#tsBox",{sitekey:CFG.turnstile,callback:tk=>{tsTok=tk},"expired-callback":()=>{tsTok=""}})}catch(e){}};
+  if(window.turnstile){try{window.turnstile.reset()}catch(e){}return}
+  const sc=document.createElement("script");sc.src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";sc.async=true;sc.onload=go;document.head.appendChild(sc);
+}
+async function newBot(){
+  $("#botA").value="";tsTok="";tmShow=Date.now();
+  if(SERVER&&CFG.turnstile){botMode="ts";$("#botL").style.display="none";mountTs();return}
+  $("#botL").style.display="";
+  if(SERVER){botMode="srv";try{const c=await api("/challenge");botTok=c.token;$("#botQ").textContent=c.q}catch(e){$("#botQ").textContent="…"}}
+  else{botMode="loc";const a=2+Math.floor(Math.random()*8),c=2+Math.floor(Math.random()*8);botA=a+c;$("#botQ").textContent=a+" + "+c+" = ?"}
+}
+function botOK(){
+  if($("#hp").value)return null;
+  if(Date.now()-tmShow<1200)return null;
+  if(botMode==="ts")return tsTok?{ts:tsTok}:null;
+  const a=+$("#botA").value;
+  if(botMode==="srv")return a>0?{ch:botTok,ans:a}:null;
+  return a===botA?{}:null;
+}
 function renderAuth(){
-  const pan=amode==="pan";
-  $("#aLog").classList.toggle("on",amode==="log");$("#aNew").classList.toggle("on",amode==="new");$("#aPan").classList.toggle("on",pan);
-  $("#aGo").textContent=t(pan?"entP":amode==="log"?"ent":"crt");
-  $("#aN").style.display=$("#aP").style.display=pan?"none":"";
-  $("#aC").style.display=pan?"":"none";
+  const m=amode,show=(id,v)=>{$(id).style.display=v?"":"none"};
+  $("#aLog").classList.toggle("on",m==="log");$("#aNew").classList.toggle("on",m==="new");$("#aPan").classList.toggle("on",m==="pan");
+  show("#aTabs",m!=="ver");
+  show("#aEm",SERVER&&(m==="log"||m==="new"));
+  show("#aN",SERVER?m==="new":(m==="log"||m==="new"));
+  show("#aP",m==="log"||m==="new");show("#aC",m==="pan");show("#aV",m==="ver");
+  show("#bot",m!=="ver");show("#aRs",m==="ver");
+  $("#aGo").textContent=lbl();
+  const nn=$("#authNote");nn.dataset.i=SERVER?"noteS":(m==="new"?"noteN":"note");nn.textContent=t(nn.dataset.i);
   const ids=Object.keys(USERS);
-  $("#who").innerHTML=ids.length&&amode==="log"?`<p class="lb" style="margin-top:14px">${t("who")}</p><div class="chips pick">${ids.map(i=>`<button class="chip" data-u="${i}">${avt(i,22)} ${esc(USERS[i].name)}</button>`).join("")}</div>`:"";
+  $("#who").innerHTML=!SERVER&&ids.length&&m==="log"?`<p class="lb" style="margin-top:14px">${t("who")}</p><div class="chips pick">${ids.map(i=>`<button class="chip" data-u="${i}">${avt(i,22)} ${esc(USERS[i].name)}</button>`).join("")}</div>`:"";
 }
 function authErr(m){$("#aE").textContent=t(m);const b=$("#auth .pinbox");b.classList.remove("shake");void b.offsetWidth;b.classList.add("shake")}
-async function doAuth(){
+function failLK(id,msg){
+  const L=LK(id);L.f=(L.f||0)+1;newBot();
+  if(L.f>=3){L.until=Date.now()+30000;L.f=0;setLK(id,L);return lockUI(L.until)}
+  setLK(id,L);authErr(msg);
+}
+/* local mode (this device only) */
+async function localAuth(){
+  const bot=botOK();if(!bot){newBot();return authErr("bot")}
   if(amode==="pan"){
-    const code=$("#aC").value.trim().toUpperCase();
-    if(!code)return authErr("nc");
+    const L=LK("panel");if(L.until>Date.now())return lockUI(L.until);
+    const code=$("#aC").value.trim().toUpperCase();if(!code)return authErr("nc");
     const h=await hash("zee|"+code);
-    if(h!==ADMIN_H&&h!==ADMIN_F)return authErr("badc");
+    if(h!==ADMIN_H&&h!==ADMIN_F)return failLK("panel","badc");
+    setLK("panel",{});
     const old=USERS.zee||{};
     USERS.zee=Object.assign({},old,{name:old.name||"Zee",h,t:old.t||Date.now(),admin:true,owner:true});saveUsers();
-    $("#aC").value="";$("#aE").textContent="";
+    $("#aC").value="";$("#aE").textContent="";newBot();
     return enter("zee",$("#aR").checked);
   }
   const n=$("#aN").value.trim(),pw=$("#aP").value,id=n.toLowerCase();
   if(!n)return authErr("nn");
+  if(!NAME_RE.test(n))return authErr("nbad");
   if(pw.length<4)return authErr("short");
+  const L=LK(id);if(L.until>Date.now())return lockUI(L.until);
   const h=await hash(id+"|"+pw);
   if(id==="zee"){
     const hz=await hash("zee|"+pw.trim());
-    if(hz!==ADMIN_H&&hz!==ADMIN_F)return authErr(amode==="new"?"taken":"bad");
+    if(hz!==ADMIN_H&&hz!==ADMIN_F)return failLK(id,amode==="new"?"taken":"bad");
     const old=USERS.zee||{};
     USERS.zee=Object.assign({},old,{name:old.name||"Zee",h:hz,t:old.t||Date.now(),admin:true,owner:true});saveUsers();
   }else if(amode==="new"){
     if(USERS[id])return authErr("taken");
     USERS[id]={name:n,h,t:Date.now()};saveUsers();
     try{if(!localStorage.getItem("mig")){["pr","lf","mp"].forEach(k=>{const v=localStorage.getItem(k);if(v!=null)localStorage.setItem("u:"+id+":"+k,v)});localStorage.setItem("mig","1")}}catch(x){}
-  }else if(!USERS[id]||USERS[id].h!==h)return authErr("bad");
-  $("#aP").value="";$("#aE").textContent="";
+  }else if(!USERS[id]||USERS[id].h!==h)return failLK(id,"bad");
+  setLK(id,{});$("#aP").value="";$("#aE").textContent="";newBot();
   enter(id,$("#aR").checked);
 }
-const authRun=()=>doAuth().catch(e=>{$("#aE").textContent="Eroare: "+(e&&e.message||e)});
+/* server mode (verified email, hashed password, secure cookie session) */
+function srvErr(e){
+  if(e.status===423||e.code==="locked"){lockUI(Date.now()+(+(e.data&&e.data.retryAfter)||30)*1000);return}
+  if(e.code==="not_verified"){amode="ver";pendEm=$("#aEm").value.trim().toLowerCase()||pendEm;renderAuth();api("/resend","POST",{email:pendEm}).catch(()=>{});$("#aE").textContent=t("vsent");return}
+  const k="er_"+e.code;authErr(L.ro[k]?k:"er_server_error");
+}
+async function srvAuth(){
+  if(amode==="ver"){
+    try{const r=await api("/verify","POST",{email:pendEm,code:$("#aV").value.trim()});$("#aV").value="";return srvEnter(r.me,$("#aR").checked)}
+    catch(e){return srvErr(e)}
+  }
+  const bot=botOK();if(!bot){newBot();return authErr("bot")}
+  const email=$("#aEm").value.trim().toLowerCase(),pw=$("#aP").value,name=$("#aN").value.trim();
+  try{
+    if(amode==="pan"){const r=await api("/owner","POST",Object.assign({code:$("#aC").value.trim()},bot));$("#aC").value="";return srvEnter(r.me,true)}
+    if(!EMAIL_RE.test(email)||email.length>254)return authErr("embad");
+    if(amode==="new"){
+      if(!NAME_RE.test(name))return authErr("nbad");
+      if(pw.length<8||!/[A-Za-z]/.test(pw)||!/\d/.test(pw))return authErr("short8");
+      await api("/signup","POST",Object.assign({email,name,password:pw},bot));
+      pendEm=email;amode="ver";$("#aP").value="";renderAuth();$("#aE").textContent=t("vsent");return;
+    }
+    const r=await api("/login","POST",Object.assign({email,password:pw},bot));$("#aP").value="";srvEnter(r.me,$("#aR").checked);
+  }catch(e){srvErr(e)}
+  finally{if(amode!=="ver")newBot()}
+}
+const authRun=()=>(SERVER?srvAuth():localAuth()).catch(e=>{$("#aE").textContent="Eroare: "+(e&&e.message||e)});
+function enterCore(){
+  loadUser();sel=msel=gSel=TODAY();unlocked=isAdm();gOpen=false;edit.p=edit.g=edit.m=edit.r=false;
+  $("#auth").hidden=true;render();schedPush();if(SERVER)loadBoard();
+}
 function enter(id,remember){
   uid=id;
   try{localStorage.removeItem("sess");sessionStorage.removeItem("sess");(remember?localStorage:sessionStorage).setItem("sess",id)}catch(x){}
-  loadUser();sel=msel=gSel=new Date().getDay();unlocked=isAdm();gOpen=false;edit.p=edit.g=edit.m=edit.r=false;go("my");
-  $("#auth").hidden=true;render();showWelcome();schedPush();
+  enterCore();
 }
+function srvEnter(me){
+  uid="s"+me.id;USERS={};
+  USERS[uid]={name:me.name,admin:me.role==="admin"||me.role==="owner",owner:me.role==="owner",bio:me.bio||"",soc:me.soc||{},av:me.avatar||"",theme:me.theme||"crimson",pub:me.pub!==false};
+  ["pr","lf","mp"].forEach(k=>{if(me.data&&me.data[k]!=null)try{localStorage.setItem(UK(k),JSON.stringify(me.data[k]))}catch(x){}});
+  enterCore();
+}
+function srvSyncData(){clearTimeout(sdT);sdT=setTimeout(()=>{if(uid&&SERVER)api("/me/data","PUT",{pr:PR,lf,mp:my}).catch(()=>{})},1200)}
+function srvSyncProfile(){clearTimeout(spT);spT=setTimeout(()=>{const u=USERS[uid];if(u&&SERVER)api("/me/profile","PUT",{name:u.name,bio:u.bio||"",soc:u.soc||{},theme:u.theme||"crimson",avatar:u.av||"",pub:u.pub!==false}).catch(()=>{})},1200)}
 function logout(){
+  if(SERVER)api("/logout","POST").catch(()=>{});
   try{localStorage.removeItem("sess");sessionStorage.removeItem("sess")}catch(x){}
-  uid=null;unlocked=gOpen=false;edit.d=false;$("#acct").hidden=true;$("#welc").hidden=true;$("#auth").hidden=false;render();
+  uid=null;unlocked=gOpen=false;edit.d=false;amode="log";$("#acct").hidden=true;$("#auth").hidden=false;render();newBot();
 }
 /* presents today's workout: your saved program if it has today's day, otherwise the plan */
 const AC=["#e5284f","#4f8cff","#22c55e","#a855f7","#f59e0b","#ff3d8b","#14b8a6","#64748b"];
@@ -692,7 +787,7 @@ function socUrl(k,v){
 const socHTML=u=>SOC.map(x=>{const v=String(((u&&u.soc)||{})[x[0]]||"").slice(0,80);if(!v)return "";const url=socUrl(x[0],v);return url?`<a class="soc" href="${esc(url)}" target="_blank" rel="noopener noreferrer">${x[1]}</a>`:`<span class="soc">${x[1]}: ${esc(v)}</span>`}).join("");
 
 /* leaderboard: accounts on this device + online (shared database of the published page) */
-let bcat="all",bmode="onl",DB=null,UIDS=null,ONL=[],onlOK=false,onlErr="",canW=null,UOWN=false,lastPush="",pt=0;
+let bcat="all",bmode="onl",DB=null,UIDS=null,ONL=[],onlOK=false,onlErr="",canW=null,UOWN=false,lastPush="",pt=0,PEERS=new Set();
 function board(cat){
   return Object.keys(USERS).map(id=>{
     let m0=null,l0=null;
@@ -728,22 +823,36 @@ async function pullScore(){if(!DB||!UIDS)return;try{await DB.doc("lb/"+UIDS).del
     if(!db||!us)return;
     DB=db;UIDS=await us.id();UOWN=await us.isOwner();canW=await us.can("data.write");
     const tm=setTimeout(()=>{onlErr="timeout";renderBoard()},10000);
-    DB.collection("lb").onSnapshot(snap=>{clearTimeout(tm);ONL=snap.docs.map(d=>Object.assign({id:d.id},d.data()));onlOK=true;renderBoard()},e=>{clearTimeout(tm);onlErr=(e&&e.code)||"error";onlOK=false;renderBoard()});
+    DB.collection("lb").onSnapshot(snap=>{clearTimeout(tm);ONL=snap.docs.map(d=>Object.assign({id:d.id},d.data()));onlOK=true;try{localStorage.setItem("lbc",JSON.stringify(ONL.slice(0,60).map(d=>Object.assign({},d,{av:""}))))}catch(x){}renderBoard()},e=>{clearTimeout(tm);onlErr=(e&&e.code)||"error";onlOK=false;renderBoard()});
+    try{const room=await claude.use("room");if(room){room.presence({u:UIDS});room.onPeers(ch=>{PEERS=new Set(ch.peers.map(p=>p.presence&&p.presence.u).filter(x=>typeof x==="string"));renderBoard()})}}catch(e){}
     renderBoard();
   }catch(e){}
 })();
+async function loadBoard(){
+  if(!SERVER)return;
+  try{
+    const r=await api("/leaderboard");
+    ONL=r.players.map(p=>({id:p.id,n:p.name,av:p.avatar,bio:p.bio,soc:p.soc,sc:p.score,s:p.scores,on:p.online,seen:p.seen}));
+    onlOK=true;onlErr="";try{localStorage.setItem("lbc",JSON.stringify(ONL.slice(0,60).map(d=>Object.assign({},d,{av:""}))))}catch(x){}
+  }catch(e){onlOK=false;onlErr=e.code||"offline"}
+  renderBoard();
+}
+const isOn=d=>(SERVER?!!d.on:(d.id===UIDS||PEERS.has(d.id)))&&onlOK;
 function renderBoard(){
-  const eff=bmode==="onl"&&DB?"onl":"loc",u=uid&&USERS[uid];
+  const live=(DB||SERVER)&&onlOK,eff=bmode==="onl"&&(DB||SERVER)?"onl":"loc",u=uid&&USERS[uid];
+  $("#bMode").style.display=SERVER?"none":"";
   $("#bMode").innerHTML=`<button data-m="onl" class="${bmode==="onl"?"on":""}">${t("bOn")}</button><button data-m="loc" class="${bmode==="loc"?"on":""}">${t("bLoc")}</button>`;
-  const st=!DB?t("srvNo"):onlErr&&!onlOK?t("srvErr")+" ("+esc(onlErr)+")":!onlOK?t("srvWait"):t("srvOk")+" · "+ONL.length+" "+t("players");
-  const sw=DB&&UIDS&&u?`<label class="rm"><input type="checkbox" id="pubC"${u.pub?" checked":""}><span>${t("pubT")}</span></label><p class="fine" style="text-align:left;margin:4px 0 0">${canW===false?t("roOnly"):t("pubN")}</p>`:"";
+  const nOn=ONL.filter(isOn).length;
+  const st=!(DB||SERVER)?t("srvNo"):live?`${t("srvOk")} · ${ONL.length} ${t("players")} · ${nOn} ${t("onl")}`:ONL.length?`${t("offl")} · ${ONL.length} ${t("players")}`:onlErr?t("srvErr")+" ("+esc(onlErr)+")":t("srvWait");
+  const canPub=(SERVER||(DB&&UIDS))&&u;
+  const sw=canPub?`<label class="rm"><input type="checkbox" id="pubC"${u.pub?" checked":""}><span>${t("pubT")}</span></label><p class="fine" style="text-align:left;margin:4px 0 0">${canW===false?t("roOnly"):t("pubN")}</p>`:"";
   $("#bStat").innerHTML=`<p class="fine" style="text-align:left;margin:8px 0 0">${st}</p>${sw}`;
   $("#bChips").innerHTML=`<button class="chip${bcat==="all"?" on":""}" data-c="all">${t("ovr")}</button>`+Object.keys(M).map(k=>`<button class="chip${bcat===k?" on":""}" data-c="${k}">${li(M[k])}</button>`).join("");
   let rows;
   if(eff==="onl"){
     rows=onlRows(bcat).map((r,i)=>{
-      const d=r.d,ri=Math.min(6,Math.floor(r.sc)),c=RK[ri],nm0=esc(String(d.n||"?").slice(0,24));
-      return `<li class="bl${d.id===UIDS?" me":""}${i<3&&r.has?" top"+(i+1):""}" data-o="${esc(d.id)}"><span class="pos">${i+1}</span>${avtX(d.n,d.av,null,40)}<div class="bn"><b>${nm0}</b><small>${r.has?c[0]+" · LVL "+Math.min(70,Math.floor(r.sc*10)+1):t("norank")}</small></div>${r.has?bimg(c,ri,40):""}<span class="xp">${r.has?Math.round(r.sc*1000)+" XP":"–"}</span>${UOWN?`<button class="del" data-rm="${esc(d.id)}" aria-label="Delete">✕</button>`:""}</li>`});
+      const d=r.d,ri=Math.min(6,Math.floor(r.sc)),c=RK[ri],on=isOn(d),me=SERVER?(uid&&d.id===uid.slice(1)):d.id===UIDS;
+      return `<li class="bl${me?" me":""}${i<3&&r.has?" top"+(i+1):""}" data-o="${esc(d.id)}"><span class="pos">${i+1}</span>${avtX(d.n,d.av,null,40)}<div class="bn"><b>${esc(String(d.n||"?").slice(0,24))}</b><small><span class="pdot${on?" on":""}"></span>${r.has?c[0]+" · LVL "+Math.min(70,Math.floor(r.sc*10)+1):t("norank")} · <span class="${on?"ok":"off"}">${on?t("onl"):t("offl1")}</span></small></div>${r.has?bimg(c,ri,40):""}<span class="xp">${r.has?Math.round(r.sc*1000)+" XP":"–"}</span>${UOWN?`<button class="del" data-rm="${esc(d.id)}" aria-label="Delete">✕</button>`:""}</li>`});
   }else{
     rows=board(bcat).map((r,i)=>{
       const lu=USERS[r.id],ri=Math.min(6,Math.floor(r.sc)),c=RK[ri];
@@ -752,17 +861,21 @@ function renderBoard(){
   $("#bList").innerHTML=rows.join("")||`<li class="hint">${t("noUsers")}</li>`;
 }
 
-/* welcome: presents today's workout from YOUR program + tells you when you are admin */
-function showWelcome(){
-  const dd=my.days[sel],use=dd.e.length>0,has=ORDER.some(d=>my.days[d].e.length),on=new Set(dd.m);
-  const S=Object.keys(RS),m=S.length?S.reduce((a,k)=>a+RS[k].s,0)/S.length:0,ri=Math.min(6,Math.floor(m));
-  $("#wbox").innerHTML=`<div class="wh">${avt(uid,54)}<div><small>${t("hi")},</small><b>${esc(USERS[uid].name)}</b></div></div>
-  ${isAdm()?`<div class="admbox">${roleB(USERS[uid])}<span>${t(isOwn()?"ownMsg":"admMsg")}</span></div>`:""}
-  ${S.length?`<div class="rkm">${bimg(RK[ri],ri,56)}<div><b>${RK[ri][0]}</b><br>LVL ${Math.min(70,Math.floor(m*10)+1)}</div></div>`:""}
-  ${use?`<p class="lb" style="margin:6px 0 0">${t("todayW")}, ${DN[lang][sel]}</p><h3>${t("own")}${my.n?" · "+esc(my.n):""}</h3>${muEd(dd.m,false)}<img class="map mini" alt="" src="${bu(on)}"><ul class="wl">${dd.e.slice(0,7).map(e=>`<li><b>${esc(nm(e))}</b><span>${fmt(e)}</span></li>`).join("")}</ul>${dd.e.length>7?`<p class="hint" style="margin:0 0 8px">+${dd.e.length-7} ${t("more")}</p>`:""}`:`<p class="nx" style="text-align:left;margin:8px 0 14px">${has?t("freeD"):t("nopr")}</p>`}
-  <button class="cta" data-a="go" data-p="my">${use?t("start"):t("go")}</button>
-  ${has?"":`<button class="gb" data-a="go" data-p="plan" style="width:100%;margin-top:8px;border-radius:14px">${t("seeEx")}</button>`}`;
-  $("#welc").hidden=false;
+/* home (index.html): only what matters + your rank from YOUR workout */
+const rankSum=()=>{const S=Object.keys(RS),m=S.length?S.reduce((a,k)=>a+RS[k].s,0)/S.length:0,ri=Math.min(6,Math.floor(m));return {S,m,ri,lv:Math.min(70,Math.floor(m*10)+1),ex:Math.round((m*10%1)*100),xp:Math.round(m*1000)}};
+const rankCard=R=>`<a class="mr" href="${pageHref("rank")}" style="--c:${RK[R.ri][2]}">${bimg(RK[R.ri],R.ri,72)}<div><b>${RK[R.ri][0]}</b><small>LVL ${R.lv} · ${R.xp} XP</small><div class="xpb"><i style="--w:${R.ex}%"></i></div></div></a>`;
+function renderHome(){
+  const u=USERS[uid],dd=my.days[TODAY()],use=dd.e.length>0,has=ORDER.some(d=>my.days[d].e.length),R=rankSum();
+  $("#hHero").innerHTML=`<div class="wh">${avt(uid,56)}<div><small>${t("hi")},</small><b>${esc(u.name)}</b></div></div>${isAdm()?`<div class="admbox">${roleB(u)}<span>${t(isOwn()?"ownMsg":"admMsg")}</span></div>`:""}${R.S.length?rankCard(R):""}`;
+  $("#hToday").innerHTML=use
+    ?`<p class="lb" style="margin:6px 0 0">${t("todayW")}, ${DN[lang][TODAY()]}</p><h3 class="lt" style="margin:2px 0 0">${t("n5")}</h3><ul class="wl">${dd.e.slice(0,7).map(e=>`<li><b>${esc(nm(e))}</b><span>${fmt(e)}</span></li>`).join("")}</ul>${dd.e.length>7?`<p class="hint" style="margin:0 0 8px">+${dd.e.length-7} ${t("more")}</p>`:""}<a class="cta" href="${pageHref("my")}">${t("start")}</a>`
+    :`<p class="nx" style="text-align:left;margin:8px 0 14px">${has?t("freeD"):t("nopr")}</p><a class="cta" href="${pageHref("my")}">${t("go")}</a>`;
+  updBody();
+  $("#hLinks").innerHTML=[["my","n5"],["rank","n3"],["board","n6"],["ex","n1"]].concat(isAdm()?[["special","n4"]]:[]).map(([k,n])=>`<a class="qk" href="${pageHref(k)}"><svg><use href="#${PG[k][3]}"/></svg>${t(n)}</a>`).join("");
+}
+function renderMyRank(){
+  const R=rankSum();
+  $("#myRank").innerHTML=R.S.length?rankCard(R):`<p class="nx" style="text-align:left">${t("nors")}</p>`;
 }
 
 /* profile: yours is editable, others are read-only */
@@ -794,19 +907,24 @@ function pv(name,av,ac,role,sc,has,bio,soc){
 }
 function profView(id){const u=USERS[id],r=board("all").find(x=>x.id===id)||{sc:0,has:false};return pv(u.name,u.av,u.ac,roleB(u),r.sc,r.has,u.bio,u.soc)}
 function profViewOn(id){const d=ONL.find(x=>x.id===id);if(!d)return;profId=null;$("#acctB").innerHTML=pv(d.n,d.av,null,"",+d.sc||0,(+d.sc||0)>0,d.bio,d.soc);$("#acct").hidden=false}
-const ownerPanel=()=>`<p class="lb">${t("opan")}</p><ul class="wl">${Object.keys(USERS).map(id=>{const o=USERS[id];return `<li><b>${esc(o.name)} ${roleB(o)}</b><span>${id===uid||o.owner?"":`<button class="gb" data-ad="${id}">${o.admin?"– admin":"+ admin"}</button> <button class="gb" data-rm="${id}">${edit.rm===id?t("sure"):"✕"}</button>`}</span></li>`}).join("")}</ul>`;
+const ownerPanel=()=>SERVER?`<p class="lb">${t("opan")}</p><ul class="wl" id="srvU"></ul>`:ownerPanelLoc();
+async function loadSrvUsers(){
+  try{const r=await api("/admin/users"),el=$("#srvU");if(!el)return;
+    el.innerHTML=r.users.map(o=>`<li><b>${esc(o.name)} ${roleB({owner:o.role==="owner",admin:o.role==="admin"})}</b><span>${o.role==="owner"?"":`<button class="gb" data-sad="${esc(o.id)}" data-nr="${o.role==="admin"?"user":"admin"}">${o.role==="admin"?"– admin":"+ admin"}</button> <button class="gb" data-srm="${esc(o.id)}">✕</button>`}</span></li>`).join("")}catch(e){}
+}
+const ownerPanelLoc=()=>`<p class="lb">${t("opan")}</p><ul class="wl">${Object.keys(USERS).map(id=>{const o=USERS[id];return `<li><b>${esc(o.name)} ${roleB(o)}</b><span>${id===uid||o.owner?"":`<button class="gb" data-ad="${id}">${o.admin?"– admin":"+ admin"}</button> <button class="gb" data-rm="${id}">${edit.rm===id?t("sure"):"✕"}</button>`}</span></li>`}).join("")}</ul>`;
 function openProf(id){
   if(!USERS[id])return;
-  profId=id;$("#acctB").innerHTML=id===uid?profSelf():profView(id);$("#acct").hidden=false;
+  profId=id;$("#acctB").innerHTML=id===uid?profSelf():profView(id);$("#acct").hidden=false;if(SERVER&&id===uid&&isOwn())loadSrvUsers();
 }
-$("#aLog").addEventListener("click",()=>{amode="log";$("#aE").textContent="";renderAuth()});
-$("#aNew").addEventListener("click",()=>{amode="new";$("#aE").textContent="";renderAuth()});
+$("#aLog").addEventListener("click",()=>{amode="log";$("#aE").textContent="";renderAuth();newBot()});
+$("#aNew").addEventListener("click",()=>{amode="new";$("#aE").textContent="";renderAuth();newBot()});
 $("#aGo").addEventListener("click",authRun);
-$("#aPan").addEventListener("click",()=>{amode="pan";$("#aE").textContent="";renderAuth()});
+$("#aRs").addEventListener("click",()=>{api("/resend","POST",{email:pendEm}).then(()=>{$("#aE").textContent=t("vsent")}).catch(srvErr)});
+$("#aPan").addEventListener("click",()=>{amode="pan";$("#aE").textContent="";renderAuth();newBot()});
 $("#auth").addEventListener("keydown",e=>{if(e.key==="Enter")authRun()});
 $("#who").addEventListener("click",e=>{const b=e.target.closest("[data-u]");if(b){$("#aN").value=USERS[b.dataset.u].name;$("#aP").focus()}});
 $("#uBtn").addEventListener("click",()=>{edit.d=false;openProf(uid)});
-$("#welc").addEventListener("click",e=>{const b=e.target.closest("button");if(b&&b.dataset.a==="go"){$("#welc").hidden=true;const ex=b.dataset.p==="plan";go(ex?"my":b.dataset.p,true);if(ex)$("#exs").open=true}else if(e.target.id==="welc")$("#welc").hidden=true});
 $("#acct").addEventListener("click",e=>{
   if(e.target.id==="acct"){$("#acct").hidden=true;return}
   const b=e.target.closest("button");if(!b)return;const a=b.dataset.a,u=USERS[uid],x=$("#xdata");
@@ -817,6 +935,8 @@ $("#acct").addEventListener("click",e=>{
   else if(a==="avx")keep(()=>{delete u.av;saveUsers();hdr()});
   else if(b.dataset.ac)keep(()=>{u.ac=b.dataset.ac;saveUsers();hdr()});
   else if(b.dataset.th){u.theme=b.dataset.th;applyTheme(u.theme);saveUsers();document.querySelectorAll("#acct .thb").forEach(v=>v.classList.toggle("on",v===b))}
+  else if(SERVER&&isOwn()&&b.dataset.sad){api("/admin/role","POST",{id:b.dataset.sad,role:b.dataset.nr}).then(loadSrvUsers).catch(()=>{})}
+  else if(SERVER&&isOwn()&&b.dataset.srm){if(edit.rm===b.dataset.srm){api("/admin/user/"+encodeURIComponent(b.dataset.srm),"DELETE").then(loadSrvUsers).catch(()=>{});edit.rm=null}else{edit.rm=b.dataset.srm;b.textContent=t("sure")}}
   else if(isOwn()&&b.dataset.ad){const o=USERS[b.dataset.ad];if(o&&!o.owner){o.admin=!o.admin;saveUsers()}keep(()=>{})}
   else if(isOwn()&&b.dataset.rm){const id=b.dataset.rm;if(edit.rm===id){["pr","lf","mp"].forEach(k=>{try{localStorage.removeItem("u:"+id+":"+k)}catch(_){}});delete USERS[id];saveUsers();edit.rm=null}else edit.rm=id;keep(()=>{})}
   else if(a==="exp"){x.hidden=false;x.readOnly=true;x.value=JSON.stringify({v:1,pr:PR,lf,mp:my});x.select();try{navigator.clipboard.writeText(x.value)}catch(_){}}
@@ -826,7 +946,7 @@ $("#acct").addEventListener("click",e=>{
     catch(_){x.value="";x.placeholder=t("badimp")}
   }
   else if(a==="out")logout();
-  else if(a==="del"){if(edit.d){const id=uid;["pr","lf","mp"].forEach(k=>{try{localStorage.removeItem(UK(k))}catch(_){}});delete USERS[id];saveUsers();logout()}else{edit.d=true;keep(()=>{})}}
+  else if(a==="del"){if(edit.d&&SERVER){api("/me","DELETE").catch(()=>{});edit.d=false;logout()}else if(edit.d){const id=uid;["pr","lf","mp"].forEach(k=>{try{localStorage.removeItem(UK(k))}catch(_){}});delete USERS[id];saveUsers();logout()}else{edit.d=true;keep(()=>{})}}
 });
 $("#acct").addEventListener("input",e=>{
   const el=e.target,u=USERS[uid];if(!u||profId!==uid)return;
@@ -838,7 +958,7 @@ $("#acct").addEventListener("input",e=>{
 });
 $("#acct").addEventListener("change",e=>{
   if(e.target.id!=="avF")return;
-  const f=e.target.files&&e.target.files[0];if(!f)return;
+  const f=e.target.files&&e.target.files[0];if(!f||!/^image\/(jpeg|png|webp)$/.test(f.type)||f.size>4e6)return;
   const rd=new FileReader();
   rd.onload=()=>{const im=new Image();im.onload=()=>{
     const c=document.createElement("canvas"),z=160,q=Math.min(im.width,im.height);c.width=c.height=z;
@@ -919,19 +1039,38 @@ $("#xd").addEventListener("click",e=>{
   }else if(b.dataset.del!==undefined){my.log[xkey(my.days[msel].e[xi])].splice(+b.dataset.del,1);sm();renderX()}
 });
 
-const wide=matchMedia("(min-width:900px)");
-function go(p,scroll){
-  document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("on",b.dataset.p===p));
-  document.querySelectorAll(".pane").forEach(s=>s.classList.toggle("act",s.id==="p-"+p));
-  if(scroll){wide.matches?$("#p-"+p).scrollIntoView({behavior:"smooth",block:"start"}):scrollTo(0,0)}
+/* ---------- pages: real files in the site (index.html, my-workout.html, clasament.html ...); hash routing in the single-file build ---------- */
+const PG={home:["index","p-home","n0","hm"],my:["my-workout","p-my","n5","db"],rank:["rang","p-rank","n3","tr"],board:["clasament","p-board","n6","lb"],special:["special","p-bg","n4","st"],ex:["exemplu","p-plan","n1","bk"]};
+const FILEMODE=document.body.hasAttribute("data-page");
+function pageKey(){
+  let k=FILEMODE?document.body.dataset.page:(Object.keys(PG).find(x=>PG[x][0]===(location.hash||"").slice(1))||"home");
+  if(!PG[k])k="home";
+  if(k==="special"&&!isAdm())k="home";
+  return k;
 }
-$("#nav").addEventListener("click",e=>{const b=e.target.closest("button");if(b)go(b.dataset.p,true)});
+const pageHref=k=>FILEMODE?PG[k][0]+".html":"#"+(k==="home"?"":PG[k][0]);
+function goPage(k){if(FILEMODE)location.href=pageHref(k);else{location.hash=k==="home"?"":PG[k][0];showPage()}}
+function buildNav(cur){
+  const ks=["home","my","rank","board"].concat(isAdm()?["special"]:[]);
+  $("#nav").innerHTML=`<div class="logo">FORMA<b>.</b></div>`+ks.map(k=>`<a href="${pageHref(k)}" class="${k===cur?"on":""}"><svg><use href="#${PG[k][3]}"/></svg><span>${t(PG[k][2])}</span></a>`).join("");
+}
+function showPage(){
+  const k=pageKey();
+  document.querySelectorAll(".pane").forEach(p=>p.classList.toggle("act",p.id===PG[k][1]));
+  buildNav(k);document.title="FORMA – "+t(PG[k][2]);
+  if(k==="board"&&SERVER)loadBoard();
+}
+window.addEventListener("hashchange",()=>{if(!FILEMODE&&uid){showPage();scrollTo(0,0)}});
 document.querySelectorAll(".lang").forEach(l=>l.addEventListener("click",e=>{const b=e.target.closest("button");if(b){lang=b.dataset.l;save("l",lang);render()}}));
 try{USERS=JSON.parse(localStorage.getItem("users")||"{}")}catch(x){}
 try{applyTheme(localStorage.getItem("theme"))}catch(x){}
+try{ONL=JSON.parse(localStorage.getItem("lbc")||"[]")}catch(x){ONL=[]}
 let sid=null;try{sid=localStorage.getItem("sess")||sessionStorage.getItem("sess")}catch(x){}
-if(sid&&USERS[sid]){uid=sid;loadUser();unlocked=isAdm();$("#auth").hidden=true;render();showWelcome();schedPush()}else{$("#auth").hidden=false;render()}
+if(SERVER){USERS={};$("#auth").hidden=false;render();newBot();api("/me").then(r=>srvEnter(r.me)).catch(()=>{})}
+else if(sid&&USERS[sid]){uid=sid;enterCore()}
+else{$("#auth").hidden=false;render();newBot()}
 loadBody();
+setInterval(()=>{if(SERVER&&uid){api("/ping","POST").catch(()=>{});if(pageKey()==="board")loadBoard()}},30000);
 </script>
 </body>
 </html>
