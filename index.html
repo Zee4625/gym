@@ -145,10 +145,12 @@ button.chip{cursor:pointer}
 .rc b{display:block;font:italic 800 19px/1.1 var(--disp);text-transform:uppercase;letter-spacing:.04em}
 .rc small{display:block;color:var(--mut);font-size:11px;line-height:1.35}
 .ring>div{justify-items:center;gap:1px}
-.bimg{display:inline-grid;width:var(--z);height:var(--z);flex:none}
-.bimg img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 4px 14px color-mix(in srgb,var(--c,#fff) 45%,transparent))}
-.bimg svg{width:100%;height:100%;display:none}
-.bimg.err svg{display:block}.bimg.err img{display:none}
+.bimg{display:inline-grid;position:relative;width:var(--z);height:var(--z);flex:none;--hex:polygon(50% 0%,93.3% 25%,93.3% 75%,50% 100%,6.7% 75%,6.7% 25%);filter:drop-shadow(0 4px 12px color-mix(in srgb,var(--c,#fff) 45%,transparent))}
+.bimg::before{content:"";position:absolute;inset:0;background:linear-gradient(160deg,var(--c,#fff),color-mix(in srgb,var(--c,#fff) 35%,#000));clip-path:var(--hex)}
+.bimg .hx{position:absolute;inset:5%;clip-path:var(--hex);background:var(--bg);display:block;overflow:hidden}
+.bimg img{width:100%;height:100%;object-fit:cover;display:block}
+.bimg svg{width:100%;height:100%;display:none;position:relative}
+.bimg.err::before,.bimg.err .hx{display:none}.bimg.err svg{display:block}
 .er{list-style:none;position:relative;display:grid;gap:8px;background:var(--c2);border:1px solid var(--line);border-radius:16px;padding:10px}
 .er>.in{padding-right:44px}
 .er .del{position:absolute;top:12px;right:8px;font-size:18px}
@@ -235,6 +237,11 @@ a.cta,a.gb{display:block;text-align:center;text-decoration:none}
 .pdot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#6b7280;margin-right:4px}.pdot.on{background:#22c55e;box-shadow:0 0 6px #22c55e}
 .bn .ok{color:#22c55e}.bn .off{color:var(--mut)}
 button:disabled{opacity:.5;cursor:not-allowed}
+.stp{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px;color:var(--mut)}
+.stp button{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--c2);color:var(--txt);font-size:20px;font-weight:700;padding:0;line-height:1}
+.stp b{min-width:46px;text-align:center;color:var(--txt);font-size:15px}
+.stp>span{margin-left:6px}
+.stepc{margin:10px 0 0}.stepc>span{font-size:12px;color:var(--mut);align-self:center}
 .admb.own{background:linear-gradient(135deg,#ff6b9a,#b3123a);color:#fff}
 .exd{margin-top:22px;border-top:1px solid var(--line);padding-top:14px}.exd summary{cursor:pointer;font-weight:700;color:var(--gold)}
 </style>
@@ -275,8 +282,8 @@ button:disabled{opacity:.5;cursor:not-allowed}
 
 <script>
 const L={
-ro:{n1:"Exemple",n2:"Corp",n3:"Rang",n4:"Special",h1:"Exemplu de program",h2:"Mușchi antrenați",h3:"Rangul tău",h4:"Antrenamente speciale",warm:"Încălzire",ex:"exerciții",mu:"mușchi",mus:"Grupe musculare",wu:"Încălzire",front:"Față",back:"Spate",next:"până la",max:"Rang maxim",soon:"În curând",bgn:"B apare în curând. G este doar pentru contul de admin.",restT:"Pauză",restP:"Mușchii cresc când te odihnești. Somn bun, apă și un stretching ușor.",tap:"Atinge un exercițiu când l’ai terminat.",min:"min",n5:"My workout",h5:"My workout",bw:"Greutate corporală (kg)",sq:"Genuflexiuni",dl:"Îndreptări",bp:"Împins la bancă",kg:"kg",reps:"repetări",sets:"serii",edit:"Editează",done2:"Gata",rst:"Resetează programul",sure:"Sigur? Apasă din nou",sv:"Salvează programul",svd:"Salvat",uns:"Nesalvat, apasă Salvează",cp:"Copiază din Plan",cg:"Copiază din G",nors:"Rangul se dă după ce îți faci programul. Adaugă exerciții cu kg în „Al meu” și apasă Salvează.",go:"Construiește programul",authSub:"Autentifică-te ca să-ți găsești programul, rangul și progresul.",lg_t:"Autentificare",su:"Cont nou",un:"Nume",pw:"Parolă",rm:"Rămâi conectat",ent:"Intră",crt:"Creează contul",bad:"Nume sau parolă greșită",taken:"Numele există deja",short:"Parola: minim 4 caractere",nn:"Scrie un nume",who:"Ești tu?",hi:"Salut",todayW:"Antrenamentul de azi",start:"Începe antrenamentul",own:"Programul tău",more:"încă",acct:"Cont",out:"Ieși din cont",exp:"Exportă datele",imp:"Importă datele",del:"Șterge contul",paste:"Lipește aici datele exportate",badimp:"Date invalide",note:"Contul e salvat doar pe acest dispozitiv. Exportă datele ca să le muți pe altul.",exnote:"Acesta este doar un exemplu de program.",pickEx:"Alege din lista de exerciții",search:"Caută exercițiu…",all:"Toate",libnote:"Fiecare exercițiu știe ce mușchi lucrează și cu ce exercițiu de referință se compară (procentul din dreapta). Așa se calculează rangul.",unk:"Nu recunosc exercițiul. Alege-l din listă ca să conteze pentru rang.",noest:"Adaugă kg și repetări ca să vezi rangul.",exr:"Exerciții și rangul lor",cmp:"Se compară cu",logT:"Jurnal: ultimul set",logAdd:"Salvează",freeD:"Azi nu ai exerciții în program: zi de pauză, sau completeaz-o în „Programul”.",nopr:"Nu ai încă un program. Alege exerciții din listă, pune kg și repetări, apoi salvează: așa primești rangul.",seeEx:"Vezi un exemplu de program",h6:"Clasament",n6:"Clasament",ovr:"General",norank:"Fără rang",noUsers:"Niciun cont încă.",bnote:"Clasament între conturile de pe acest dispozitiv. Unul online, între dispozitive, are nevoie de un server.",pname:"Nume afișat",bio:"Despre tine",soc:"Rețele sociale",chg:"Schimbă poza",rmv:"Elimină poza",theme:"Temă și fundal",admMsg:"Ești conectat într-un cont de admin: ai acces la programul G.",close:"Închide",panel:"Panel",code:"Cod Panel",entP:"Intră ca Owner",nc:"Scrie codul",badc:"Cod greșit",ownMsg:"Ești conectat în contul de Owner al aplicației: acces complet, inclusiv programul G și panoul de conturi.",opan:"Panel Owner: conturile de pe acest dispozitiv",bOn:"Online",bLoc:"Pe dispozitiv",srvNo:"Serverul nu e disponibil aici. Deschide linkul publicat ca să vezi clasamentul online; între timp vezi clasamentul local.",srvErr:"Eroare server",srvWait:"Se conectează la server…",srvOk:"Server conectat",players:"jucători",pubT:"Publică-mă în clasamentul online",pubN:"Se publică numele, poza, bio-ul, linkurile și rangul tău.",roOnly:"Ai doar drept de citire: nu poți publica.",n0:"Acasă",em:"Email",vcode:"Cod din email (6 cifre)",verify:"Verifică emailul",resend:"Retrimite codul",notbot:"Nu sunt robot:",bot:"Confirmă că nu ești robot",locked:"Prea multe încercări. Așteaptă",embad:"Email invalid",nbad:"Nume: 2–24 caractere (litere, cifre, spațiu . _ -)",short8:"Parola: minim 8 caractere, cu litere și cifre",vsent:"Ți-am trimis un cod pe email. Scrie-l mai jos.",er_bad_credentials:"Email sau parolă greșită",er_not_verified:"Emailul nu e verificat încă",er_email_taken:"Emailul e deja folosit",er_rate_limited:"Prea multe cereri. Încearcă mai târziu.",er_bot_failed:"Verificarea anti-robot a eșuat",er_server_error:"Eroare de server",er_bad_input:"Date invalide",er_weak_password:"Parolă prea slabă",er_bad_code:"Cod greșit sau expirat",er_code_expired:"Cod expirat. Cere altul.",er_network:"Nu mă pot conecta la server",er_unauthorized:"Sesiune expirată",onl:"online",offl:"Offline (din memoria locală)",offl1:"offline",noteS:"Contul e salvat pe server, cu email verificat, parola criptată și sesiune sigură.",noteN:"Atenție: verificarea prin email funcționează doar pe site-ul cu server (vezi README). Aici contul rămâne doar pe acest dispozitiv.",lh:"Rangul se dă după ce îți faci programul în „Al meu” și îl salvezi. Se calculează din toate exercițiile cu greutate din săptămână: forța maximă estimată (1RM = greutate × (1 + repetări / 30)) față de exercițiul de referință, raportată la greutatea, sexul și vârsta ta. LVL și EXP cresc odată cu forța.",mr:"Rang pe mușchi",nd:"Fără date",ag:"Vârstă",sx:"Sex",sm:"Bărbat",sf:"Femeie",rf:"Exercițiu de referință",beat:"depășești",weak:"Rămas în urmă",ov:"Rang general",nxt:"Următorul rang:",need:"Introdu cel puțin o ridicare",wn:"Numele antrenamentului",pick:"Mușchi lucrați",exn:"Exercițiu",add:"Adaugă exercițiul",clr:"Șterge tot",empty:"Nu ai adăugat exerciții încă.",lock:"Doar admin",open:"Deschis",pinT:"Introdu parola",pinE:"Parolă greșită",back2:"Înapoi",lockBtn:"Blochează",cancel:"Anulează"},
-en:{n1:"Examples",n2:"Body",n3:"Rank",n4:"Special",h1:"Example program",h2:"Muscles trained",h3:"Your rank",h4:"Special workouts",warm:"Warm-up",ex:"exercises",mu:"muscles",mus:"Muscle groups",wu:"Warm-up",front:"Front",back:"Back",next:"to",max:"Max rank",soon:"Coming soon",bgn:"B is coming soon. G is for the admin account only.",restT:"Rest day",restP:"Muscles grow while you rest. Sleep well, drink water and stretch lightly.",tap:"Tap an exercise when you finish it.",min:"min",n5:"My workout",h5:"My workout",bw:"Body weight (kg)",sq:"Squat",dl:"Deadlift",bp:"Bench press",kg:"kg",reps:"reps",sets:"sets",edit:"Edit",done2:"Done",rst:"Reset program",sure:"Sure? Tap again",sv:"Save program",svd:"Saved",uns:"Unsaved, tap Save",cp:"Copy from Plan",cg:"Copy from G",nors:"Your rank is given once you build your program. Add exercises with kg in “Mine” and tap Save.",go:"Build your program",authSub:"Sign in to find your program, rank and progress.",lg_t:"Log in",su:"New account",un:"Name",pw:"Password",rm:"Stay signed in",ent:"Enter",crt:"Create account",bad:"Wrong name or password",taken:"That name is taken",short:"Password: at least 4 characters",nn:"Enter a name",who:"Is it you?",hi:"Hi",todayW:"Today’s workout",start:"Start workout",own:"Your program",more:"more",acct:"Account",out:"Log out",exp:"Export data",imp:"Import data",del:"Delete account",paste:"Paste exported data here",badimp:"Invalid data",note:"Your account is stored on this device only. Export your data to move it to another.",exnote:"This is just an example program.",pickEx:"Choose from the exercise list",search:"Search exercise…",all:"All",libnote:"Every exercise knows which muscle it works and which reference lift it is compared with (the percentage on the right). That is how rank is calculated.",unk:"Unknown exercise. Pick it from the list so it counts for rank.",noest:"Add kg and reps to see the rank.",exr:"Exercises and their rank",cmp:"Compared with",logT:"Log: latest set",logAdd:"Save",freeD:"No exercises today: a rest day, or fill it in under “Program”.",nopr:"You have no program yet. Pick exercises from the list, add kg and reps, then save: that is how you get your rank.",seeEx:"See an example program",h6:"Leaderboard",n6:"Board",ovr:"Overall",norank:"Unranked",noUsers:"No accounts yet.",bnote:"Leaderboard between the accounts on this device. An online one, across devices, needs a server.",pname:"Display name",bio:"About you",soc:"Social media",chg:"Change photo",rmv:"Remove photo",theme:"Theme & background",admMsg:"You are signed in to an admin account: you have access to the G program.",close:"Close",panel:"Panel",code:"Panel code",entP:"Enter as Owner",nc:"Enter the code",badc:"Wrong code",ownMsg:"You are signed in to the app’s Owner account: full access, including the G program and the accounts panel.",opan:"Owner panel: accounts on this device",bOn:"Online",bLoc:"On this device",srvNo:"The server is not available here. Open the published link to see the online leaderboard; meanwhile you see the local one.",srvErr:"Server error",srvWait:"Connecting to the server…",srvOk:"Server connected",players:"players",pubT:"Publish me on the online leaderboard",pubN:"Your name, photo, bio, links and rank are published.",roOnly:"You have read-only access: you cannot publish.",n0:"Home",em:"Email",vcode:"Email code (6 digits)",verify:"Verify email",resend:"Resend code",notbot:"I am not a robot:",bot:"Please confirm you are not a robot",locked:"Too many attempts. Wait",embad:"Invalid email",nbad:"Name: 2–24 characters (letters, digits, space . _ -)",short8:"Password: at least 8 characters, letters and digits",vsent:"We sent a code to your email. Enter it below.",er_bad_credentials:"Wrong email or password",er_not_verified:"Email not verified yet",er_email_taken:"That email is already used",er_rate_limited:"Too many requests. Try again later.",er_bot_failed:"Anti-robot check failed",er_server_error:"Server error",er_bad_input:"Invalid data",er_weak_password:"Password too weak",er_bad_code:"Wrong or expired code",er_code_expired:"Code expired. Request a new one.",er_network:"Cannot reach the server",er_unauthorized:"Session expired",onl:"online",offl:"Offline (from local memory)",offl1:"offline",noteS:"Your account is stored on the server, with a verified email, an encrypted password and a secure session.",noteN:"Note: email verification only works on the site with a server (see README). Here the account stays on this device.",lh:"Your rank is given once you build your program in “Mine” and save it. It is calculated from all the weighted exercises in your week: estimated max (1RM = weight × (1 + reps / 30)) against the reference lift, relative to your body weight, sex and age. LVL and EXP grow with your strength.",mr:"Rank per muscle",nd:"No data",ag:"Age",sx:"Sex",sm:"Male",sf:"Female",rf:"Reference lift",beat:"beats",weak:"Lagging",ov:"Overall rank",nxt:"Next rank:",need:"Enter at least one lift",wn:"Workout name",pick:"Muscles worked",exn:"Exercise",add:"Add exercise",clr:"Clear all",empty:"No exercises added yet.",lock:"Admin only",open:"Unlocked",pinT:"Enter password",pinE:"Wrong password",back2:"Back",lockBtn:"Lock",cancel:"Cancel"}};
+ro:{n1:"Exemple",n2:"Corp",n3:"Rang",n4:"Special",h1:"Exemplu de program",h2:"Mușchi antrenați",h3:"Rangul tău",h4:"Antrenamente speciale",warm:"Încălzire",ex:"exerciții",mu:"mușchi",mus:"Grupe musculare",wu:"Încălzire",front:"Față",back:"Spate",next:"până la",max:"Rang maxim",soon:"În curând",bgn:"B apare în curând. G este doar pentru contul de admin.",restT:"Pauză",restP:"Mușchii cresc când te odihnești. Somn bun, apă și un stretching ușor.",tap:"Atinge un exercițiu când l’ai terminat.",min:"min",n5:"My workout",h5:"My workout",bw:"Greutate corporală (kg)",sq:"Genuflexiuni",dl:"Îndreptări",bp:"Împins la bancă",kg:"kg",reps:"repetări",sets:"serii",edit:"Editează",done2:"Gata",rst:"Resetează programul",sure:"Sigur? Apasă din nou",sv:"Salvează programul",svd:"Salvat",uns:"Nesalvat, apasă Salvează",cp:"Copiază din Plan",cg:"Copiază din G",nors:"Rangul se dă după ce îți faci programul. Adaugă exerciții cu kg în „Al meu” și apasă Salvează.",go:"Construiește programul",authSub:"Autentifică-te ca să-ți găsești programul, rangul și progresul.",lg_t:"Autentificare",su:"Cont nou",un:"Nume",pw:"Parolă",rm:"Rămâi conectat",ent:"Intră",crt:"Creează contul",bad:"Nume sau parolă greșită",taken:"Numele există deja",short:"Parola: minim 4 caractere",nn:"Scrie un nume",who:"Ești tu?",hi:"Salut",todayW:"Antrenamentul de azi",start:"Începe antrenamentul",own:"Programul tău",more:"încă",acct:"Cont",out:"Ieși din cont",exp:"Exportă datele",imp:"Importă datele",del:"Șterge contul",paste:"Lipește aici datele exportate",badimp:"Date invalide",note:"Contul e salvat doar pe acest dispozitiv. Exportă datele ca să le muți pe altul.",exnote:"Acesta este doar un exemplu de program.",pickEx:"Alege din lista de exerciții",search:"Caută exercițiu…",all:"Toate",libnote:"Fiecare exercițiu știe ce mușchi lucrează și cu ce exercițiu de referință se compară (procentul din dreapta). Așa se calculează rangul.",unk:"Nu recunosc exercițiul. Alege-l din listă ca să conteze pentru rang.",noest:"Adaugă kg și repetări ca să vezi rangul.",exr:"Exerciții și rangul lor",cmp:"Se compară cu",logT:"Jurnal: ultimul set",logAdd:"Salvează",freeD:"Azi nu ai exerciții în program: zi de pauză, sau completeaz-o în „Programul”.",nopr:"Nu ai încă un program. Alege exerciții din listă, pune kg și repetări, apoi salvează: așa primești rangul.",seeEx:"Vezi un exemplu de program",h6:"Clasament",n6:"Clasament",ovr:"General",norank:"Fără rang",noUsers:"Niciun cont încă.",bnote:"Clasament între conturile de pe acest dispozitiv. Unul online, între dispozitive, are nevoie de un server.",pname:"Nume afișat",bio:"Despre tine",soc:"Rețele sociale",chg:"Schimbă poza",rmv:"Elimină poza",theme:"Temă și fundal",admMsg:"Ești conectat într-un cont de admin: ai acces la programul G.",close:"Închide",panel:"Panel",code:"Cod Panel",entP:"Intră ca Owner",nc:"Scrie codul",badc:"Cod greșit",ownMsg:"Ești conectat în contul de Owner al aplicației: acces complet, inclusiv programul G și panoul de conturi.",opan:"Panel Owner: conturile de pe acest dispozitiv",bOn:"Online",bLoc:"Pe dispozitiv",srvNo:"Serverul nu e disponibil aici. Deschide linkul publicat ca să vezi clasamentul online; între timp vezi clasamentul local.",srvErr:"Eroare server",srvWait:"Se conectează la server…",srvOk:"Server conectat",players:"jucători",pubT:"Publică-mă în clasamentul online",pubN:"Se publică numele, poza, bio-ul, linkurile și rangul tău.",roOnly:"Ai doar drept de citire: nu poți publica.",n0:"Acasă",em:"Email",vcode:"Cod din email (6 cifre)",verify:"Verifică emailul",resend:"Retrimite codul",notbot:"Nu sunt robot:",bot:"Confirmă că nu ești robot",locked:"Prea multe încercări. Așteaptă",embad:"Email invalid",nbad:"Nume: 2–24 caractere (litere, cifre, spațiu . _ -)",short8:"Parola: minim 8 caractere, cu litere și cifre",vsent:"Ți-am trimis un cod pe email. Scrie-l mai jos.",er_bad_credentials:"Email sau parolă greșită",er_not_verified:"Emailul nu e verificat încă",er_email_taken:"Emailul e deja folosit",er_rate_limited:"Prea multe cereri. Încearcă mai târziu.",er_bot_failed:"Verificarea anti-robot a eșuat",er_server_error:"Eroare de server",er_bad_input:"Date invalide",er_weak_password:"Parolă prea slabă",er_bad_code:"Cod greșit sau expirat",er_code_expired:"Cod expirat. Cere altul.",er_network:"Nu mă pot conecta la server",er_unauthorized:"Sesiune expirată",onl:"online",offl:"Offline (din memoria locală)",offl1:"offline",noteS:"Contul e salvat pe server, cu email verificat, parola criptată și sesiune sigură.",noteN:"Atenție: verificarea prin email funcționează doar pe site-ul cu server (vezi README). Aici contul rămâne doar pe acest dispozitiv.",step:"Pas kg",refresh:"Actualizează acum",lastUp:"Ultima actualizare",nextUp:"Următoarea (automat)",lh:"Rangul se dă după ce îți faci programul în „Al meu” și îl salvezi. Se calculează din toate exercițiile cu greutate din săptămână: forța maximă estimată (1RM = greutate × (1 + repetări / 30)) față de exercițiul de referință, raportată la greutatea, sexul și vârsta ta. LVL și EXP cresc odată cu forța.",mr:"Rang pe mușchi",nd:"Fără date",ag:"Vârstă",sx:"Sex",sm:"Bărbat",sf:"Femeie",rf:"Exercițiu de referință",beat:"depășești",weak:"Rămas în urmă",ov:"Rang general",nxt:"Următorul rang:",need:"Introdu cel puțin o ridicare",wn:"Numele antrenamentului",pick:"Mușchi lucrați",exn:"Exercițiu",add:"Adaugă exercițiul",clr:"Șterge tot",empty:"Nu ai adăugat exerciții încă.",lock:"Doar admin",open:"Deschis",pinT:"Introdu parola",pinE:"Parolă greșită",back2:"Înapoi",lockBtn:"Blochează",cancel:"Anulează"},
+en:{n1:"Examples",n2:"Body",n3:"Rank",n4:"Special",h1:"Example program",h2:"Muscles trained",h3:"Your rank",h4:"Special workouts",warm:"Warm-up",ex:"exercises",mu:"muscles",mus:"Muscle groups",wu:"Warm-up",front:"Front",back:"Back",next:"to",max:"Max rank",soon:"Coming soon",bgn:"B is coming soon. G is for the admin account only.",restT:"Rest day",restP:"Muscles grow while you rest. Sleep well, drink water and stretch lightly.",tap:"Tap an exercise when you finish it.",min:"min",n5:"My workout",h5:"My workout",bw:"Body weight (kg)",sq:"Squat",dl:"Deadlift",bp:"Bench press",kg:"kg",reps:"reps",sets:"sets",edit:"Edit",done2:"Done",rst:"Reset program",sure:"Sure? Tap again",sv:"Save program",svd:"Saved",uns:"Unsaved, tap Save",cp:"Copy from Plan",cg:"Copy from G",nors:"Your rank is given once you build your program. Add exercises with kg in “Mine” and tap Save.",go:"Build your program",authSub:"Sign in to find your program, rank and progress.",lg_t:"Log in",su:"New account",un:"Name",pw:"Password",rm:"Stay signed in",ent:"Enter",crt:"Create account",bad:"Wrong name or password",taken:"That name is taken",short:"Password: at least 4 characters",nn:"Enter a name",who:"Is it you?",hi:"Hi",todayW:"Today’s workout",start:"Start workout",own:"Your program",more:"more",acct:"Account",out:"Log out",exp:"Export data",imp:"Import data",del:"Delete account",paste:"Paste exported data here",badimp:"Invalid data",note:"Your account is stored on this device only. Export your data to move it to another.",exnote:"This is just an example program.",pickEx:"Choose from the exercise list",search:"Search exercise…",all:"All",libnote:"Every exercise knows which muscle it works and which reference lift it is compared with (the percentage on the right). That is how rank is calculated.",unk:"Unknown exercise. Pick it from the list so it counts for rank.",noest:"Add kg and reps to see the rank.",exr:"Exercises and their rank",cmp:"Compared with",logT:"Log: latest set",logAdd:"Save",freeD:"No exercises today: a rest day, or fill it in under “Program”.",nopr:"You have no program yet. Pick exercises from the list, add kg and reps, then save: that is how you get your rank.",seeEx:"See an example program",h6:"Leaderboard",n6:"Board",ovr:"Overall",norank:"Unranked",noUsers:"No accounts yet.",bnote:"Leaderboard between the accounts on this device. An online one, across devices, needs a server.",pname:"Display name",bio:"About you",soc:"Social media",chg:"Change photo",rmv:"Remove photo",theme:"Theme & background",admMsg:"You are signed in to an admin account: you have access to the G program.",close:"Close",panel:"Panel",code:"Panel code",entP:"Enter as Owner",nc:"Enter the code",badc:"Wrong code",ownMsg:"You are signed in to the app’s Owner account: full access, including the G program and the accounts panel.",opan:"Owner panel: accounts on this device",bOn:"Online",bLoc:"On this device",srvNo:"The server is not available here. Open the published link to see the online leaderboard; meanwhile you see the local one.",srvErr:"Server error",srvWait:"Connecting to the server…",srvOk:"Server connected",players:"players",pubT:"Publish me on the online leaderboard",pubN:"Your name, photo, bio, links and rank are published.",roOnly:"You have read-only access: you cannot publish.",n0:"Home",em:"Email",vcode:"Email code (6 digits)",verify:"Verify email",resend:"Resend code",notbot:"I am not a robot:",bot:"Please confirm you are not a robot",locked:"Too many attempts. Wait",embad:"Invalid email",nbad:"Name: 2–24 characters (letters, digits, space . _ -)",short8:"Password: at least 8 characters, letters and digits",vsent:"We sent a code to your email. Enter it below.",er_bad_credentials:"Wrong email or password",er_not_verified:"Email not verified yet",er_email_taken:"That email is already used",er_rate_limited:"Too many requests. Try again later.",er_bot_failed:"Anti-robot check failed",er_server_error:"Server error",er_bad_input:"Invalid data",er_weak_password:"Password too weak",er_bad_code:"Wrong or expired code",er_code_expired:"Code expired. Request a new one.",er_network:"Cannot reach the server",er_unauthorized:"Session expired",onl:"online",offl:"Offline (from local memory)",offl1:"offline",noteS:"Your account is stored on the server, with a verified email, an encrypted password and a secure session.",noteN:"Note: email verification only works on the site with a server (see README). Here the account stays on this device.",step:"Step kg",refresh:"Refresh now",lastUp:"Last update",nextUp:"Next (automatic)",lh:"Your rank is given once you build your program in “Mine” and save it. It is calculated from all the weighted exercises in your week: estimated max (1RM = weight × (1 + reps / 30)) against the reference lift, relative to your body weight, sex and age. LVL and EXP grow with your strength.",mr:"Rank per muscle",nd:"No data",ag:"Age",sx:"Sex",sm:"Male",sf:"Female",rf:"Reference lift",beat:"beats",weak:"Lagging",ov:"Overall rank",nxt:"Next rank:",need:"Enter at least one lift",wn:"Workout name",pick:"Muscles worked",exn:"Exercise",add:"Add exercise",clr:"Clear all",empty:"No exercises added yet.",lock:"Admin only",open:"Unlocked",pinT:"Enter password",pinE:"Wrong password",back2:"Back",lockBtn:"Lock",cancel:"Cancel"}};
 const DN={ro:["Duminică","Luni","Marți","Miercuri","Joi","Vineri","Sâmbătă"],en:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]};
 const ORDER=[1,2,3,4,5,6,0],D={1:"push",2:"rest",3:"pull",4:"legs",5:"pull",6:"legs",0:"rest"};
 const M={back:["Spate","Back"],bi:["Biceps","Biceps"],fa:["Antebraț","Forearm"],chest:["Piept","Chest"],sh:["Umeri","Shoulders"],tri:["Triceps","Triceps"],abs:["Abdomen","Abs"],legs:["Picioare","Legs"],calf:["Gambe","Calves"]};
@@ -337,6 +344,7 @@ const savePR=()=>save("pr",JSON.stringify(PR)),sm=()=>{save("mp",JSON.stringify(
 const edit={p:false,g:false,r:false,m:false};
 const nm=e=>(lang==="en"&&e.n2)||e.n||"";
 const fmt=e=>e.raw?"":(e.s||"–")+" × "+(e.r||"–")+(e.u==="s"?" s":"")+(e.w?", "+e.w+" kg":"");
+const stepRow=e=>`<div class="stp"><span>kg</span><button data-a="kg-" aria-label="-">−</button><b>${e.w||0}</b><button data-a="kg+" aria-label="+">+</button><span>${t("reps")}</span><button data-a="r-" aria-label="-">−</button><b>${e.r||0}</b><button data-a="r+" aria-label="+">+</button></div>`;
 const xrow=e=>{
   const r=exScore(e,prof());
   if(!r)return `<div class="xi"><small>${t("unk")}</small></div>`;
@@ -344,7 +352,7 @@ const xrow=e=>{
   return `<div class="xi"><span class="chip" style="${k==null?"":`color:${RK[k][2]};border-color:${RK[k][2]}66;background:${RK[k][2]}1f`}">${k==null?t("noest"):RK[k][0]+" · LVL "+Math.min(70,Math.floor(r.s*10)+1)}</span><small>${li(M[c[3]])} · ${Math.round(c[5]*100)}% ${li(RL[c[3]])}</small><button class="gb" data-a="info">ⓘ</button></div>`;
 };
 const exHTML=(L,ed,inf)=>L.map((e,i)=>ed
-  ?`<li class="er" data-x="${i}"><input class="in" data-k="n" value="${esc(nm(e))}" maxlength="80"><div class="row3"><input class="in" data-k="s" type="number" inputmode="numeric" min="0" value="${e.s||""}" placeholder="${t("sets")}"><input class="in" data-k="r" type="number" inputmode="numeric" min="0" value="${e.r||""}" placeholder="${t("reps")}"><input class="in" data-k="w" type="number" inputmode="decimal" min="0" value="${e.w||""}" placeholder="kg"></div><button class="del" data-a="del" aria-label="Delete">✕</button>${inf?xrow(e):""}</li>`
+  ?`<li class="er" data-x="${i}"><input class="in" data-k="n" value="${esc(nm(e))}" maxlength="80"><div class="row3"><input class="in" data-k="s" type="number" inputmode="numeric" min="0" value="${e.s||""}" placeholder="${t("sets")}"><input class="in" data-k="r" type="number" inputmode="numeric" min="0" value="${e.r||""}" placeholder="${t("reps")}"><input class="in" data-k="w" type="number" inputmode="decimal" min="0" value="${e.w||""}" placeholder="kg"></div><button class="del" data-a="del" aria-label="Delete">✕</button>${inf?stepRow(e)+xrow(e):""}</li>`
   :`<li class="ex${e.d?" done":""}" data-x="${i}"><span class="th"><svg><use href="#db"/></svg></span><div><b>${esc(nm(e))}</b><small>${fmt(e)}</small></div><span class="ck"></span></li>`).join("");
 const muEd=(m,ed)=>`<div class="chips${ed?" pick":""}">${ed?Object.keys(M).map(k=>`<button class="chip${m.includes(k)?" on":""}" data-mk="${k}">${li(M[k])}</button>`).join(""):m.map(k=>`<span class="chip">${li(M[k])}</span>`).join("")}</div>`;
 const addBtns=()=>`<button class="cta" data-a="add">+ ${t("add")}</button><button class="gb" data-a="rst" style="margin-top:12px">${t(edit.r?"sure":"rst")}</button>`;
@@ -470,7 +478,7 @@ function badge(c,n,z){
   return b+"</svg>";
 }
 /* rank picture = <name>.jpeg from the same folder; falls back to a drawn badge if the file is missing */
-const bimg=(r,i,z)=>{const f=r[3]+".jpeg",bad=BAD.has(f);return `<span class="bimg${bad?" err":""}" style="--z:${z}px;--c:${r[2]}">${bad?"":`<img src="${f}" alt="${r[0]}">`}${badge(r[2],i,z)}</span>`};
+const bimg=(r,i,z)=>{const f=r[3]+".jpeg",bad=BAD.has(f);return `<span class="bimg${bad?" err":""}" style="--z:${z}px;--c:${r[2]}">${bad?"":`<span class="hx"><img src="${f}" alt="${r[0]}"></span>`}${badge(r[2],i,z)}</span>`};
 document.addEventListener("error",e=>{const im=e.target,b=im.closest&&im.closest(".bimg");if(b){BAD.add(im.getAttribute("src"));b.classList.add("err")}},true);
 
 function renderRank(){
@@ -523,6 +531,7 @@ function renderMy(){
   $("#mBody").innerHTML=`<div class="ph"><h3>${DN[lang][msel]}</h3><span>${dd.e.length} ${t("ex")}</span></div>
   <p class="lb">${t("pick")}</p>${muEd(dd.m,true)}
   <img id="mMap" class="map mini" alt="" src="${bu(on)}">
+  <div class="chips pick stepc"><span>${t("step")}</span>${[1,2.5,5].map(v=>`<button class="chip${(my.step||2.5)===v?" on":""}" data-st="${v}">${v} kg</button>`).join("")}</div>
   <ul class="exs">${dd.e.length?exHTML(dd.e,true,true):`<li class="hint">${t("empty")}</li>`}</ul>
   <button class="cta" data-a="lib" style="margin-top:12px">${t("pickEx")}</button><button class="gb" data-a="add" style="width:100%;margin-top:8px;border-radius:14px">+ ${t("add")}</button>
   <div class="sv">${svTxt()}<button class="cta" data-a="save">${t("sv")}</button></div>
@@ -585,11 +594,24 @@ $("#rank").addEventListener("click",e=>{const b=e.target.closest("button");if(!b
 $("#myN").addEventListener("input",e=>{my.n=e.target.value;sm();svStatus()});
 $("#mTabs").addEventListener("click",e=>{const b=e.target.closest("button");if(b){msel=+b.dataset.d;edit.m=false;renderMy()}});
 const cpy=o=>JSON.parse(JSON.stringify(o,(k,v)=>k==="d"?undefined:v));
+const lgT={};
+/* quick progression: +/- kg or reps on an exercise. It saves the program, so the rank updates right away; the new weight goes into the log once you stop clicking */
+function bump(i,dw,dr){
+  const e=my.days[msel].e[i];if(!e)return;
+  if(dw)e.w=Math.max(0,Math.round(((+e.w||0)+dw)*10)/10);
+  if(dr)e.r=Math.max(0,(+e.r||0)+dr);
+  if(!(e.s>0))e.s=3;delete e.raw;
+  my.sv=JSON.stringify({t:Date.now(),n:my.n,days:my.days});sm();render();
+  const k=xkey(e);clearTimeout(lgT[k]);
+  lgT[k]=setTimeout(()=>{if(e.w>0&&e.r>0){(my.log[k]=my.log[k]||[]).push({t:Date.now(),w:e.w,r:e.r});sm()}},2000);
+}
 $("#mBody").addEventListener("click",e=>{
   const b=e.target.closest("button"),dd=my.days[msel],a=b&&b.dataset.a;
   if(a==="save")my.sv=JSON.stringify({t:Date.now(),n:my.n,days:my.days});
   else if(a==="cp")ORDER.forEach(d=>{my.days[d]=cpy({m:PR.p[d].m,e:PR.p[d].e})});
   else if(a==="cg")ORDER.forEach(d=>{my.days[d]=cpy({m:PR.g[d].m,e:PR.g[d].e})});
+  else if(a==="kg+"||a==="kg-"||a==="r+"||a==="r-"){const x=e.target.closest("[data-x]");if(x)bump(+x.dataset.x,a[0]==="k"?(a[2]==="+"?1:-1)*(my.step||2.5):0,a[0]==="r"?(a[1]==="+"?1:-1):0);return}
+  else if(b&&b.dataset.st){my.step=+b.dataset.st;sm();renderMy();return}
   else if(a==="lib"){openLib();return}
   else if(a==="info"){const x=e.target.closest("[data-x]");if(x)openX(+x.dataset.x);return}
   else if(a==="clr"){if(edit.m){my.days=blank();my.sv=null;edit.m=false}else{edit.m=true;renderMy();return}}
@@ -730,7 +752,7 @@ async function srvAuth(){
 const authRun=()=>(SERVER?srvAuth():localAuth()).catch(e=>{$("#aE").textContent="Eroare: "+(e&&e.message||e)});
 function enterCore(){
   loadUser();sel=msel=gSel=TODAY();unlocked=isAdm();gOpen=false;edit.p=edit.g=edit.m=edit.r=false;
-  $("#auth").hidden=true;render();schedPush();if(SERVER)loadBoard();
+  $("#auth").hidden=true;render();schedPush();lbRefresh(false);
 }
 function enter(id,remember){
   uid=id;
@@ -739,12 +761,12 @@ function enter(id,remember){
 }
 function srvEnter(me){
   uid="s"+me.id;USERS={};
-  USERS[uid]={name:me.name,admin:me.role==="admin"||me.role==="owner",owner:me.role==="owner",bio:me.bio||"",soc:me.soc||{},av:me.avatar||"",theme:me.theme||"crimson",pub:me.pub!==false};
+  USERS[uid]={name:me.name,admin:me.role==="admin"||me.role==="owner",owner:me.role==="owner",bio:me.bio||"",soc:me.soc||{},av:me.avatar||"",avt:me.avt||"",theme:me.theme||"crimson",pub:me.pub!==false};
   ["pr","lf","mp"].forEach(k=>{if(me.data&&me.data[k]!=null)try{localStorage.setItem(UK(k),JSON.stringify(me.data[k]))}catch(x){}});
   enterCore();
 }
 function srvSyncData(){clearTimeout(sdT);sdT=setTimeout(()=>{if(uid&&SERVER)api("/me/data","PUT",{pr:PR,lf,mp:my}).catch(()=>{})},1200)}
-function srvSyncProfile(){clearTimeout(spT);spT=setTimeout(()=>{const u=USERS[uid];if(u&&SERVER)api("/me/profile","PUT",{name:u.name,bio:u.bio||"",soc:u.soc||{},theme:u.theme||"crimson",avatar:u.av||"",pub:u.pub!==false}).catch(()=>{})},1200)}
+function srvSyncProfile(){clearTimeout(spT);spT=setTimeout(()=>{const u=USERS[uid];if(u&&SERVER)api("/me/profile","PUT",{name:u.name,bio:u.bio||"",soc:u.soc||{},theme:u.theme||"crimson",avatar:u.av||"",avt:u.avt||"",pub:u.pub!==false}).catch(()=>{})},1200)}
 function logout(){
   if(SERVER)api("/logout","POST").catch(()=>{});
   try{localStorage.removeItem("sess");sessionStorage.removeItem("sess")}catch(x){}
@@ -804,18 +826,19 @@ function onlRows(cat){
 }
 function schedPush(){clearTimeout(pt);pt=setTimeout(pushScore,1500)}
 async function pushScore(){
+  if(FBC)return fbPush();
   if(!DB||!UIDS||!uid||!USERS[uid]||!USERS[uid].pub||canW===false)return;
   const u=USERS[uid],o=rankData(my,lf),ks=Object.keys(o.RS),s={};
   const mean=ks.length?ks.reduce((a,k)=>a+o.RS[k].s,0)/ks.length:0;
   ks.forEach(k=>{s[k]=Math.round(o.RS[k].s*1000)/1000});
   const doc={n:String(u.name).slice(0,24),bio:String(u.bio||"").slice(0,140),soc:u.soc||{},sc:Math.round(mean*1000)/1000,s,t:Date.now()};
-  if(typeof u.av==="string"&&u.av.length<40000)doc.av=u.av;
+  if(typeof u.avt==="string"&&u.avt.length<9000)doc.av=u.avt;
   const key=JSON.stringify(Object.assign({},doc,{t:0}));
   if(key===lastPush)return;
   try{await DB.doc("lb/"+UIDS).set(doc);lastPush=key;onlErr=""}catch(e){onlErr=(e&&e.code)||"error"}
   renderBoard();
 }
-async function pullScore(){if(!DB||!UIDS)return;try{await DB.doc("lb/"+UIDS).delete();lastPush=""}catch(e){}}
+async function pullScore(){if(FBC)return fbPull();if(!DB||!UIDS)return;try{await DB.doc("lb/"+UIDS).delete();lastPush=""}catch(e){}}
 (async()=>{
   try{
     if(!(window.claude&&claude.use))return;
@@ -828,30 +851,89 @@ async function pullScore(){if(!DB||!UIDS)return;try{await DB.doc("lb/"+UIDS).del
     renderBoard();
   }catch(e){}
 })();
+/* ---- Firebase (REST, no SDK, no extra script): anonymous sign-in + Firestore. The apiKey is public by design; Firestore rules protect the data. ---- */
+const FBC=CFG.firebase&&CFG.firebase.apiKey&&CFG.firebase.projectId?CFG.firebase:null;
+const FB={uid:"",tok:"",exp:0,rt:""},DAY=864e5;
+const FBH=k=>(FBC&&FBC[k])||({auth:"https://identitytoolkit.googleapis.com",token:"https://securetoken.googleapis.com",store:"https://firestore.googleapis.com"})[k];
+async function fbToken(){
+  if(FB.tok&&Date.now()<FB.exp-60000)return FB.tok;
+  let j=null;const rt=FB.rt||localStorage.getItem("fbrt")||"";
+  if(rt){
+    const r=await fetch(`${FBH("token")}/v1/token?key=${encodeURIComponent(FBC.apiKey)}`,{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:"grant_type=refresh_token&refresh_token="+encodeURIComponent(rt)});
+    if(r.ok){const x=await r.json();j={idToken:x.id_token,refreshToken:x.refresh_token,localId:x.user_id,expiresIn:x.expires_in}}
+  }
+  if(!j){
+    const r=await fetch(`${FBH("auth")}/v1/accounts:signUp?key=${encodeURIComponent(FBC.apiKey)}`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({returnSecureToken:true})});
+    if(!r.ok)throw Object.assign(new Error("fb-auth"),{code:"fb-auth"});j=await r.json();
+  }
+  FB.tok=j.idToken;FB.rt=j.refreshToken;FB.uid=j.localId;FB.exp=Date.now()+(+j.expiresIn||3600)*1000;
+  try{localStorage.setItem("fbrt",FB.rt)}catch(x){}
+  return FB.tok;
+}
+async function fbCall(method,path,body){
+  const tok=await fbToken();
+  const r=await fetch(`${FBH("store")}/v1/projects/${encodeURIComponent(FBC.projectId)}/databases/(default)/documents/${path}`,{method,headers:{Authorization:"Bearer "+tok,"Content-Type":"application/json"},body:body?JSON.stringify(body):undefined});
+  if(!r.ok)throw Object.assign(new Error("fb-"+r.status),{code:"fb-"+r.status});
+  return method==="DELETE"?{}:r.json();
+}
+const fsv=v=>typeof v==="string"?{stringValue:v}:typeof v==="number"?{doubleValue:v}:typeof v==="boolean"?{booleanValue:v}:v&&typeof v==="object"?{mapValue:{fields:Object.fromEntries(Object.entries(v).map(([k,x])=>[k,fsv(x)]))}}:{nullValue:null};
+const fsd=f=>{const o={};for(const [k,v] of Object.entries(f||{}))o[k]="stringValue" in v?v.stringValue:"doubleValue" in v?v.doubleValue:"integerValue" in v?+v.integerValue:"booleanValue" in v?v.booleanValue:"mapValue" in v?fsd(v.mapValue.fields):null;return o};
+async function fbPush(){
+  if(!FBC||!uid||!USERS[uid]||!USERS[uid].pub)return;
+  const u=USERS[uid],o=rankData(my,lf),ks=Object.keys(o.RS),s={};
+  const mean=ks.length?ks.reduce((a,k)=>a+o.RS[k].s,0)/ks.length:0;
+  ks.forEach(k=>{s[k]=Math.round(o.RS[k].s*1000)/1000});
+  const soc={};Object.keys(u.soc||{}).forEach(k=>{if(typeof u.soc[k]==="string"&&u.soc[k])soc[k]=u.soc[k].slice(0,80)});
+  const doc={n:String(u.name).slice(0,24),bio:String(u.bio||"").slice(0,140),soc,sc:Math.min(6.999,Math.round(mean*1000)/1000),s,t:Date.now()};
+  if(typeof u.avt==="string"&&u.avt.length<9000)doc.av=u.avt;
+  const key=JSON.stringify(Object.assign({},doc,{t:0}));if(key===lastPush)return;
+  const mask=["n","bio","soc","sc","s","t","av"].map(k=>"updateMask.fieldPaths="+k).join("&");   /* "av" is always in the mask so a removed photo is deleted */
+  await fbToken();
+  await fbCall("PATCH","leaderboard/"+FB.uid+"?"+mask,{fields:fsv(doc).mapValue.fields});
+  lastPush=key;
+}
+async function fbPull(){try{await fbToken();await fbCall("DELETE","leaderboard/"+FB.uid);lastPush=""}catch(e){}}
+const NET=()=>SERVER||!!FBC||!!DB;
+const fmtDT=ms=>ms?new Date(ms).toLocaleString(lang==="ro"?"ro-RO":"en-GB",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}):"–";
 async function loadBoard(){
-  if(!SERVER)return;
   try{
-    const r=await api("/leaderboard");
-    ONL=r.players.map(p=>({id:p.id,n:p.name,av:p.avatar,bio:p.bio,soc:p.soc,sc:p.score,s:p.scores,on:p.online,seen:p.seen}));
-    onlOK=true;onlErr="";try{localStorage.setItem("lbc",JSON.stringify(ONL.slice(0,60).map(d=>Object.assign({},d,{av:""}))))}catch(x){}
-  }catch(e){onlOK=false;onlErr=e.code||"offline"}
+    if(SERVER){
+      const r=await api("/leaderboard");
+      ONL=r.players.map(p=>({id:p.id,n:p.name,av:p.avatar,bio:p.bio,soc:p.soc,sc:p.score,s:p.scores,on:p.online,seen:p.seen}));
+    }else if(FBC){
+      const r=await fbCall("GET","leaderboard?pageSize=300");
+      ONL=(r.documents||[]).map(d=>{const f=fsd(d.fields);return {id:d.name.split("/").pop(),n:f.n,av:f.av,bio:f.bio,soc:f.soc,sc:f.sc,s:f.s,seen:f.t}});
+    }else return;
+    onlOK=true;onlErr="";
+    try{localStorage.setItem("lbc",JSON.stringify(ONL.slice(0,300).map(d=>Object.assign({},d,{av:""}))));localStorage.setItem("lbT",String(Date.now()))}catch(x){}
+  }catch(e){onlOK=false;onlErr=(e&&(e.code||e.message))||"offline"}
   renderBoard();
 }
-const isOn=d=>(SERVER?!!d.on:(d.id===UIDS||PEERS.has(d.id)))&&onlOK;
+const lbAge=()=>Date.now()-(+localStorage.getItem("lbT")||0);
+let lbLast=0;
+/* automatic refresh happens once a day (when the last good refresh is older than 24 h, checked at login, on the Clasament page and hourly while the page is open); the button refreshes on demand */
+async function lbRefresh(force){
+  if(!(SERVER||FBC))return;
+  if(Date.now()-lbLast<30000)return;
+  if(!force&&ONL.length&&lbAge()<DAY)return;
+  lbLast=Date.now();await loadBoard();
+}
+setInterval(()=>{if(uid)lbRefresh(false)},36e5);
+const isOn=d=>onlOK&&(SERVER?(!!d.on&&lbAge()<9e5):FBC?(d.id===FB.uid||Date.now()-(+d.seen||0)<9e5):(d.id===UIDS||PEERS.has(d.id)));
 function renderBoard(){
-  const live=(DB||SERVER)&&onlOK,eff=bmode==="onl"&&(DB||SERVER)?"onl":"loc",u=uid&&USERS[uid];
+  const live=NET()&&onlOK,eff=bmode==="onl"&&NET()?"onl":"loc",u=uid&&USERS[uid];
   $("#bMode").style.display=SERVER?"none":"";
   $("#bMode").innerHTML=`<button data-m="onl" class="${bmode==="onl"?"on":""}">${t("bOn")}</button><button data-m="loc" class="${bmode==="loc"?"on":""}">${t("bLoc")}</button>`;
   const nOn=ONL.filter(isOn).length;
-  const st=!(DB||SERVER)?t("srvNo"):live?`${t("srvOk")} · ${ONL.length} ${t("players")} · ${nOn} ${t("onl")}`:ONL.length?`${t("offl")} · ${ONL.length} ${t("players")}`:onlErr?t("srvErr")+" ("+esc(onlErr)+")":t("srvWait");
-  const canPub=(SERVER||(DB&&UIDS))&&u;
+  const st=!NET()?t("srvNo"):live?`${t("srvOk")} · ${ONL.length} ${t("players")} · ${nOn} ${t("onl")}`:ONL.length?`${t("offl")} · ${ONL.length} ${t("players")}`:onlErr?t("srvErr")+" ("+esc(onlErr)+")":t("srvWait");
+  const canPub=(SERVER||FBC||(DB&&UIDS))&&u;
   const sw=canPub?`<label class="rm"><input type="checkbox" id="pubC"${u.pub?" checked":""}><span>${t("pubT")}</span></label><p class="fine" style="text-align:left;margin:4px 0 0">${canW===false?t("roOnly"):t("pubN")}</p>`:"";
-  $("#bStat").innerHTML=`<p class="fine" style="text-align:left;margin:8px 0 0">${st}</p>${sw}`;
+  $("#bStat").innerHTML=`<p class="fine" style="text-align:left;margin:8px 0 0">${st}</p>${(SERVER||FBC)?`<p class="fine" style="text-align:left;margin:4px 0 8px">${t("lastUp")}: ${fmtDT(+localStorage.getItem("lbT")||0)} · ${t("nextUp")}: ${fmtDT((+localStorage.getItem("lbT")||Date.now())+DAY)}</p><button class="gb" data-a="rfs">${t("refresh")}</button>`:""}${sw}`;
   $("#bChips").innerHTML=`<button class="chip${bcat==="all"?" on":""}" data-c="all">${t("ovr")}</button>`+Object.keys(M).map(k=>`<button class="chip${bcat===k?" on":""}" data-c="${k}">${li(M[k])}</button>`).join("");
   let rows;
   if(eff==="onl"){
     rows=onlRows(bcat).map((r,i)=>{
-      const d=r.d,ri=Math.min(6,Math.floor(r.sc)),c=RK[ri],on=isOn(d),me=SERVER?(uid&&d.id===uid.slice(1)):d.id===UIDS;
+      const d=r.d,ri=Math.min(6,Math.floor(r.sc)),c=RK[ri],on=isOn(d),me=SERVER?(uid&&d.id===uid.slice(1)):FBC?d.id===FB.uid:d.id===UIDS;
       return `<li class="bl${me?" me":""}${i<3&&r.has?" top"+(i+1):""}" data-o="${esc(d.id)}"><span class="pos">${i+1}</span>${avtX(d.n,d.av,null,40)}<div class="bn"><b>${esc(String(d.n||"?").slice(0,24))}</b><small><span class="pdot${on?" on":""}"></span>${r.has?c[0]+" · LVL "+Math.min(70,Math.floor(r.sc*10)+1):t("norank")} · <span class="${on?"ok":"off"}">${on?t("onl"):t("offl1")}</span></small></div>${r.has?bimg(c,ri,40):""}<span class="xp">${r.has?Math.round(r.sc*1000)+" XP":"–"}</span>${UOWN?`<button class="del" data-rm="${esc(d.id)}" aria-label="Delete">✕</button>`:""}</li>`});
   }else{
     rows=board(bcat).map((r,i)=>{
@@ -932,7 +1014,7 @@ $("#acct").addEventListener("click",e=>{
   if(!u||profId!==uid)return;
   const keep=fn=>{const st=$("#acctB").scrollTop;fn();openProf(uid);$("#acctB").scrollTop=st};
   if(a==="av"){const f=$("#avF");if(f)f.click()}
-  else if(a==="avx")keep(()=>{delete u.av;saveUsers();hdr()});
+  else if(a==="avx")keep(()=>{delete u.av;delete u.avt;saveUsers();hdr()});
   else if(b.dataset.ac)keep(()=>{u.ac=b.dataset.ac;saveUsers();hdr()});
   else if(b.dataset.th){u.theme=b.dataset.th;applyTheme(u.theme);saveUsers();document.querySelectorAll("#acct .thb").forEach(v=>v.classList.toggle("on",v===b))}
   else if(SERVER&&isOwn()&&b.dataset.sad){api("/admin/role","POST",{id:b.dataset.sad,role:b.dataset.nr}).then(loadSrvUsers).catch(()=>{})}
@@ -963,13 +1045,16 @@ $("#acct").addEventListener("change",e=>{
   rd.onload=()=>{const im=new Image();im.onload=()=>{
     const c=document.createElement("canvas"),z=160,q=Math.min(im.width,im.height);c.width=c.height=z;
     c.getContext("2d").drawImage(im,(im.width-q)/2,(im.height-q)/2,q,q,0,0,z,z);
-    USERS[uid].av=c.toDataURL("image/jpeg",.82);saveUsers();hdr();
+    USERS[uid].av=c.toDataURL("image/jpeg",.82);
+    const c2=document.createElement("canvas");c2.width=c2.height=64;c2.getContext("2d").drawImage(c,0,0,z,z,0,0,64,64);USERS[uid].avt=c2.toDataURL("image/jpeg",.7);
+    saveUsers();hdr();
     const st=$("#acctB").scrollTop;openProf(uid);$("#acctB").scrollTop=st;
   };im.src=rd.result};
   rd.readAsDataURL(f);
 });
 $("#bChips").addEventListener("click",e=>{const b=e.target.closest("button");if(b&&b.dataset.c){bcat=b.dataset.c;renderBoard()}});
 $("#bMode").addEventListener("click",e=>{const b=e.target.closest("button");if(b&&b.dataset.m){bmode=b.dataset.m;renderBoard()}});
+$("#bStat").addEventListener("click",e=>{const b=e.target.closest("button");if(b&&b.dataset.a==="rfs")lbRefresh(true)});
 $("#bStat").addEventListener("change",e=>{if(e.target.id!=="pubC"||!USERS[uid])return;USERS[uid].pub=e.target.checked;saveUsers();if(!e.target.checked)pullScore()});
 $("#bList").addEventListener("click",e=>{
   const rm=e.target.closest("[data-rm]");
@@ -1057,20 +1142,22 @@ function buildNav(cur){
 function showPage(){
   const k=pageKey();
   document.querySelectorAll(".pane").forEach(p=>p.classList.toggle("act",p.id===PG[k][1]));
+  if(FILEMODE&&uid&&document.body.dataset.page==="special"&&!isAdm()){location.replace("index.html");return}
   buildNav(k);document.title="FORMA – "+t(PG[k][2]);
-  if(k==="board"&&SERVER)loadBoard();
+  if(k==="board")lbRefresh(false);
 }
 window.addEventListener("hashchange",()=>{if(!FILEMODE&&uid){showPage();scrollTo(0,0)}});
 document.querySelectorAll(".lang").forEach(l=>l.addEventListener("click",e=>{const b=e.target.closest("button");if(b){lang=b.dataset.l;save("l",lang);render()}}));
 try{USERS=JSON.parse(localStorage.getItem("users")||"{}")}catch(x){}
 try{applyTheme(localStorage.getItem("theme"))}catch(x){}
 try{ONL=JSON.parse(localStorage.getItem("lbc")||"[]")}catch(x){ONL=[]}
+if(ONL.length&&(+localStorage.getItem("lbT")||0)>Date.now()-864e5)onlOK=true;
 let sid=null;try{sid=localStorage.getItem("sess")||sessionStorage.getItem("sess")}catch(x){}
 if(SERVER){USERS={};$("#auth").hidden=false;render();newBot();api("/me").then(r=>srvEnter(r.me)).catch(()=>{})}
 else if(sid&&USERS[sid]){uid=sid;enterCore()}
 else{$("#auth").hidden=false;render();newBot()}
 loadBody();
-setInterval(()=>{if(SERVER&&uid){api("/ping","POST").catch(()=>{});if(pageKey()==="board")loadBoard()}},30000);
+setInterval(()=>{if(SERVER&&uid)api("/ping","POST").catch(()=>{})},60000);
 </script>
 </body>
 </html>
