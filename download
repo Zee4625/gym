@@ -1,0 +1,12 @@
+# secrets and runtime data: never commit
+.env
+.env.*
+!.env.example
+server/.env
+server/data/
+*.db
+*.db-wal
+*.db-shm
+node_modules/
+*.log
+.DS_Store

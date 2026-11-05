@@ -1,0 +1,18 @@
+name: security
+on: [push, pull_request]
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Secret scan (working tree + git history)
+        run: node scripts/scan-secrets.js --history
+      - name: Dependency audit (the server has zero npm dependencies; this keeps it that way)
+        working-directory: server
+        run: npm audit --omit=dev
+      - name: Syntax + end-to-end tests
+        working-directory: server
+        run: node --check server.js && node test/e2e.js

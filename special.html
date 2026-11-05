@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#08080a">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://challenges.cloudflare.com; style-src 'self' https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://*.supabase.co https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://firestore.googleapis.com; frame-src https://challenges.cloudflare.com; base-uri 'none'; form-action 'self'; object-src 'none'">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>FORMA - Special</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="config.js"></script>
+</head>
+<body data-page="special">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs><linearGradient id="gb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4c5368"/><stop offset="1" stop-color="#262a35"/></linearGradient><linearGradient id="gm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5d667e"/><stop offset="1" stop-color="#363b4a"/></linearGradient><linearGradient id="gr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff5c7a"/><stop offset="1" stop-color="#b3123a"/></linearGradient></defs>
+<symbol id="db" viewBox="0 0 24 24"><path d="M3 9v6M6 7v10M18 7v10M21 9v6M6 12h12"/></symbol>
+<symbol id="bd" viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.5"/><path d="M12 9v6M7 11l5-2 5 2M9 21l3-6 3 6"/></symbol>
+<symbol id="tr" viewBox="0 0 24 24"><path d="M8 4h8v5a4 4 0 0 1-8 0zM8 6H4v1a4 4 0 0 0 4 4M16 6h4v1a4 4 0 0 1-4 4M12 13v4M8 20h8M10 17h4"/></symbol>
+<symbol id="hm" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h5v-6h4v6h5V10"/></symbol>
+<symbol id="lb" viewBox="0 0 24 24"><path d="M3 20h18M5 20v-7h4v7M10 20V6h4v14M15 20v-10h4v10"/></symbol>
+<symbol id="bk" viewBox="0 0 24 24"><path d="M5 4h10a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h10"/></symbol>
+<symbol id="pl" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="st" viewBox="0 0 24 24"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.5l-5.3 2.9 1.2-6L3.4 9.3l6-.7z"/></symbol>
+</svg>
+
+<header class="bar">
+  <div class="logo">FORMA<b>.</b></div>
+  <div class="dt" id="dt"></div>
+  <div class="rt"><button class="uchip" id="uBtn" aria-label="Account"></button><div class="lang" role="group" aria-label="Limba / Language"><button data-l="ro">RO</button><button data-l="en">EN</button></div></div>
+</header>
+
+<nav class="nav" id="nav"></nav>
+
+<main class="main"><div class="panes">
+  <section class="pane act" id="p-home"><div id="hHero"></div><div id="hToday"></div><img class="map" id="map" alt="Muscle map" src="data:,"><div class="lbl"><span data-i="front"></span><span data-i="back"></span></div><div class="chips" id="chips"></div><div class="lg" id="lg"></div><div class="quick" id="hLinks"></div></section>
+  <section class="pane" id="p-my"><h2 data-i="h5"></h2><div id="myRank"></div><input class="in" id="myN" maxlength="40" data-ph="wn"><div class="tabs" id="mTabs" style="margin-top:14px"></div><div id="mBody"></div></section>
+  <section class="pane" id="p-rank"><h2 data-i="h3"></h2><p class="lh" data-i="lh"></p><div id="lifts"><div class="lr"><b data-i="bw"></b><input class="in" id="bw" type="number" inputmode="decimal" min="30" max="250"><span></span></div><div class="lr"><b data-i="ag"></b><input class="in" id="ag" type="number" inputmode="numeric" min="14" max="90"><span></span></div><div class="lr"><b data-i="sx"></b><button class="gb sx" id="sxm" data-s="m" data-i="sm"></button><button class="gb sx" id="sxf" data-s="f" data-i="sf"></button></div></div><div id="rank"></div></section>
+  <section class="pane" id="p-board"><h2 data-i="h6"></h2><div class="tabs" id="bMode"></div><div id="bStat"></div><div class="chips pick" id="bChips"></div><ul class="bll" id="bList"></ul></section>
+  <section class="pane" id="p-plan"><h2 data-i="h1"></h2><div class="tabs" id="tabs"></div><div id="plan"></div></section>
+  <section class="pane" id="p-bg"><h2 data-i="h4"></h2><div id="bgHome"><div class="bg"><div class="tile"><b>B</b><span data-i="soon"></span></div><button class="tile" id="gTile" aria-label="G"><b>G</b><span id="gS"></span></button></div><p class="bgn" data-i="bgn"></p></div><div id="gView" hidden></div></section>
+</div></main>
+<div class="pin" id="auth"><div class="pinbox authbox"><div class="logo">FORMA<b>.</b></div><p class="nx" data-i="authSub"></p><div id="who"></div><div class="tabs" id="aTabs"><button id="aLog" class="on" data-i="lg_t"></button><button id="aNew" data-i="su"></button><button id="aPan" data-i="panel"></button></div><input class="in" id="aEm" type="email" autocomplete="email" maxlength="254" data-ph="em" style="display:none"><input class="in" id="aN" autocomplete="username" maxlength="24" data-ph="un"><input class="in" id="aP" type="password" autocomplete="current-password" maxlength="64" data-ph="pw"><input class="in" id="aC" type="password" autocomplete="off" maxlength="40" data-ph="code" style="display:none"><input class="in" id="aV" inputmode="numeric" autocomplete="one-time-code" maxlength="6" data-ph="vcode" style="display:none"><input id="hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0"><div class="bot" id="bot"><div id="tsBox"></div><div class="botl" id="botL"><span data-i="notbot"></span><b id="botQ"></b><input class="in" id="botA" inputmode="numeric" maxlength="3" aria-label="captcha"></div></div><label class="rm" id="aRm"><input type="checkbox" id="aR" checked><span data-i="rm"></span></label><p class="pe" id="aE"></p><button class="cta" id="aGo"></button><button class="gb" id="aRs" data-i="resend" style="display:none;width:100%;margin-top:8px;border-radius:14px"></button><div class="lang lg2"><button data-l="ro">RO</button><button data-l="en">EN</button></div><p class="fine" id="authNote" data-i="note"></p></div></div>
+<div class="pin" id="acct" hidden><div class="pinbox wbox" id="acctB"></div></div>
+<div class="pin" id="lib" hidden><div class="pinbox wbox" id="libB"></div></div>
+<div class="pin" id="xd" hidden><div class="pinbox wbox" id="xdB"></div></div>
+
+<script src="app.js"></script>
+</body>
+</html>

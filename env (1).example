@@ -1,0 +1,25 @@
+# Copy to .env (git-ignored) and fill in. NEVER commit .env.
+NODE_ENV=production
+PORT=3000
+# Public https address of the site (cookies, CSRF origin check, HTTPS redirect use it)
+APP_URL=https://your-domain.example
+TRUST_PROXY=1
+
+# Secrets: run `npm run keys`
+DATA_KEY=
+SESSION_SECRET=
+
+# Owner "Panel" code, stored only as a hash: `npm run owner-hash -- "YOUR-CODE"`
+OWNER_CODE_HASH=
+
+# Email (real verification codes). Gmail: enable 2-step verification, create an App password
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=465
+SMTP_USER=your.address@gmail.com
+SMTP_PASS=
+SMTP_FROM=your.address@gmail.com
+
+# "I am not a robot" (Cloudflare Turnstile). Site key is public, secret key stays here.
+# Leave both empty to use the built-in challenge.
+TURNSTILE_SITEKEY=
+TURNSTILE_SECRET=

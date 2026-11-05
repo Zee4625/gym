@@ -1,0 +1,29 @@
+// Paste into Firebase console -> Firestore Database -> Rules -> Publish.
+// This is the "row level security" of the leaderboard: everyone signed in (anonymously) can read it,
+// but each browser can only create/update/delete ITS OWN entry (document id = its Firebase uid),
+// and only with the fields and ranges below. Everything else is denied.
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function validEntry(d) {
+      return d.keys().hasOnly(['n', 'bio', 'soc', 'sc', 's', 'av', 't'])
+        && d.n is string && d.n.size() >= 2 && d.n.size() <= 24
+        && d.bio is string && d.bio.size() <= 140
+        && d.soc is map && d.s is map
+        && d.sc is number && d.sc >= 0 && d.sc < 7
+        && d.t is number
+        && (!('av' in d) || (d.av is string && d.av.size() < 12000));
+    }
+
+    match /leaderboard/{uid} {
+      allow read: if request.auth != null;
+      allow create, update: if request.auth != null && request.auth.uid == uid && validEntry(request.resource.data);
+      allow delete: if request.auth != null && request.auth.uid == uid;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
